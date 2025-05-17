@@ -28,6 +28,22 @@
     <!-- 📜 Player Pool -->
     <div class="bg-green-900/80 rounded-2xl p-6 shadow-lg col-span-1">
       <h2 class="text-2xl font-semibold text-yellow-300 mb-4">Draft Pool</h2>
+      
+      <!-- Position Filters -->
+      <div id="position-filters" class="mb-4 space-x-2">
+        <button class="pos-filter-btn active-filter" onclick="window.filterPlayersByPosition('All')">All</button>
+        <button class="pos-filter-btn" onclick="window.filterPlayersByPosition('QB')">QB</button>
+        <button class="pos-filter-btn" onclick="window.filterPlayersByPosition('RB')">RB</button>
+        <button class="pos-filter-btn" onclick="window.filterPlayersByPosition('WR')">WR</button>
+        <button class="pos-filter-btn" onclick="window.filterPlayersByPosition('TE')">TE</button>
+        <button class="pos-filter-btn" onclick="window.filterPlayersByPosition('K')">K</button>
+        <button class="pos-filter-btn" onclick="window.filterPlayersByPosition('DST')">DST</button>
+      </div>
+      <style>
+        .pos-filter-btn { @apply px-3 py-1 bg-white/10 border border-white/20 rounded hover:bg-white/30 transition text-sm; }
+        .active-filter { @apply bg-yellow-300 text-black hover:bg-yellow-400; }
+      </style>
+
       <div id="player-list" class="space-y-4"></div>
     </div>
 
