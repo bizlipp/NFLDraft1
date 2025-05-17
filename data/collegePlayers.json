@@ -1,0 +1,138 @@
+"collegePlayers": [
+  {
+    "name": "Caleb Williams",
+    "college": "USC",
+    "position": "QB",
+    "draftYear": 2024,
+    "draftStatus": "1st Round, 1st overall",
+    "collegeStats": { "passYds": 10_996, "passTD": 96, "rushYds": 1197, "rushTD": 27 }, 
+    "notes": "Elite QB prospect (Heisman 2022). Threw 93 TD vs 14 INT in college:contentReference[oaicite:74]{index=74}. Drafted 1.01 by Chicago and slated as Bears’ franchise QB."
+  },
+  {
+    "name": "Jayden Daniels",
+    "college": "LSU",
+    "position": "QB",
+    "draftYear": 2024,
+    "draftStatus": "1st Round, 2nd overall",
+    "collegeStats": { "passYds": 12_609, "passTD": 96, "rushYds": 3_796, "rushTD": 50 },
+    "notes": "2023 Heisman Trophy winner and a historic dual-threat (only FBS player with 12k+ pass and 3k+ rush yards:contentReference[oaicite:75]{index=75}). Drafted 1.02 by Washington to be their QB of the future."
+  },
+  {
+    "name": "Drake Maye",
+    "college": "North Carolina",
+    "position": "QB",
+    "draftYear": 2024,
+    "draftStatus": "1st Round, 3rd overall",
+    "collegeStats": { "passYds": 8_202, "passTD": 66, "rushYds": 852, "rushTD": 7 },
+    "notes": "Prototypical pocket passer with athleticism. Posted back-to-back 4,000+ yard seasons at UNC. Drafted 1.03 by New England to succeed the Brady-era void at QB."
+  },
+  {
+    "name": "Marvin Harrison Jr.",
+    "college": "Ohio State",
+    "position": "WR",
+    "draftYear": 2024,
+    "draftStatus": "1st Round, 4th overall",
+    "collegeStats": { "recYds": 2_626, "recTD": 29 },
+    "notes": "Generational WR prospect and two-time All-American:contentReference[oaicite:76]{index=76}. Only OSU receiver with multiple 1,000-yard seasons:contentReference[oaicite:77]{index=77}. Drafted 1.04 by Arizona to give Kyler Murray a true #1 target."
+  },
+  {
+    "name": "Brock Bowers",
+    "college": "Georgia",
+    "position": "TE",
+    "draftYear": 2024,
+    "draftStatus": "1st Round, 13th overall",
+    "collegeStats": { "recYds": 2_971, "recTD": 29 },
+    "notes": "Arguably the best college TE ever:contentReference[oaicite:78]{index=78} – a three-year star who even logged 5 rushing TD for UGA:contentReference[oaicite:79]{index=79}. Drafted by Las Vegas, he delivered on the hype with an All-Pro rookie year."
+  },
+  {
+    "name": "Michael Penix Jr.",
+    "college": "Washington",
+    "position": "QB",
+    "draftYear": 2024,
+    "draftStatus": "1st Round, 8th overall",
+    "collegeStats": { "passYds": 4_903, "passTD": 36 },
+    "notes": "Led the nation in passing yards in 2023 (4,903) and finished 2nd in Heisman voting:contentReference[oaicite:80]{index=80}. A proven winner (25–3 as UW starter). Drafted 1.08 by Tennessee as an NFL-ready passer."
+  },
+  {
+    "name": "Malik Nabers",
+    "college": "LSU",
+    "position": "WR",
+    "draftYear": 2024,
+    "draftStatus": "1st Round, 6th overall",
+    "collegeStats": { "recYds": 3_003, "recTD": 16 },
+    "notes": "LSU’s all-time leader in career receiving yards (3,003 in just 3 seasons):contentReference[oaicite:81]{index=81}. A dynamic playmaker drafted by the Giants in 2024; he posted 1,204 rec yards as a rookie for New York:contentReference[oaicite:82]{index=82}."
+  },
+  {
+    "name": "Rome Odunze",
+    "college": "Washington",
+    "position": "WR",
+    "draftYear": 2024,
+    "draftStatus": "1st Round, 9th overall",
+    "collegeStats": { "recYds": 2_548, "recTD": 19 },
+    "notes": "Set a Washington record with 1,640 receiving yards in 2023:contentReference[oaicite:83]{index=83}. Back-to-back 1k seasons at UW. Drafted by Green Bay to infuse young talent into their receiving corps."
+  },
+  {
+    "name": "Joe Alt",
+    "college": "Notre Dame",
+    "position": "OT",
+    "draftYear": 2024,
+    "draftStatus": "1st Round, 5th overall",
+    "collegeStats": null,
+    "notes": "Top offensive tackle of 2024 class. A 6'8” technician who was a three-year starter for the Irish. Drafted 1.05 by the Chargers to protect Justin Herbert."
+  },
+  {
+    "name": "Cam Ward",
+    "college": "Miami (FL)",
+    "position": "QB",
+    "draftYear": 2025,
+    "draftStatus": "Projected 1st Round",
+    "collegeStats": { "passYds": 4_313, "passTD": 39, "rushYds": 381, "rushTD": 5 }, 
+    "notes": "After transferring from WSU to Miami, Ward became a Heisman finalist and top QB prospect:contentReference[oaicite:84]{index=84}. Mobile, big-armed, and poised – expected to be the #1 pick in 2025 (Tennessee).:contentReference[oaicite:85]{index=85}"
+  },
+  {
+    "name": "Travis Hunter",
+    "college": "Colorado",
+    "position": "CB/WR",
+    "draftYear": 2025,
+    "draftStatus": "Projected 1st Round (Top 3)",
+    "collegeStats": { "position": "Two-way", "notable": "2023 Heisman winner, 100+ tackles, 4 INT; 40 rec, 500+ yds at WR" },
+    "notes": "A two-way phenom and 2023 Heisman Trophy winner as a corner/receiver:contentReference[oaicite:86]{index=86}. Elite ball skills on defense and dynamic with the ball in his hands. Widely considered the **best player in the 2025 draft**:contentReference[oaicite:87]{index=87}."
+  },
+  {
+    "name": "Shedeur Sanders",
+    "college": "Colorado",
+    "position": "QB",
+    "draftYear": 2025,
+    "draftStatus": "Projected 1st–2nd Round",
+    "collegeStats": { "passYds": "3,500+ (2024 proj)", "passTD": "30+ (2024 proj)" },
+    "notes": "Productive son of Deion Sanders with NFL pedigree. Showed flashes of brilliance at Colorado. Some scouts see him as a Round 1 talent, while others project Round 2 – a debated 2025 QB prospect.:contentReference[oaicite:88]{index=88}"
+  },
+  {
+    "name": "Abdul Carter",
+    "college": "Penn State",
+    "position": "Edge",
+    "draftYear": 2025,
+    "draftStatus": "Projected 1st Round (Top 5)",
+    "collegeStats": { "sacks": 12, "tackles": 68, "season": 2024 },
+    "notes": "Explosive edge rusher (6-4, 250) with 12 sacks in 2024 at PSU. Compares to Micah Parsons in play style. Projected as a top-5 pick in 2025 – the Giants snag him at #3 in many mocks:contentReference[oaicite:89]{index=89}."
+  },
+  {
+    "name": "Ashton Jeanty",
+    "college": "Boise State",
+    "position": "RB",
+    "draftYear": 2025,
+    "draftStatus": "Projected 1st Round (Top 10)",
+    "collegeStats": { "rushYds": 1_216, "rushTD": 16, "recYds": 512, "recTD": 4 }, 
+    "notes": "Versatile playmaker who put up 1,700+ scrimmage yards in 2024 at Boise State. Surprising buzz as a possible top-10 pick (a mock has Jacksonville taking him at #5:contentReference[oaicite:90]{index=90}) – teams see him as an **Alvin Kamara-type weapon**."
+  },
+  {
+    "name": "Marvin Harrison III",
+    "college": "Ohio State",
+    "position": "WR",
+    "draftYear": 2025,
+    "draftStatus": "Projected 1st Round",
+    "collegeStats": { "recYds": 1_200, "recTD": 14, "season": 2024 },
+    "notes": "*(Projected)* Son of Hall-of-Famer Marvin Harrison. Inherits elite route-running and hands. If he stays for 2024 season at OSU and declares in 2025, he’d be among the top WR prospects (much like his teammate Emeka Egbuka)."
+  }
+]
+}

@@ -1,0 +1,114 @@
+"offseasonTrades": [
+  {
+    "year": 2024,
+    "player": "Saquon Barkley",
+    "fromTeam": "New York Giants",
+    "toTeam": "Philadelphia Eagles",
+    "transactionType": "Free Agent Signing",
+    "details": "Barkley signed a one-year deal with Philly in 2024 after no long-term deal with NYG. He thrived behind the Eagles’ O-line (2,005 rush yards):contentReference[oaicite:93]{index=93}, leading the NFL in rushing."
+  },
+  {
+    "year": 2024,
+    "player": "Derrick Henry",
+    "fromTeam": "Tennessee Titans",
+    "toTeam": "Baltimore Ravens",
+    "transactionType": "Trade",
+    "details": "Tennessee traded Henry in the final year of his deal to Baltimore. The move paid off – Henry rumbled for 1,921 yards and 16 TD with the Ravens in 2024:contentReference[oaicite:94]{index=94}."
+  },
+  {
+    "year": 2024,
+    "player": "Josh Jacobs",
+    "fromTeam": "Las Vegas Raiders",
+    "toTeam": "Green Bay Packers",
+    "transactionType": "Free Agent Signing",
+    "details": "After playing on the franchise tag, Jacobs left Vegas for Green Bay. He led the Packers backfield with 1,329 rush yards in 2024:contentReference[oaicite:95]{index=95}, replacing Aaron Jones as the lead back."
+  },
+  {
+    "year": 2024,
+    "player": "Davante Adams",
+    "fromTeam": "Las Vegas Raiders",
+    "toTeam": "Los Angeles Rams",
+    "transactionType": "Trade",
+    "details": "In a blockbuster spring 2024 trade, the rebuilding Raiders sent Adams to the Rams. Adams reunited with Matthew Stafford and posted a 1,000+ yard, 8 TD season in LA:contentReference[oaicite:96]{index=96}."
+  },
+  {
+    "year": 2024,
+    "player": "Justin Fields",
+    "fromTeam": "Chicago Bears",
+    "toTeam": "New York Jets",
+    "transactionType": "Trade",
+    "details": "Chicago dealt Fields after drafting Caleb Williams. The Jets, reeling from Aaron Rodgers’ injury, acquired Fields to be their young QB. He started 10 games for New York in 2024:contentReference[oaicite:97]{index=97}."
+  },
+  {
+    "year": 2024,
+    "player": "Aaron Rodgers",
+    "fromTeam": "New York Jets",
+    "toTeam": "N/A",
+    "transactionType": "Released",
+    "details": "Rodgers and the Jets parted ways after his Achilles injury in 2023. He technically became a free agent (listed as FA in 2024 stats):contentReference[oaicite:98]{index=98}. Rumors swirled about retirement, though he has not officially filed."
+  },
+  {
+    "year": 2024,
+    "player": "Kirk Cousins",
+    "fromTeam": "Minnesota Vikings",
+    "toTeam": "Atlanta Falcons",
+    "transactionType": "Free Agent Signing",
+    "details": "Coming off a 2023 Achilles tear, Cousins signed a prove-it deal with Atlanta. He threw for 3,508 yards in 14 games for the Falcons in 2024:contentReference[oaicite:99]{index=99} before another late-season injury."
+  },
+  {
+    "year": 2024,
+    "player": "Geno Smith",
+    "fromTeam": "Seattle Seahawks",
+    "toTeam": "Las Vegas Raiders",
+    "transactionType": "Trade",
+    "details": "Las Vegas traded for Geno Smith to replace Jimmy Garoppolo. Geno, coming off a Pro Bowl in Seattle, had 4,320 passing yards as the Raiders’ starter in 2024:contentReference[oaicite:100]{index=100}."
+  },
+  {
+    "year": 2024,
+    "player": "Russell Wilson",
+    "fromTeam": "Denver Broncos",
+    "toTeam": "New York Giants",
+    "transactionType": "Trade",
+    "details": "Denver moved on from Russ, dealing him to the Giants. New York hoped the veteran could stabilize their QB situation. Wilson went 5–6 as a starter (2,482 yards, 16 TD) before a concussion ended his 2024:contentReference[oaicite:101]{index=101}."
+  },
+  {
+    "year": 2024,
+    "player": "Jonnu Smith",
+    "fromTeam": "Atlanta Falcons",
+    "toTeam": "Miami Dolphins",
+    "transactionType": "Trade",
+    "details": "The Dolphins acquired TE Jonnu Smith to add a versatile weapon. Smith responded with a career-high 8 TD catches in 2024:contentReference[oaicite:102]{index=102}, becoming a red-zone favorite in Miami."
+  },
+  {
+    "year": 2024,
+    "player": "Zach Ertz",
+    "fromTeam": "Arizona Cardinals",
+    "toTeam": "Washington Commanders",
+    "transactionType": "Free Agent Signing",
+    "details": "Arizona released Ertz late in 2023; he signed with Washington. The veteran TE started all 17 games for the Commanders in 2024:contentReference[oaicite:103]{index=103}, providing a reliable target and 7 TDs for the young QB."
+  },
+  {
+    "year": 2025,
+    "player": "Jalen Ramsey",
+    "fromTeam": "Miami Dolphins",
+    "toTeam": "TBD",
+    "transactionType": "Trade Request",
+    "details": "Star CB Jalen Ramsey and Miami mutually agreed to explore trade options in the 2025 offseason:contentReference[oaicite:104]{index=104}. While not directly a fantasy player, a trade could impact the Dolphins DST value."
+  },
+  {
+    "year": 2025,
+    "player": "Grady Jarrett",
+    "fromTeam": "Atlanta Falcons",
+    "toTeam": "Chicago Bears",
+    "transactionType": "Free Agent Signing",
+    "details": "Longtime Falcons DT Grady Jarrett signed with Chicago in 2025 after a season-ending injury in 2024. He joins a revamped Bears defense (Atlanta drafted his replacement in the first round):contentReference[oaicite:105]{index=105}."
+  },
+  {
+    "year": 2025,
+    "player": "Mac Jones",
+    "fromTeam": "New England Patriots",
+    "toTeam": "TBD",
+    "transactionType": "Trade Block",
+    "details": "After New England drafted Drake Maye in 2024, Mac Jones has been rumored on the trade block heading into 2025. No deal materialized before the draft, but this will be a situation to monitor."
+  }
+]

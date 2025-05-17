@@ -6,9 +6,7 @@
   <title>FantasyForge: Timbr Edition</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-    }
+    body { font-family: 'Segoe UI', sans-serif; }
     .player-card, .team-card {
       @apply bg-white/10 border border-white/20 rounded-lg p-3 mb-3 backdrop-blur hover:bg-white/20 transition;
     }
@@ -18,26 +16,50 @@
 
   <h1 class="text-4xl font-bold text-center mb-8 drop-shadow-lg">🏈 FantasyForge: Packers vs. Chiefs Edition</h1>
 
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-    
-    <!-- Player Pool (Left Side) -->
-    <div class="bg-green-900/80 rounded-2xl p-6 shadow-lg">
-      <h2 class="text-2xl font-semibold text-yellow-300 mb-4">Green Bay Draft Pool</h2>
+  <!-- 🔍 Search Bar -->
+  <div class="max-w-xl mx-auto mb-6">
+    <input id="search-input" type="text" placeholder="Search players, teams, stats..." 
+      class="w-full p-3 text-black rounded-lg border border-white/30 shadow-md" />
+  </div>
+
+  <!-- 🧠 Main Content Grid -->
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+    <!-- 📜 Player Pool -->
+    <div class="bg-green-900/80 rounded-2xl p-6 shadow-lg col-span-1">
+      <h2 class="text-2xl font-semibold text-yellow-300 mb-4">Draft Pool</h2>
       <div id="player-list" class="space-y-4"></div>
     </div>
 
-    <!-- My Team (Right Side) -->
-    <div class="bg-red-900/80 rounded-2xl p-6 shadow-lg">
-      <h2 class="text-2xl font-semibold text-yellow-100 mb-4">Kansas City Dream Team</h2>
+    <!-- 🏆 My Team -->
+    <div class="bg-red-900/80 rounded-2xl p-6 shadow-lg col-span-1">
+      <h2 class="text-2xl font-semibold text-yellow-100 mb-4">My Fantasy Team</h2>
       <div id="team-list" class="space-y-4"></div>
+    </div>
+
+    <!-- 📊 Compare Box -->
+    <div class="bg-blue-900/80 rounded-2xl p-6 shadow-lg col-span-1">
+      <h2 class="text-2xl font-semibold text-cyan-200 mb-4">Compare Players</h2>
+      <div id="compare-box" class="space-y-4 text-sm"></div>
     </div>
 
   </div>
 
+  <!-- 🎮 Flashcard Section -->
+  <div class="mt-12 bg-black/20 p-6 rounded-xl shadow-lg">
+    <h2 class="text-2xl font-semibold mb-4 text-yellow-200 text-center">🎲 Flashcard Game</h2>
+    <div id="flashcard-box" class="text-center space-y-4"></div>
+  </div>
+
+  <!-- 👣 Footer -->
   <footer class="text-center mt-10 text-sm text-white/70">
-    Built with 💖 by Timbr & Byte · GitHub-Ready · No backend needed!
+    Built with 💖 by Timbr & Byte · GitHub-Ready · Fully Offline
   </footer>
 
-  <script src="main.js"></script>
+  <!-- 🔗 Scripts -->
+  <script type="module" src="main.js"></script>
+  <script type="module" src="search.js"></script>
+  <script type="module" src="compare.js"></script>
+  <script type="module" src="flashcards.js"></script>
 </body>
 </html>
