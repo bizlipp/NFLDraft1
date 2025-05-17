@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FantasyForge: Timbr Edition</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+    }
+    .player-card, .team-card {
+      @apply bg-white/10 border border-white/20 rounded-lg p-3 mb-3 backdrop-blur hover:bg-white/20 transition;
+    }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-green-700 via-yellow-300 to-red-700 min-h-screen text-white p-6">
+
+  <h1 class="text-4xl font-bold text-center mb-8 drop-shadow-lg">🏈 FantasyForge: Packers vs. Chiefs Edition</h1>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    
+    <!-- Player Pool (Left Side) -->
+    <div class="bg-green-900/80 rounded-2xl p-6 shadow-lg">
+      <h2 class="text-2xl font-semibold text-yellow-300 mb-4">Green Bay Draft Pool</h2>
+      <div id="player-list" class="space-y-4"></div>
+    </div>
+
+    <!-- My Team (Right Side) -->
+    <div class="bg-red-900/80 rounded-2xl p-6 shadow-lg">
+      <h2 class="text-2xl font-semibold text-yellow-100 mb-4">Kansas City Dream Team</h2>
+      <div id="team-list" class="space-y-4"></div>
+    </div>
+
+  </div>
+
+  <footer class="text-center mt-10 text-sm text-white/70">
+    Built with 💖 by Timbr & Byte · GitHub-Ready · No backend needed!
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
