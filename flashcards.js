@@ -17,7 +17,7 @@ function renderFlashcard() {
   box.innerHTML = `
     <div class="player-card">
       <p>💡 Hint: ${generateHint(card)}</p>
-      <button onclick="revealAnswer()">Reveal Answer</button>
+      <button class="action-button" onclick="window.revealAnswer()">Reveal Answer</button>
     </div>
   `;
 }
@@ -25,8 +25,8 @@ function renderFlashcard() {
 window.revealAnswer = function () {
   const card = flashcards[currentIndex];
   const box = document.getElementById('flashcard-box');
-  box.innerHTML += `<p>✅ It was <strong>${card.name}</strong>!</p>
-    <button onclick="nextFlashcard()">Next</button>`;
+  box.innerHTML += `<p class="mt-2">✅ It was <strong>${card.name}</strong>!</p>
+    <button class="action-button" onclick="window.nextFlashcard()">Next Flashcard</button>`;
 };
 
 window.nextFlashcard = function () {

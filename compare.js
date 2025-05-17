@@ -32,8 +32,8 @@ function renderComparison() {
       <p>Team: ${p.team} | Pos: ${p.position}</p>
       <p>Rating: ${p.rating}</p>
       <p>Fantasy Points (2024): ${p.fantasyPoints2024}</p>
-      <p>${p.notes || ''}</p>
-      <button onclick="window.removeFromCompare('${p.id}')">Remove</button>
+      <p><em>${p.notes || ''}</em></p>
+      <button class="action-button" onclick="window.removeFromCompare('${p.id}')">Remove from Compare</button>
     `;
     compareEl.appendChild(card);
   });

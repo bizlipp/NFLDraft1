@@ -39,15 +39,15 @@ export function formatPlayerCard(player) {
     ⭐ Rating: ${player.rating || "N/A"} | 🧮 2024 PPR: ${player.fantasyPoints2024 || "?"}
     <br><em>${player.notes || ""}</em>
     <br/>
-    <button onclick="window.addToTeam('${player.id}')">Add to Team</button>
-    <button onclick="window.addToCompare('${player.id}')">Add to Compare</button> 
+    <button class="action-button" onclick="window.addToTeam('${player.id}')">Add to Team</button>
+    <button class="action-button" onclick="window.addToCompare('${player.id}')">Compare</button> 
   `;
 }
 
 function formatTeamCard(player) {
   return `
     <strong>${player.name}</strong> – ${player.position}<br/>
-    <button onclick="removeFromTeam('${player.id}')">Remove</button>
+    <button class="action-button" onclick="window.removeFromTeam('${player.id}')">Remove</button>
   `;
 }
 

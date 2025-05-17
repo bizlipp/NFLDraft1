@@ -6,31 +6,51 @@
   <title>FantasyForge: Timbr Edition</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    body { font-family: 'Segoe UI', sans-serif; }
+    body { 
+      font-family: 'Segoe UI', sans-serif; 
+    }
     .player-card, .team-card {
-      @apply bg-white/10 border border-white/20 rounded-lg p-3 mb-3 backdrop-blur hover:bg-white/20 transition;
+      @apply bg-black/20 border border-gray-600 rounded-lg p-4 mb-3 backdrop-blur-sm hover:bg-black/40 transition shadow-md;
+    }
+    .player-card em, .team-card em {
+      @apply text-gray-300 text-sm;
+    }
+    .pos-filter-btn {
+      @apply px-3 py-1.5 bg-white/10 border border-white/20 rounded-md hover:bg-white/30 transition text-sm font-medium;
+    }
+    .active-filter {
+      @apply bg-yellow-400 text-green-900 hover:bg-yellow-500;
+    }
+    .action-button {
+      @apply px-3 py-1.5 mt-2 mr-2 text-xs font-semibold bg-yellow-400 text-green-900 rounded hover:bg-yellow-500 transition-colors shadow;
+    }
+    .section-title {
+      @apply text-3xl font-bold tracking-tight mb-5;
+    }
+    .subsection-title {
+      @apply text-2xl font-bold text-yellow-300 mb-4 tracking-tight;
     }
   </style>
 </head>
-<body class="bg-gradient-to-br from-green-700 via-yellow-300 to-red-700 min-h-screen text-white p-6">
+<body class="bg-gradient-to-br from-green-800 via-yellow-400 to-red-700 min-h-screen text-white p-6 md:p-8">
 
-  <h1 class="text-4xl font-bold text-center mb-8 drop-shadow-lg">🏈 FantasyForge: Packers vs. Chiefs Edition</h1>
+  <h1 class="text-5xl font-bold text-center mb-10 drop-shadow-xl">🏈 FantasyForge: Packers vs. Chiefs 🏈</h1>
 
   <!-- 🔍 Search Bar -->
-  <div class="max-w-xl mx-auto mb-6">
-    <input id="search-input" type="text" placeholder="Search players, teams, stats..." 
-      class="w-full p-3 text-black rounded-lg border border-white/30 shadow-md" />
+  <div class="max-w-2xl mx-auto mb-8">
+    <input id="search-input" type="text" placeholder="Search players by name, team, position..." 
+      class="w-full p-4 text-white bg-white/10 rounded-lg border-2 border-white/20 shadow-lg placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 transition" />
   </div>
 
   <!-- 🧠 Main Content Grid -->
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8">
 
-    <!-- 📜 Player Pool -->
-    <div class="bg-green-900/80 rounded-2xl p-6 shadow-lg col-span-1">
-      <h2 class="text-2xl font-semibold text-yellow-300 mb-4">Draft Pool</h2>
+    <!-- 📜 Player Pool (Packers Theme) -->
+    <div class="bg-green-900/70 rounded-xl p-6 shadow-2xl col-span-1 border-2 border-yellow-400">
+      <h2 class="subsection-title text-yellow-400">G.B. Draft Pool</h2>
       
       <!-- Position Filters -->
-      <div id="position-filters" class="mb-4 space-x-2">
+      <div id="position-filters" class="mb-5 flex flex-wrap gap-2">
         <button class="pos-filter-btn active-filter" onclick="window.filterPlayersByPosition('All')">All</button>
         <button class="pos-filter-btn" onclick="window.filterPlayersByPosition('QB')">QB</button>
         <button class="pos-filter-btn" onclick="window.filterPlayersByPosition('RB')">RB</button>
@@ -39,37 +59,33 @@
         <button class="pos-filter-btn" onclick="window.filterPlayersByPosition('K')">K</button>
         <button class="pos-filter-btn" onclick="window.filterPlayersByPosition('DST')">DST</button>
       </div>
-      <style>
-        .pos-filter-btn { @apply px-3 py-1 bg-white/10 border border-white/20 rounded hover:bg-white/30 transition text-sm; }
-        .active-filter { @apply bg-yellow-300 text-black hover:bg-yellow-400; }
-      </style>
 
-      <div id="player-list" class="space-y-4"></div>
+      <div id="player-list" class="space-y-3 max-h-[600px] overflow-y-auto pr-2"></div>
     </div>
 
-    <!-- 🏆 My Team -->
-    <div class="bg-red-900/80 rounded-2xl p-6 shadow-lg col-span-1">
-      <h2 class="text-2xl font-semibold text-yellow-100 mb-4">My Fantasy Team</h2>
-      <div id="team-list" class="space-y-4"></div>
+    <!-- 🏆 My Team (Chiefs Theme) -->
+    <div class="bg-red-800/70 rounded-xl p-6 shadow-2xl col-span-1 border-2 border-yellow-400">
+      <h2 class="subsection-title text-yellow-400">K.C. Dream Team</h2>
+      <div id="team-list" class="space-y-3  max-h-[600px] overflow-y-auto pr-2"></div>
     </div>
 
-    <!-- 📊 Compare Box -->
-    <div class="bg-blue-900/80 rounded-2xl p-6 shadow-lg col-span-1">
-      <h2 class="text-2xl font-semibold text-cyan-200 mb-4">Compare Players</h2>
-      <div id="compare-box" class="space-y-4 text-sm"></div>
+    <!-- 📊 Compare Box (Neutral Theme) -->
+    <div class="bg-slate-800/70 rounded-xl p-6 shadow-2xl col-span-1 border-2 border-slate-600">
+      <h2 class="subsection-title text-slate-300">Player Comparison</h2>
+      <div id="compare-box" class="space-y-3 text-sm max-h-[600px] overflow-y-auto pr-2"></div>
     </div>
 
   </div>
 
-  <!-- 🎮 Flashcard Section -->
-  <div class="mt-12 bg-black/20 p-6 rounded-xl shadow-lg">
-    <h2 class="text-2xl font-semibold mb-4 text-yellow-200 text-center">🎲 Flashcard Game</h2>
+  <!-- 🎮 Flashcard Section (Neutral Theme) -->
+  <div class="mt-10 md:mt-12 bg-slate-700/70 rounded-xl p-6 shadow-2xl border-2 border-slate-500">
+    <h2 class="subsection-title text-yellow-300 text-center">🎲 Flashcard Challenge 🎲</h2>
     <div id="flashcard-box" class="text-center space-y-4"></div>
   </div>
 
   <!-- 👣 Footer -->
-  <footer class="text-center mt-10 text-sm text-white/70">
-    Built with 💖 by Timbr & Byte · GitHub-Ready · Fully Offline
+  <footer class="text-center mt-12 mb-4 text-sm text-white/70">
+    Built with 🏈 by Timbr & Byte · GitHub-Ready · Fully Offline
   </footer>
 
   <!-- 🔗 Scripts -->
