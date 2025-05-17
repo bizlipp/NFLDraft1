@@ -13,20 +13,28 @@ export function initFlashcards() {
 function renderFlashcard() {
   const box = document.getElementById('flashcard-box');
   if (!box || flashcards.length === 0) return;
-  const card = flashcards[currentIndex];
+  const cardData = flashcards[currentIndex];
   box.innerHTML = `
-    <div class="player-card">
-      <p>💡 Hint: ${generateHint(card)}</p>
+    <div class="player-card text-center p-4"> 
+      <p class="mb-2">💡 Hint: ${generateHint(cardData)}</p>
       <button class="action-button" onclick="window.revealAnswer()">Reveal Answer</button>
     </div>
   `;
 }
 
 window.revealAnswer = function () {
-  const card = flashcards[currentIndex];
+  const cardData = flashcards[currentIndex];
   const box = document.getElementById('flashcard-box');
-  box.innerHTML += `<p class="mt-2">✅ It was <strong>${card.name}</strong>!</p>
-    <button class="action-button" onclick="window.nextFlashcard()">Next Flashcard</button>`;
+  if (!box || !cardData) return; 
+
+  // Replace entire content of flashcard-box with the revealed state card
+  box.innerHTML = `
+    <div class="player-card text-center p-4">
+      <p class="mb-1 text-gray-400 text-sm">💡 Hint: ${generateHint(cardData)}</p> 
+      <p class="mt-2 mb-3 text-xl text-yellow-300">✅ It was <strong>${cardData.name}</strong>!</p>
+      <button class="action-button" onclick="window.nextFlashcard()">Next Flashcard</button>
+    </div>
+  `;
 };
 
 window.nextFlashcard = function () {
