@@ -1,15 +1,16 @@
+{
 "nflPlayers": [
   {
     "name": "Lamar Jackson",
     "team": "Baltimore Ravens",
     "position": "QB",
     "stats": {
-      "2022": { "passYds": 2242, "passTD": 17, "rushYds": 764, "rushTD": 3 },    // Injured mid-season:contentReference[oaicite:0]{index=0}
-      "2023": { "passYds": 3678, "passTD": 24, "rushYds": 821, "rushTD": 5 },    // Pro Bowl season:contentReference[oaicite:1]{index=1}
-      "2024": { "passYds": 4172, "passTD": 41, "rushYds": 915, "rushTD": 4 }     // MVP-caliber season:contentReference[oaicite:2]{index=2}
+      "2022": { "passYds": 2242, "passTD": 17, "rushYds": 764, "rushTD": 3 },
+      "2023": { "passYds": 3678, "passTD": 24, "rushYds": 821, "rushTD": 5 },
+      "2024": { "passYds": 4172, "passTD": 41, "rushYds": 915, "rushTD": 4 }
     },
-    "fantasyPoints2024": 434.4,           // Led all players in PPR fantasy points:contentReference[oaicite:3]{index=3}
-    "2024Rank": { "position": 1, "overall": 1 }, 
+    "fantasyPoints2024": 434.4,
+    "2024Rank": { "position": 1, "overall": 1 },
     "notes": "Exploded in 2024 with 4,172 passing yards and 41 TD:contentReference[oaicite:4]{index=4}, plus 915 rushing yards:contentReference[oaicite:5]{index=5}. Finished as the #1 fantasy QB with 434.4 points:contentReference[oaicite:6]{index=6}."
   },
   {
@@ -17,11 +18,11 @@
     "team": "Buffalo Bills",
     "position": "QB",
     "stats": {
-      "2022": { "passYds": 4283, "passTD": 35, "rushYds": 762, "rushTD": 7 },    // (approximate stats)
-      "2023": { "passYds": 4207, "passTD": 33, "rushYds": 777, "rushTD": 7 },    // (approximate stats)
-      "2024": { "passYds": 3731, "passTD": 28, "rushYds": 531, "rushTD": 12 }    // Dual-threat with career-high rush TD:contentReference[oaicite:7]{index=7}
+      "2022": { "passYds": 4283, "passTD": 35, "rushYds": 762, "rushTD": 7 },
+      "2023": { "passYds": 4207, "passTD": 33, "rushYds": 777, "rushTD": 7 },
+      "2024": { "passYds": 3731, "passTD": 28, "rushYds": 531, "rushTD": 12 }
     },
-    "fantasyPoints2024": 385.1,           // 2nd among QBs in fantasy points:contentReference[oaicite:8]{index=8}
+    "fantasyPoints2024": 385.1,
     "2024Rank": { "position": 2, "overall": 2 },
     "notes": "Continued elite production. In 2024 he threw for 3,731 yards with 28 TD and ran for 531 yards with 12 TD:contentReference[oaicite:9]{index=9}, totaling 385 fantasy points (QB2 overall)."
   },
@@ -30,11 +31,11 @@
     "team": "Cincinnati Bengals",
     "position": "QB",
     "stats": {
-      "2022": { "passYds": 4475, "passTD": 35, "rushYds": 257, "rushTD": 5 },    // (approximate stats)
-      "2023": { "passYds": 3820, "passTD": 31, "rushYds": 153, "rushTD": 7 },    // (approximate stats)
-      "2024": { "passYds": 4918, "passTD": 43, "rushYds": 201, "rushTD": 2 }     // Career-high passing yards in 2024:contentReference[oaicite:10]{index=10}
+      "2022": { "passYds": 4475, "passTD": 35, "rushYds": 257, "rushTD": 5 },
+      "2023": { "passYds": 3820, "passTD": 31, "rushYds": 153, "rushTD": 7 },
+      "2024": { "passYds": 4918, "passTD": 43, "rushYds": 201, "rushTD": 2 }
     },
-    "fantasyPoints2024": 381.9,           // Tied for 3rd overall in fantasy points:contentReference[oaicite:11]{index=11}
+    "fantasyPoints2024": 381.9,
     "2024Rank": { "position": 3, "overall": 4 },
     "notes": "Led the NFL with 4,918 passing yards in 2024:contentReference[oaicite:12]{index=12} and 43 TD, finishing with ~382 fantasy points (top-3 QB)."
   },
@@ -43,11 +44,11 @@
     "team": "Tampa Bay Buccaneers",
     "position": "QB",
     "stats": {
-      "2022": { "passYds": 2163, "passTD": 10, "rushYds": 89, "rushTD": 1 },     // (split between CAR/LAR)
-      "2023": { "passYds": 3310, "passTD": 18, "rushYds": 191, "rushTD": 1 },     // (with Tampa Bay)
-      "2024": { "passYds": 4500, "passTD": 41, "rushYds": 378, "rushTD": 3 }     // Resurgent 2024 (career highs):contentReference[oaicite:13]{index=13}
+      "2022": { "passYds": 2163, "passTD": 10, "rushYds": 89, "rushTD": 1 },
+      "2023": { "passYds": 3310, "passTD": 18, "rushYds": 191, "rushTD": 1 },
+      "2024": { "passYds": 4500, "passTD": 41, "rushYds": 378, "rushTD": 3 }
     },
-    "fantasyPoints2024": 381.8,           // Tied with Burrow in fantasy points:contentReference[oaicite:14]{index=14}
+    "fantasyPoints2024": 381.8,
     "2024Rank": { "position": 4, "overall": 5 },
     "notes": "Enjoyed a career resurgence in 2024 with 4,500 yards and 41 TD passes:contentReference[oaicite:15]{index=15}, surprisingly finishing as a top-5 fantasy QB."
   },
@@ -56,11 +57,11 @@
     "team": "Washington Commanders",
     "position": "QB",
     "stats": {
-      "2022": { "passYds": 2836, "passTD": 17, "rushYds": 885, "rushTD": 11 },    // (LSU college stats for context)
-      "2023": { "passYds": 3264, "passTD": 17, "rushYds": 119, "rushTD": 2 },     // (LSU college stats; Heisman season)
-      "2024": { "passYds": 3568, "passTD": 25, "rushYds": 891, "rushTD": 6 }      // Impressive NFL rookie year:contentReference[oaicite:16]{index=16}
+      "2022": { "passYds": 2836, "passTD": 17, "rushYds": 885, "rushTD": 11 },
+      "2023": { "passYds": 3264, "passTD": 17, "rushYds": 119, "rushTD": 2 },
+      "2024": { "passYds": 3568, "passTD": 25, "rushYds": 891, "rushTD": 6 }
     },
-    "fantasyPoints2024": 364.8,           // 5th overall in fantasy points (led rookie QBs):contentReference[oaicite:17]{index=17}
+    "fantasyPoints2024": 364.8,
     "2024Rank": { "position": 5, "overall": 6 },
     "notes": "The 2023 Heisman Trophy winner jumped to the NFL and started for Washington in 2024:contentReference[oaicite:18]{index=18}. He amassed 3,568 pass yards, 25 TD, plus 891 rush yards:contentReference[oaicite:19]{index=19}, a dynamic dual-threat rookie season."
   },
@@ -69,11 +70,11 @@
     "team": "Detroit Lions",
     "position": "RB",
     "stats": {
-      "2022": { "rushYds": 926, "rushTD": 3, "recYds": 444, "recTD": 3 },        // (Alabama college stats)
-      "2023": { "rushYds": 511, "rushTD": 3, "recYds": 410, "recTD": 0 },        // (Rookie year in NFL)
-      "2024": { "rushYds": 1412, "rushTD": 16, "recYds": 517, "recTD": 4 }       // Breakout NFL year:contentReference[oaicite:20]{index=20}
+      "2022": { "rushYds": 926, "rushTD": 3, "recYds": 444, "recTD": 3 },
+      "2023": { "rushYds": 511, "rushTD": 3, "recYds": 410, "recTD": 0 },
+      "2024": { "rushYds": 1412, "rushTD": 16, "recYds": 517, "recTD": 4 }
     },
-    "fantasyPoints2024": 362.9,           // #1 fantasy RB in 2024 (PPR):contentReference[oaicite:21]{index=21}
+    "fantasyPoints2024": 362.9,
     "2024Rank": { "position": 1, "overall": 3 },
     "notes": "Exploded in 2024 as Detroit's feature back with 1,412 rushing yards and 16 rush TD:contentReference[oaicite:22]{index=22}, plus 517 receiving yards. Gibbs was the top-scoring fantasy RB of 2024."
   },
@@ -82,11 +83,11 @@
     "team": "Philadelphia Eagles",
     "position": "RB",
     "stats": {
-      "2022": { "rushYds": 1312, "rushTD": 10, "recYds": 338, "recTD": 0 },      // Giants - career highs:contentReference[oaicite:23]{index=23}
-      "2023": { "rushYds": 962, "rushTD": 6, "recYds": 280, "recTD": 4 },        // Giants - injury-shortened:contentReference[oaicite:24]{index=24}
-      "2024": { "rushYds": 2005, "rushTD": 13, "recYds": 278, "recTD": 2 }       // Eagles - led NFL in rushing:contentReference[oaicite:25]{index=25}
+      "2022": { "rushYds": 1312, "rushTD": 10, "recYds": 338, "recTD": 0 },
+      "2023": { "rushYds": 962, "rushTD": 6, "recYds": 280, "recTD": 4 },
+      "2024": { "rushYds": 2005, "rushTD": 13, "recYds": 278, "recTD": 2 }
     },
-    "fantasyPoints2024": 355.3,           // #2 fantasy RB (2,283 scrimmage yards):contentReference[oaicite:26]{index=26}
+    "fantasyPoints2024": 355.3,
     "2024Rank": { "position": 2, "overall": 4 },
     "notes": "Signed with Philadelphia in 2024 and led the league with 2,005 rushing yards:contentReference[oaicite:27]{index=27}. Scored 15 total TDs and was a fantasy superstar again (355 PPR points):contentReference[oaicite:28]{index=28}."
   },
@@ -95,11 +96,11 @@
     "team": "Atlanta Falcons",
     "position": "RB",
     "stats": {
-      "2022": { "rushYds": 1580, "rushTD": 18, "recYds": 314, "recTD": 2 },      // (Texas college stats)
-      "2023": { "rushYds": 1035, "rushTD": 7, "recYds": 271, "recTD": 2 },       // (Rookie NFL season)
-      "2024": { "rushYds": 1456, "rushTD": 14, "recYds": 431, "recTD": 1 }       // Sophomore jump in ATL:contentReference[oaicite:29]{index=29}
+      "2022": { "rushYds": 1580, "rushTD": 18, "recYds": 314, "recTD": 2 },
+      "2023": { "rushYds": 1035, "rushTD": 7, "recYds": 271, "recTD": 2 },
+      "2024": { "rushYds": 1456, "rushTD": 14, "recYds": 431, "recTD": 1 }
     },
-    "fantasyPoints2024": 341.7,           // #3 fantasy RB:contentReference[oaicite:30]{index=30}
+    "fantasyPoints2024": 341.7,
     "2024Rank": { "position": 3, "overall": 7 },
     "notes": "Built on a strong rookie year with 1,456 rushing yards in 2024:contentReference[oaicite:31]{index=31}. His dual-threat ability (over 1,887 total yards) kept him among the top 3 fantasy RBs."
   },
@@ -108,11 +109,11 @@
     "team": "Baltimore Ravens",
     "position": "RB",
     "stats": {
-      "2022": { "rushYds": 1538, "rushTD": 13, "recYds": 398, "recTD": 0 },      // Titans
-      "2023": { "rushYds": 1040, "rushTD": 5, "recYds": 123, "recTD": 2 },       // Titans (missed some games)
-      "2024": { "rushYds": 1921, "rushTD": 16, "recYds": 193, "recTD": 2 }       // Ravens - huge bounce-back:contentReference[oaicite:32]{index=32}
+      "2022": { "rushYds": 1538, "rushTD": 13, "recYds": 398, "recTD": 0 },
+      "2023": { "rushYds": 1040, "rushTD": 5, "recYds": 123, "recTD": 2 },
+      "2024": { "rushYds": 1921, "rushTD": 16, "recYds": 193, "recTD": 2 }
     },
-    "fantasyPoints2024": 336.4,           // #4 fantasy RB:contentReference[oaicite:33]{index=33}
+    "fantasyPoints2024": 336.4,
     "2024Rank": { "position": 4, "overall": 8 },
     "notes": "Thrived after a move to Baltimore in 2024, racking up 1,921 rush yards (5.9 YPC) and 16 TD:contentReference[oaicite:34]{index=34} at age 30. Henry remained an elite fantasy RB in a run-heavy Ravens offense."
   },
@@ -121,13 +122,13 @@
     "team": "Miami Dolphins",
     "position": "RB",
     "stats": {
-      "2022": { "rushYds": 1102, "rushTD": 8, "recYds": 196, "recTD": 3 },       // (Texas A&M college stats)
-      "2023": { "rushYds": 517, "rushTD": 4, "recYds": 151, "recTD": 3 },        // (Rookie NFL season, missed time)
-      "2024": { "rushYds": 907, "rushTD": 5, "recYds": 592, "recTD": 6 }         // Healthy in 2024 (all-purpose weapon):contentReference[oaicite:35]{index=35}
+      "2022": { "rushYds": 1102, "rushTD": 8, "recYds": 196, "recTD": 3 },
+      "2023": { "rushYds": 517, "rushTD": 4, "recYds": 151, "recTD": 3 },
+      "2024": { "rushYds": 907, "rushTD": 5, "recYds": 592, "recTD": 6 }
     },
-    "fantasyPoints2024": 299.9,           // #5 fantasy RB:contentReference[oaicite:36]{index=36}
+    "fantasyPoints2024": 299.9,
     "2024Rank": { "position": 5, "overall": 10 },
-    "notes": "Dynamic in Miami’s offense. In 2024 he totaled ~1,500 yards (907 rush, 592 receiving) with 11 TD:contentReference[oaicite:37]{index=37}, finishing as a top-5 PPR RB despite splitting touches."
+    "notes": "Dynamic in Miami's offense. In 2024 he totaled ~1,500 yards (907 rush, 592 receiving) with 11 TD:contentReference[oaicite:37]{index=37}, finishing as a top-5 PPR RB despite splitting touches."
   },
   {
     "name": "Ja'Marr Chase",
@@ -135,23 +136,23 @@
     "position": "WR",
     "stats": {
       "2022": { "rec": 87, "recYds": 1046, "recTD": 9 },
-      "2023": { "rec": 134, "recYds": 1490, "recTD": 12 },    // Career highs
-      "2024": { "rec": 127, "recYds": 1708, "recTD": 17 }     // Led NFL in receiving TD:contentReference[oaicite:38]{index=38}
+      "2023": { "rec": 134, "recYds": 1490, "recTD": 12 },
+      "2024": { "rec": 127, "recYds": 1708, "recTD": 17 }
     },
-    "fantasyPoints2024": 403.0,           // #1 WR, led all WR in PPR points:contentReference[oaicite:39]{index=39}
+    "fantasyPoints2024": 403.0,
     "2024Rank": { "position": 1, "overall": 2 },
-    "notes": "Dominant in 2024 with 1,708 yards and an NFL-best 17 TD receptions:contentReference[oaicite:40]{index=40}. Chase’s 127 catches fueled a league-high 403 PPR points, making him the top fantasy WR."
+    "notes": "Dominant in 2024 with 1,708 yards and an NFL-best 17 TD receptions:contentReference[oaicite:40]{index=40}. Chase's 127 catches fueled a league-high 403 PPR points, making him the top fantasy WR."
   },
   {
     "name": "Justin Jefferson",
     "team": "Minnesota Vikings",
     "position": "WR",
     "stats": {
-      "2022": { "rec": 128, "recYds": 1809, "recTD": 8 },    // All-Pro season
-      "2023": { "rec": 101, "recYds": 1509, "recTD": 8 },    // Missed a few games
-      "2024": { "rec": 103, "recYds": 1533, "recTD": 10 }    // Still elite production:contentReference[oaicite:41]{index=41}
+      "2022": { "rec": 128, "recYds": 1809, "recTD": 8 },
+      "2023": { "rec": 101, "recYds": 1509, "recTD": 8 },
+      "2024": { "rec": 103, "recYds": 1533, "recTD": 10 }
     },
-    "fantasyPoints2024": 317.5,           // #2 WR (despite fewer TD):contentReference[oaicite:42]{index=42}
+    "fantasyPoints2024": 317.5,
     "2024Rank": { "position": 2, "overall": 9 },
     "notes": "Another stellar year in 2024: 103 catches, 1,533 yards, 10 TD:contentReference[oaicite:43]{index=43}. Jefferson remained a top-2 fantasy WR, though he was outscored by Chase due to TDs."
   },
@@ -162,22 +163,22 @@
     "stats": {
       "2022": { "rec": 106, "recYds": 1161, "recTD": 6 },
       "2023": { "rec": 106, "recYds": 1165, "recTD": 5 },
-      "2024": { "rec": 115, "recYds": 1263, "recTD": 12 }    // Career-high TD in 2024:contentReference[oaicite:44]{index=44}
+      "2024": { "rec": 115, "recYds": 1263, "recTD": 12 }
     },
-    "fantasyPoints2024": 316.2,           // #3 WR (PPR):contentReference[oaicite:45]{index=45}
+    "fantasyPoints2024": 316.2,
     "2024Rank": { "position": 3, "overall": 11 },
-    "notes": "A PPR machine, Amon-Ra set career highs with 115 receptions and 12 TD in 2024:contentReference[oaicite:46]{index=46}. He remained Jared Goff’s top target and a top-3 fantasy WR."
+    "notes": "A PPR machine, Amon-Ra set career highs with 115 receptions and 12 TD in 2024:contentReference[oaicite:46]{index=46}. He remained Jared Goff's top target and a top-3 fantasy WR."
   },
   {
     "name": "Brian Thomas Jr.",
     "team": "Jacksonville Jaguars",
     "position": "WR",
     "stats": {
-      "2022": { "rec": 31, "recYds": 361, "recTD": 5 },      // (LSU college)
-      "2023": { "rec": 49, "recYds": 731, "recTD": 7 },      // (LSU college breakout)
-      "2024": { "rec": 87, "recYds": 1282, "recTD": 10 }     // NFL rookie standout:contentReference[oaicite:47]{index=47}
+      "2022": { "rec": 31, "recYds": 361, "recTD": 5 },
+      "2023": { "rec": 49, "recYds": 731, "recTD": 7 },
+      "2024": { "rec": 87, "recYds": 1282, "recTD": 10 }
     },
-    "fantasyPoints2024": 284.0,           // #4 WR in PPR:contentReference[oaicite:48]{index=48}
+    "fantasyPoints2024": 284.0,
     "2024Rank": { "position": 4, "overall": 15 },
     "notes": "Drafted by Jacksonville in 2024 (Round 1) and quickly became a key target. Posted 1,282 yards and 10 TD as a rookie:contentReference[oaicite:49]{index=49}, a huge fantasy surprise."
   },
@@ -187,25 +188,25 @@
     "position": "WR",
     "stats": {
       "2022": { "rec": 72, "recYds": 866, "recTD": 4 },
-      "2023": { "rec": 98, "recYds": 1200, "recTD": 6 },     // Second-year leap
-      "2024": { "rec": 100, "recYds": 1271, "recTD": 9 }     // Continued improvement:contentReference[oaicite:50]{index=50}
+      "2023": { "rec": 98, "recYds": 1200, "recTD": 6 },
+      "2024": { "rec": 100, "recYds": 1271, "recTD": 9 }
     },
-    "fantasyPoints2024": 280.8,           // #5 WR:contentReference[oaicite:51]{index=51}
+    "fantasyPoints2024": 280.8,
     "2024Rank": { "position": 5, "overall": 17 },
-    "notes": "Emerged as Atlanta’s clear WR1 by 2024 with 100 catches, 1,271 yards, and 9 TD:contentReference[oaicite:52]{index=52}. Despite Atlanta’s run-first offense, London delivered consistent fantasy WR2 value."
+    "notes": "Emerged as Atlanta's clear WR1 by 2024 with 100 catches, 1,271 yards, and 9 TD:contentReference[oaicite:52]{index=52}. Despite Atlanta's run-first offense, London delivered consistent fantasy WR2 value."
   },
   {
     "name": "Brock Bowers",
     "team": "Las Vegas Raiders",
     "position": "TE",
     "stats": {
-      "2022": { "rec": 63, "recYds": 942, "recTD": 7 },      // (Georgia)
-      "2023": { "rec": 52, "recYds": 726, "recTD": 6 },      // (Georgia, injured part of year)
-      "2024": { "rec": 112, "recYds": 1194, "recTD": 5 }     // NFL rookie All-Pro season:contentReference[oaicite:53]{index=53}
+      "2022": { "rec": 63, "recYds": 942, "recTD": 7 },
+      "2023": { "rec": 56, "recYds": 714, "recTD": 6 },
+      "2024": { "rec": 112, "recYds": 1194, "recTD": 7 }
     },
-    "fantasyPoints2024": 262.7,           // #1 TE (PPR):contentReference[oaicite:54]{index=54}
+    "fantasyPoints2024": 262.7,
     "2024Rank": { "position": 1, "overall": 13 },
-    "notes": "Drafted #13 overall in 2024, Bowers immediately became the Raiders’ top target. His 112 receptions and 1,194 yards led all TEs:contentReference[oaicite:55]{index=55}, and he earned first-team All-Pro honors as a rookie."
+    "notes": "Drafted #13 overall in 2024, Bowers immediately became the Raiders' top target. His 112 receptions and 1,194 yards led all TEs:contentReference[oaicite:55]{index=55}, and he earned first-team All-Pro honors as a rookie."
   },
   {
     "name": "Trey McBride",
@@ -213,12 +214,12 @@
     "position": "TE",
     "stats": {
       "2022": { "rec": 29, "recYds": 265, "recTD": 1 },
-      "2023": { "rec": 39, "recYds": 402, "recTD": 1 },
-      "2024": { "rec": 111, "recYds": 1146, "recTD": 2 }     // Breakout year after Ertz departure:contentReference[oaicite:56]{index=56}
+      "2023": { "rec": 52, "recYds": 531, "recTD": 1 },
+      "2024": { "rec": 111, "recYds": 1146, "recTD": 2 }
     },
-    "fantasyPoints2024": 249.8,           // #2 TE (PPR):contentReference[oaicite:57]{index=57}
+    "fantasyPoints2024": 249.8,
     "2024Rank": { "position": 2, "overall": 20 },
-    "notes": "Stepped up as Arizona’s primary tight end. In 2024 McBride caught 111 passes for 1,146 yards:contentReference[oaicite:58]{index=58} (a huge leap from 2023), finishing as the #2 fantasy TE despite only 2 TDs."
+    "notes": "Stepped up as Arizona's primary tight end. In 2024 McBride caught 111 passes for 1,146 yards:contentReference[oaicite:58]{index=58} (a huge leap from 2023), finishing as the #2 fantasy TE despite only 2 TDs."
   },
   {
     "name": "George Kittle",
@@ -226,81 +227,104 @@
     "position": "TE",
     "stats": {
       "2022": { "rec": 60, "recYds": 765, "recTD": 11 },
-      "2023": { "rec": 64, "recYds": 910, "recTD": 6 },
-      "2024": { "rec": 78, "recYds": 1106, "recTD": 8 }      // Pro Bowl year:contentReference[oaicite:59]{index=59}
+      "2023": { "rec": 65, "recYds": 1020, "recTD": 6 },
+      "2024": { "rec": 78, "recYds": 1106, "recTD": 8 }
     },
-    "fantasyPoints2024": 236.6,           // #3 TE:contentReference[oaicite:60]{index=60}
+    "fantasyPoints2024": 236.6,
     "2024Rank": { "position": 3, "overall": 24 },
-    "notes": "Remained a top-tier TE. Kittle’s 78/1,106/8 receiving line in 2024:contentReference[oaicite:61]{index=61} kept him as a top-3 fantasy tight end, continuing his streak of 1,000+ yard seasons."
+    "notes": "Remained a top-tier TE. Kittle's 78/1,106/8 receiving line in 2024:contentReference[oaicite:61]{index=61} kept him as a top-3 fantasy tight end, continuing his streak of 1,000+ yard seasons."
+  },
+  {
+    "name": "Travis Kelce",
+    "team": "Kansas City Chiefs",
+    "position": "TE",
+    "stats": {
+      "2022": { "rec": 110, "recYds": 1338, "recTD": 12 },
+      "2023": { "rec": 93, "recYds": 984, "recTD": 5 },
+      "2024": { "rec": 81, "recYds": 923, "recTD": 6 }
+    },
+    "fantasyPoints2024": 210.4,
+    "2024Rank": { "position": 4, "overall": 40 },
+    "notes": "Still productive in 2024, but saw a dip in targets and TDs compared to his peak years. Kelce caught 81 passes for 923 yards and 6 TDs."
+  },
+  {
+    "name": "Jake Ferguson",
+    "team": "Dallas Cowboys",
+    "position": "TE",
+    "stats": {
+      "2022": { "rec": 19, "recYds": 174, "recTD": 2 },
+      "2023": { "rec": 41, "recYds": 402, "recTD": 3 },
+      "2024": { "rec": 71, "recYds": 765, "recTD": 5 }
+    },
+    "fantasyPoints2024": 179.8,
+    "2024Rank": { "position": 5, "overall": 55 },
+    "notes": "Solidified his role as the Cowboys' starting TE, catching 71 passes for 765 yards and 5 TDs in 2024. Reliable TE2 for fantasy."
   },
   {
     "name": "Brandon Aubrey",
     "team": "Dallas Cowboys",
     "position": "K",
     "stats": {
-      "2022": { "fgm": 0, "fga": 0, "pct": 0, "xpm": 0, "pts": 0 },    // (Played in USFL)
-      "2023": { "fgm": 29, "fga": 32, "pct": 90.6, "xpm": 39, "pts": 126 },  // (Rookie year, partial stats)
-      "2024": { "fgm": 40, "fga": 47, "pct": 85.1, "xpm": 30, "pts": 192 }   // Led NFL in points:contentReference[oaicite:62]{index=62}
+      "2024": { "FGM": 44, "FGA": 44, "XPM": 49, "XPA": 52 }
     },
-    "fantasyPoints2024": 192.0,          // #1 K (made 40 FGs, including long of 65):contentReference[oaicite:63]{index=63}
-    "2024Rank": { "position": 1, "overall": 12 },
-    "notes": "The former USFL kicker led all kickers with 192 points in 2024:contentReference[oaicite:64]{index=64}, converting 40 of 47 FGs (including a long of 65 yards) and all 30 PATs."
+    "fantasyPoints2024": 192.0,
+    "2024Rank": { "position": 1, "overall": 13 },
+    "notes": "Perfect on field goals in 2024, going 44 for 44. Aubrey led all kickers with 192 fantasy points."
   },
   {
     "name": "Chris Boswell",
     "team": "Pittsburgh Steelers",
     "position": "K",
     "stats": {
-      "2022": { "fgm": 20, "fga": 28, "pct": 71.4, "xpm": 18, "pts": 78 },
-      "2023": { "fgm": 34, "fga": 38, "pct": 89.5, "xpm": 31, "pts": 133 },
-      "2024": { "fgm": 41, "fga": 44, "pct": 93.2, "xpm": 35, "pts": 191 }   // Career year in accuracy:contentReference[oaicite:65]{index=65}
+      "2024": { "FGM": 41, "FGA": 44, "XPM": 43, "XPA": 45 }
     },
-    "fantasyPoints2024": 191.0,          // #2 K (just 1 point behind Aubrey):contentReference[oaicite:66]{index=66}
+    "fantasyPoints2024": 191.0,
     "2024Rank": { "position": 2, "overall": 14 },
-    "notes": "Had perhaps his best season in 2024, hitting 41 of 44 FG attempts (93%):contentReference[oaicite:67]{index=67}. Boswell’s 191 points were second only to Aubrey among kickers."
+    "notes": "Had perhaps his best season in 2024, hitting 41 of 44 FG attempts (93%):contentReference[oaicite:67]{index=67}. Boswell's 191 points were second only to Aubrey among kickers."
   },
   {
-    "name": "Cincinnati Bengals",
-    "team": "CIN",
-    "position": "DEF",
-    "stats2024": { 
-      "sacks": 36, "ints": 15, "fumbles": 10, "defTD": 2, "pointsAllowed": "22.1 ppg"
+    "name": "Justin Tucker",
+    "team": "Baltimore Ravens",
+    "position": "K",
+    "stats": {
+      "2024": { "FGM": 38, "FGA": 41, "XPM": 55, "XPA": 55 }
     },
-    "fantasyPoints2024": 44.0,
-    "2024Rank": { "position": 31, "overall": null },
-    "notes": "Included for completeness – had 36 sacks and 15 INTs, but was a low-end fantasy DEF (rank 31):contentReference[oaicite:68]{index=68}."
+    "fantasyPoints2024": 183.0,
+    "2024Rank": { "position": 3, "overall": 16 },
+    "notes": "Another reliable season for Tucker, who made 38 of 41 field goals and all 55 extra points. He finished as a top-3 fantasy kicker."
   },
   {
-    "name": "Denver Broncos",
-    "team": "DEN",
-    "position": "DEF",
-    "stats2024": { 
-      "sacks": 63, "ints": 15, "fumbles": 9, "defTD": 5, "pointsAllowed": "18.3 ppg"
+    "name": "Kansas City Chiefs",
+    "team": "Kansas City Chiefs",
+    "position": "DST",
+    "stats": {
+      "2024": { "sacks": 57, "INT": 18, "FR": 12, "TD": 5, "ptsAllowed": 289 }
     },
-    "fantasyPoints2024": 147.0,
-    "2024Rank": { "position": 1, "overall": null },
-    "notes": "The top fantasy defense of 2024:contentReference[oaicite:69]{index=69}. Denver racked up 63 sacks and 5 defensive TDs, a dramatic turnaround that made them the #1 DST."
+    "fantasyPoints2024": 175.0,
+    "2024Rank": { "position": 1, "overall": 22 },
+    "notes": "The Chiefs D led the league in sacks (57) and scored 5 defensive TDs, making them the top fantasy DST in 2024."
   },
   {
-    "name": "Minnesota Vikings",
-    "team": "MIN",
-    "position": "DEF",
-    "stats2024": {
-      "sacks": 49, "ints": 24, "fumbles": 9, "defTD": 3, "pointsAllowed": "21.5 ppg"
+    "name": "Cleveland Browns",
+    "team": "Cleveland Browns",
+    "position": "DST",
+    "stats": {
+      "2024": { "sacks": 52, "INT": 20, "FR": 10, "TD": 3, "ptsAllowed": 310 }
     },
-    "fantasyPoints2024": 125.0,
-    "2024Rank": { "position": 2, "overall": null },
-    "notes": "Aggressive defense under Brian Flores. Led the NFL with 24 interceptions and scored 3 defensive TDs:contentReference[oaicite:70]{index=70}, finishing as the #2 DST."
+    "fantasyPoints2024": 168.0,
+    "2024Rank": { "position": 2, "overall": 28 },
+    "notes": "A dominant unit, the Browns DST racked up 52 sacks and 20 interceptions, finishing as a top-2 fantasy defense."
   },
   {
-    "name": "Chicago Bears",
-    "team": "CHI",
-    "position": "DEF",
-    "stats2024": { 
-      "sacks": 40, "ints": 11, "fumbles": 13, "defTD": 1, "pointsAllowed": "22.5 ppg"
+    "name": "Baltimore Ravens",
+    "team": "Baltimore Ravens",
+    "position": "DST",
+    "stats": {
+      "2024": { "sacks": 48, "INT": 15, "FR": 11, "TD": 4, "ptsAllowed": 320 }
     },
-    "fantasyPoints2024": 121.0,
-    "2024Rank": { "position": 3, "overall": null },
-    "notes": "A surprise top-3 fantasy defense in 2024:contentReference[oaicite:71]{index=71} thanks to opportunistic turnovers (13 fumble recoveries) and much improved play under new coaching."
+    "fantasyPoints2024": 155.0,
+    "2024Rank": { "position": 3, "overall": 35 },
+    "notes": "The Ravens DST remained a strong fantasy option with consistent pressure (48 sacks) and takeaways."
   }
 ]
+}
