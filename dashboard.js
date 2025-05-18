@@ -18,6 +18,38 @@ document.addEventListener("DOMContentLoaded", () => {
   
     let allPlayers = [];
   
+    // Initialize theme switcher dropdown functionality
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeDropdown = document.getElementById('theme-dropdown');
+    
+    if (themeToggle && themeDropdown) {
+      // Set initial theme based on localStorage or default to dark-base
+      const savedTheme = localStorage.getItem('theme') || 'dark-base';
+      document.documentElement.setAttribute('data-theme', savedTheme);
+      
+      // Toggle dropdown visibility
+      themeToggle.addEventListener('click', () => {
+        themeDropdown.classList.toggle('hidden');
+      });
+      
+      // Close dropdown when clicking outside
+      document.addEventListener('click', (e) => {
+        if (!themeToggle.contains(e.target) && !themeDropdown.contains(e.target)) {
+          themeDropdown.classList.add('hidden');
+        }
+      });
+      
+      // Handle theme option selection
+      document.querySelectorAll('.theme-option').forEach(option => {
+        option.addEventListener('click', () => {
+          const theme = option.getAttribute('data-theme');
+          document.documentElement.setAttribute('data-theme', theme);
+          localStorage.setItem('theme', theme);
+          themeDropdown.classList.add('hidden');
+        });
+      });
+    }
+
     // Load player data using our centralized data service
     getPlayerData()
     .then(playersData => {
@@ -52,99 +84,85 @@ document.addEventListener("DOMContentLoaded", () => {
       }
       console.log("[Dashboard] Injecting featured players. Total players available:", players.length);
 
-      const featuredTagMap = {
-        "🔥 Sleeper": "sleeper",
-        "🚑 Injury Risk": "injuryrisk",
-        "📈 Trending": "trending",
-        "💰 Value Pick": "valuepick",
-        "🚀 Starter Forward": "starterforward"
-      };
-      const tagsToDisplay = Object.keys(featuredTagMap);
-      featuredContainer.innerHTML = ""; 
-      let playersFoundForAnyTag = false;
-
-      tagsToDisplay.forEach((tagDisplayName) => {
-        const tagKey = featuredTagMap[tagDisplayName];
-        console.log(`[Dashboard] Searching for featured player with tag key: ${tagKey}`);
+      // Define featured categories with their corresponding tags and icons/backgrounds
+      const featuredCategories = [
+        { 
+          name: "Sleeper Pick", 
+          tagKey: "sleeper", 
+          emoji: "🔥", 
+          bgColor: "bg-orange-600/20" 
+        },
+        { 
+          name: "Injury Risk", 
+          tagKey: "injuryrisk", 
+          emoji: "🚑", 
+          bgColor: "bg-red-600/20" 
+        },
+        { 
+          name: "Trending Up", 
+          tagKey: "trending", 
+          emoji: "📈", 
+          bgColor: "bg-green-600/20" 
+        },
+        { 
+          name: "Value Pick", 
+          tagKey: "valuepick", 
+          emoji: "💰", 
+          bgColor: "bg-yellow-600/20" 
+        }
+      ];
+      
+      featuredContainer.innerHTML = "";
+      
+      featuredCategories.forEach(category => {
+        // Look for players with matching tags (or flags)
         const player = players.find(p => {
-            const normalizedPlayerTags = p.tags?.map(t => t.toLowerCase().replace(/[^a-zA-Z0-9]/g, ""));
-            return normalizedPlayerTags?.includes(tagKey);
+          const normalizedPlayerTags = p.tags?.map(t => t.toLowerCase().replace(/[^a-zA-Z0-9]/g, "")) || [];
+          const normalizedPlayerFlags = p.flags?.map(f => f.toLowerCase().replace(/[^a-zA-Z0-9]/g, "")) || [];
+          return normalizedPlayerTags.includes(category.tagKey) || normalizedPlayerFlags.includes(category.tagKey);
         });
         
-        if(player) {
-            console.log(`[Dashboard] Found player for ${tagDisplayName}:`, player.name);
-            playersFoundForAnyTag = true;
-        } else {
-            console.log(`[Dashboard] No player found for tag: ${tagDisplayName} (key: ${tagKey})`);
-        }
-
-        const el = document.createElement("div");
-        el.className = "bg-gray-800 p-3 rounded-xl text-sm shadow-md hover:shadow-lg transition-shadow";
+        const card = document.createElement("div");
+        card.className = "bg-gray-800 p-4 rounded-xl flex items-center gap-3 shadow-lg transition-all hover:shadow-xl";
         
-        let contentHtml = '';
+        let cardContent = '';
         if (player) {
-          contentHtml = `
-            <div class="flex items-center gap-2">
-              <img src="${player.headshot || './AeroVista-Logo.png'}" alt="${player.name}" class="w-10 h-10 rounded-full object-cover">
-              <div>
-                <span class="block font-semibold text-cyan-400">${tagDisplayName}</span>
-                <a href="player-page.html?id=${player.playerId}" class="text-white hover:underline">${player.name}</a>
-                <span class="text-xs text-gray-400"> (${player.position} - ${player.team})</span>
-              </div>
-            </div>`;
+          cardContent = `
+            <div class="w-14 h-14 flex items-center justify-center ${category.bgColor} rounded-full">
+              <span class="text-3xl">${category.emoji}</span>
+            </div>
+            <div>
+              <div class="font-semibold text-cyan-400 mb-1">${category.name}</div>
+              <a href="player-page.html?id=${player.playerId}" class="text-gray-300 hover:text-white transition-colors font-medium">${player.name}</a>
+              <div class="text-xs text-gray-400 mt-1">${player.position} - ${player.team || 'N/A'}</div>
+            </div>
+          `;
         } else {
-          contentHtml = `
-            <div class="flex items-center gap-2">
-              <span class="text-2xl">${tagDisplayName.split(' ')[0]}</span> {/* Just the emoji */}
-              <div>
-                <span class="block font-semibold text-cyan-400">${tagDisplayName.substring(tagDisplayName.indexOf(' ') + 1)}</span>
-                <span class="text-gray-500 italic">No player currently highlighted for this tag.</span>
-              </div>
-            </div>`;
+          cardContent = `
+            <div class="w-14 h-14 flex items-center justify-center ${category.bgColor} rounded-full">
+              <span class="text-3xl">${category.emoji}</span>
+            </div>
+            <div>
+              <div class="font-semibold text-cyan-400 mb-1">${category.name}</div>
+              <div class="text-gray-500 italic">No player currently highlighted for this tag.</div>
+            </div>
+          `;
         }
-        el.innerHTML = contentHtml;
-        featuredContainer.appendChild(el);
+        
+        card.innerHTML = cardContent;
+        featuredContainer.appendChild(card);
       });
-
-      console.log("[Dashboard] Finished processing featured tags. Players found for any tag:", playersFoundForAnyTag);
-      console.log("[Dashboard] Featured container children count:", featuredContainer.children.length);
-
-      if (featuredContainer.children.length === 0 && tagsToDisplay.length > 0) {
-          // This case means no players were found for ANY tag, and no placeholders were added yet.
-          tagsToDisplay.forEach(tagDisplayName => {
-              const el = document.createElement("div");
-              el.className = "bg-gray-800 p-3 rounded-xl text-sm shadow-md hover:shadow-lg transition-shadow";
-              el.innerHTML = `
-                <div class="flex items-center gap-2">
-                  <span class="text-2xl">${tagDisplayName.split(' ')[0]}</span>
-                  <div>
-                    <span class="block font-semibold text-cyan-400">${tagDisplayName.substring(tagDisplayName.indexOf(' ') + 1)}</span>
-                    <span class="text-gray-500 italic">No player currently highlighted.</span>
-                  </div>
-                </div>`;
-              featuredContainer.appendChild(el);
-          });
-          console.log("[Dashboard] Added default placeholders as no players were found for any featured tag.");
-      } else if (featuredContainer.children.length < tagsToDisplay.length && featuredContainer.children.length > 0) {
-        // If some players were found, but not enough to fill all tag categories, fill remaining
-        // This case might be covered if the main loop already adds a placeholder if player is not found for a specific tag.
-        // The existing logic inside the loop that adds a placeholder when `player` is null for a tag handles this.
-      }
-      // Ensure grid has enough columns (e.g. up to 4 items total)
-      if (featuredContainer.children.length > 0 && featuredContainer.children.length < 4) {
-        for (let i = featuredContainer.children.length; i < 4; i++) {
-            const placeholderEl = document.createElement("div");
-            placeholderEl.className = "bg-gray-800 p-3 rounded-xl text-sm shadow-md flex items-center justify-center text-gray-600 italic";
-            placeholderEl.textContent = "More insights soon...";
-            featuredContainer.appendChild(placeholderEl);
-        }
-      }
     }
   
     // Function to display My Squad
     function displayMySquad() {
       const squad = getSquad(); // Using imported function
       const squadContainer = document.getElementById("my-squad-container");
+      const emptyMessage = squadContainer?.querySelector(".empty-squad-message");
+      const squadGrid = squadContainer?.querySelector(".squad-grid");
+      const squadSummary = squadContainer?.querySelector(".squad-summary");
+      const positionCountsEl = document.getElementById("squad-position-counts");
+      const strengthScoreEl = document.getElementById("squad-strength-score");
 
       if (!squadContainer) {
         console.error("My Squad container not found in dashboard.html");
@@ -152,23 +170,61 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       if (squad.length === 0) {
-        squadContainer.innerHTML = `<div class="bg-gray-800 p-4 rounded-xl text-sm text-gray-400 italic text-center">
-                                      You haven't drafted anyone yet.
-                                    </div>`;
+        if (emptyMessage) emptyMessage.classList.remove("hidden");
+        if (squadGrid) squadGrid.classList.add("hidden");
+        if (squadSummary) squadSummary.classList.add("hidden");
         return;
       }
 
-      squadContainer.innerHTML = squad.map(player => `
-        <div class="flex justify-between items-center p-2 border-b border-gray-700">
-          <div>
-            <strong class="text-white">${player.name}</strong>
-            <span class="text-xs text-gray-400 ml-2">(${player.team || 'N/A'})</span>
+      // Show the grid and summary, hide empty message
+      if (emptyMessage) emptyMessage.classList.add("hidden");
+      if (squadGrid) {
+        squadGrid.classList.remove("hidden");
+        
+        // Populate the grid with player cards
+        squadGrid.innerHTML = squad.map(player => `
+          <div class="bg-gray-700 rounded-md p-2 flex items-center gap-2">
+            <img src="${player.headshot || './AeroVista-Logo.png'}" alt="${player.name}" class="w-8 h-8 rounded-full object-cover border border-gray-600">
+            <div class="flex-1 min-w-0">
+              <div class="flex justify-between items-center">
+                <a href="player-page.html?id=${player.playerId}" class="text-white hover:underline text-sm font-medium truncate block">${player.name}</a>
+              </div>
+              <div class="text-xs text-gray-400 flex items-center justify-between">
+                <span>${player.position} · ${player.team || 'N/A'}</span>
+                <button onclick="removePlayerFromSquadAndRefresh('${player.playerId}')" class="text-red-400 hover:text-red-300">×</button>
+              </div>
+            </div>
           </div>
-          <button class="text-red-500 hover:text-red-400 text-xs" onclick="removePlayerFromSquadAndRefresh('${player.playerId}')">Remove</button>
-        </div>
-      `).join("");
-      // Add a class to ensure proper styling if the default placeholder had specific ones
-      squadContainer.className = "bg-gray-800 p-4 rounded-xl space-y-2"; // Adjusted class for list display
+        `).join("");
+      }
+      
+      // Update position counts
+      if (squadSummary && positionCountsEl) {
+        squadSummary.classList.remove("hidden");
+        
+        // Count players by position
+        const positionCounts = {};
+        squad.forEach(player => {
+          positionCounts[player.position] = (positionCounts[player.position] || 0) + 1;
+        });
+        
+        // Format position counts string
+        const positions = ["QB", "RB", "WR", "TE", "K", "DST"];
+        const posCountsStr = positions
+          .map(pos => `${pos}: ${positionCounts[pos] || 0}`)
+          .join(' | ');
+        
+        positionCountsEl.textContent = posCountsStr;
+        
+        // Calculate simple team strength score based on number of positions filled
+        const filledPositions = Object.keys(positionCounts).length;
+        const maxPositions = positions.length;
+        const strengthScore = Math.round((filledPositions / maxPositions) * 100);
+        
+        if (strengthScoreEl) {
+          strengthScoreEl.textContent = `${strengthScore}%`;
+        }
+      }
     }
 
     // Make removePlayerFromSquadAndRefresh globally accessible for the inline onclick
@@ -181,17 +237,16 @@ document.addEventListener("DOMContentLoaded", () => {
     // Function to update Coach Commentary
     function updateCoachCommentary() {
       const squad = getSquad(); // Using imported function
-      const coachCommentaryContainer = document.querySelector("section:nth-of-type(5) .bg-purple-800"); // Target the coach says div
+      const coachAdviceEl = document.getElementById("coach-advice");
 
-      if (!coachCommentaryContainer) {
-        console.error("Coach commentary container not found");
+      if (!coachAdviceEl) {
+        console.error("Coach advice element not found");
         return;
       }
 
       // Get advice from coach.js (using imported function)
       const advice = getCoachAdvice(squad, allPlayers);
-
-      coachCommentaryContainer.textContent = advice;
+      coachAdviceEl.textContent = advice;
     }
   
     function populateLeagueLeaders(players) {
@@ -201,53 +256,56 @@ document.addEventListener("DOMContentLoaded", () => {
         "Top WRs": "WR"
       };
 
-      const leaderSections = document.querySelectorAll("#league-leaders-container .bg-gray-800");
-      if (!leaderSections || leaderSections.length !== Object.keys(positionsToLead).length) {
-        console.warn("[Dashboard] League leader section divs not found or mismatch count. Expected 3.");
-        // Try a more specific selector if the generic one fails
-        const container = document.querySelector("section h2 + div.grid.grid-cols-3"); // Based on HTML structure around League Leaders
-        if(container && container.children.length === 3){
-            // If this works, proceed with container.children[0], container.children[1], etc.
-            // This is a fallback, ideally the querySelectorAll above is more robust.
-        } else {
-             console.error("[Dashboard] Could not find league leader containers accurately.");
-             return;
-        }
+      const leaderCards = document.querySelectorAll("#league-leaders-container .bg-gray-800");
+      if (!leaderCards || leaderCards.length !== Object.keys(positionsToLead).length) {
+        console.warn("[Dashboard] League leader cards not found or mismatch count. Expected 3.");
+        return;
       }
 
-      let sectionIndex = 0;
+      let cardIndex = 0;
       for (const sectionTitle in positionsToLead) {
         const position = positionsToLead[sectionTitle];
-        const positionPlayers = players.filter(p => p.position === position && p.fantasy?.pprPoints !== undefined && p.fantasy.pprPoints !== null);
+        const card = leaderCards[cardIndex];
+        
+        if (!card) {
+          console.warn(`[Dashboard] League leader card not found for ${sectionTitle}`);
+          cardIndex++;
+          continue;
+        }
+        
+        // Find all players of this position and sort by PPR points if available
+        const positionPlayers = players.filter(p => p.position === position);
         
         if (positionPlayers.length > 0) {
-          positionPlayers.sort((a, b) => (b.fantasy.pprPoints ?? -Infinity) - (a.fantasy.pprPoints ?? -Infinity));
-          const leader = positionPlayers[0]; // Top 1 leader
-
-          const sectionDiv = leaderSections[sectionIndex];
-          if (sectionDiv) {
-            sectionDiv.innerHTML = `
-              <div class="text-xs text-cyan-400 font-semibold mb-1">${sectionTitle}</div>
-              <a href="player-page.html?id=${leader.playerId}" class="text-white hover:underline text-sm block truncate" title="${leader.name}">${leader.name}</a>
-              <div class="text-xs text-gray-400">${(leader.fantasy.pprPoints).toFixed(1)} pts</div>
-            `;
-          } else {
-            console.warn(`[Dashboard] League leader section div not found for ${sectionTitle}`);
+          // Sort by PPR points (fantasy.pprPoints) if available
+          positionPlayers.sort((a, b) => {
+            const aPoints = a.fantasy?.pprPoints ?? -Infinity;
+            const bPoints = b.fantasy?.pprPoints ?? -Infinity;
+            return bPoints - aPoints;
+          });
+          
+          const leader = positionPlayers[0];
+          
+          // Update player name in the card
+          const nameEl = card.querySelector(".player-name");
+          if (nameEl) {
+            nameEl.innerHTML = `<a href="player-page.html?id=${leader.playerId}" class="hover:underline">${leader.name}</a>`;
           }
-        } else {
-          const sectionDiv = leaderSections[sectionIndex];
-          if (sectionDiv) {
-            sectionDiv.innerHTML = `
-              <div class="text-xs text-cyan-400 font-semibold mb-1">${sectionTitle}</div>
-              <div class="text-gray-500 text-sm italic">N/A</div>
-            `;
-          }
+          
+          // Update stats in the card
+          const yardsEl = card.querySelector(".stat-yards");
+          const tdsEl = card.querySelector(".stat-tds");
+          const pprEl = card.querySelector(".stat-ppr");
+          
+          if (yardsEl) yardsEl.textContent = leader.fantasy?.yards ?? 'N/A';
+          if (tdsEl) tdsEl.textContent = leader.fantasy?.touchdowns ?? 'N/A';
+          if (pprEl) pprEl.textContent = leader.fantasy?.pprPoints ? leader.fantasy.pprPoints.toFixed(1) : 'N/A';
         }
-        sectionIndex++;
+        
+        cardIndex++;
       }
     }
   
-    // Search behavior (commented out as search.js handles this globally now)
-    // searchInput?.addEventListener("input", (e) => { ... });
+    // Search behavior handled by search.js
   });
   
