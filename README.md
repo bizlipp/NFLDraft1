@@ -57,4 +57,66 @@ NFLDraft1/
 *   Drag-and-drop interface for managing "My Fantasy Team".
 *   Integration of more data sources or an actual API.
 *   User accounts and cloud-based team saving.
-*   More complex scoring and league settings for team building. 
+*   More complex scoring and league settings for team building.
+
+## Deployment to GitHub Pages
+
+This application is configured to work on GitHub Pages. Follow these steps to deploy:
+
+1. **Create a GitHub Repository**
+   - Create a new repository named `NFLDraft1` on GitHub
+
+2. **Initialize Git and Push**
+   ```bash
+   git init
+   git add .
+   git commit -m "Initial commit"
+   git remote add origin https://github.com/YOUR_USERNAME/NFLDraft1.git
+   git push -u origin main
+   ```
+
+3. **Enable GitHub Pages**
+   - Go to your repository settings
+   - Navigate to the "Pages" section
+   - Select the branch you want to deploy (usually `main`)
+   - Click "Save"
+
+4. **Access Your Deployed App**
+   - Your app will be available at `https://YOUR_USERNAME.github.io/NFLDraft1/`
+   - It may take a few minutes for the deployment to complete
+
+## Local Development
+
+To run the project locally:
+
+1. Clone the repository
+   ```bash
+   git clone https://github.com/YOUR_USERNAME/NFLDraft1.git
+   ```
+
+2. Navigate to the project directory
+   ```bash
+   cd NFLDraft1
+   ```
+
+3. Start a local server (using Python's built-in server or any other web server)
+   ```bash
+   python -m http.server 8000
+   ```
+
+4. Open your browser and navigate to `http://localhost:8000`
+
+## Browser Compatibility
+
+The application is designed to work in modern browsers that support ES6+ JavaScript features and Import Maps:
+
+- Chrome 89+
+- Firefox 89+
+- Safari 16.4+
+- Edge 89+
+
+## Credits
+
+- Player data compiled from various sources
+- Icons and graphics from AeroVista design system
+- TailwindCSS for styling 

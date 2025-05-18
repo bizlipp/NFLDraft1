@@ -16,7 +16,12 @@ if (input && input.parentElement) {
 
 let players = [];
 
-fetch("./data/nfl_players_2025_enriched_full_final.json")
+// Get the base URL for GitHub Pages compatibility
+const baseUrl = window.location.href.includes('github.io') 
+  ? '/NFLDraft1' // GitHub Pages repository name
+  : '';
+
+fetch(`${baseUrl}/data/nfl_players_2025_enriched_full_final.json`)
   .then((res) => res.json())
   .then((data) => {
     players = data;
@@ -52,7 +57,7 @@ input?.addEventListener("input", (e) => {
   } else {
     searchResultsContainer.innerHTML = matches.map((p) => `
       <div class="p-3 hover:bg-gray-700 cursor-pointer text-sm border-b border-gray-700 last:border-b-0 flex items-center gap-3" data-id="${p.playerId}">
-        <img src="${p.headshot || './AeroVista-Logo.png'}" alt="${p.name}" class="w-8 h-8 rounded-full object-cover">
+        <img src="${p.headshot || (baseUrl + '/AeroVista-Logo.png')}" alt="${p.name}" class="w-8 h-8 rounded-full object-cover">
         <div>
             <strong>${p.name}</strong> – ${p.position} (${p.team || 'N/A'})
             <div class="text-xs text-gray-400">${p.college || ''}</div>
@@ -76,7 +81,7 @@ searchResultsContainer.addEventListener("click", (event) => {
     const targetElement = event.target.closest("[data-id]"); // Find the parent with data-id
     if (targetElement) {
         const id = targetElement.getAttribute("data-id");
-        window.location.href = `player-page.html?id=${id}`;
+        window.location.href = `${baseUrl}/player-page.html?id=${id}`;
         searchResultsContainer.classList.add("hidden");
         if(input) input.value = ''; // Clear search input after selection
     }

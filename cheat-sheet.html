@@ -8,6 +8,17 @@
   <link rel="icon" href="AeroVista-Logo.png" type="image/png">
   <title>FantasyForge - Cheat Sheet</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <!-- Import map to ensure modules load correctly on GitHub Pages -->
+  <script type="importmap">
+    {
+      "imports": {
+        "./data-service.js": "./data-service.js",
+        "./utils.js": "./utils.js",
+        "./my-squad.js": "./my-squad.js",
+        "./header-nav.js": "./header-nav.js"
+      }
+    }
+  </script>
   <style>
     .sticky-header th {
       position: sticky;

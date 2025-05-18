@@ -22,7 +22,12 @@ export async function getPlayerData() {
   // Otherwise, fetch the data
   console.log("Fetching player data from central data service...");
   
-  fetchPromise = fetch("./data/nfl_players_2025_enriched_full_final.json")
+  // Get the base URL for GitHub Pages compatibility
+  const baseUrl = window.location.href.includes('github.io') 
+    ? '/NFLDraft1' // GitHub Pages repository name
+    : '';
+    
+  fetchPromise = fetch(`${baseUrl}/data/nfl_players_2025_enriched_full_final.json`)
     .then(response => {
       if (!response.ok) {
         throw new Error(`Network response was not ok: ${response.status}`);

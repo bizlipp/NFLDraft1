@@ -4,34 +4,38 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="FantasyForge Flashcards - Test your NFL player knowledge.">
-  <meta name="keywords" content="fantasy football, NFL, flashcards, trivia, game, players">
+  <meta name="keywords" content="fantasy football, NFL, flashcards, quiz, players, knowledge">
   <link rel="icon" href="AeroVista-Logo.png" type="image/png">
   <title>FantasyForge - Flashcards</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <!-- Import map to ensure modules load correctly on GitHub Pages -->
+  <script type="importmap">
+    {
+      "imports": {
+        "./data-service.js": "./data-service.js",
+        "./utils.js": "./utils.js"
+      }
+    }
+  </script>
 </head>
-<body class="bg-gray-900 text-white min-h-screen flex flex-col items-center justify-center p-6">
-  <header class="absolute top-6 left-6">
-    <a href="dashboard.html" class="text-cyan-400 hover:text-cyan-300">&larr; Back to Dashboard</a>
-  </header>
-
-  <div class="w-full max-w-md bg-gray-800 p-8 rounded-xl shadow-xl">
-    <h1 class="text-3xl font-bold text-center text-cyan-400 mb-6">Player Flashcards</h1>
-
-    <div id="flashcard-container" class="mb-6">
-      <p id="question-text" class="text-lg mb-4 text-center">Loading question...</p>
-      <input type="text" id="answer-input" class="w-full p-2 rounded-md bg-gray-700 text-white border border-gray-600 mb-4" placeholder="Your answer...">
-      <button id="submit-answer-btn" class="w-full bg-cyan-600 p-3 rounded-xl hover:bg-cyan-700 mb-4">Submit Answer</button>
-    </div>
-
-    <div id="feedback-container" class="mb-6 text-center">
-      <p id="feedback-text" class="text-lg">&nbsp;</p> <!-- Placeholder for feedback -->
-      <p id="correct-answer-text" class="text-sm text-gray-400">&nbsp;</p> <!-- Placeholder for correct answer -->
+<body class="bg-gray-900 text-white min-h-screen p-4">
+  <div class="max-w-2xl mx-auto bg-gray-800 rounded-xl p-6 shadow-lg mt-16">
+    <h1 class="text-2xl font-bold text-cyan-400 mb-6 text-center">NFL Player Flashcards</h1>
+    
+    <div class="bg-gray-700 p-4 rounded-xl mb-4">
+      <p id="question-text" class="text-lg text-center mb-4">Loading player data...</p>
+      <input type="text" id="answer-input" placeholder="Enter your answer..." class="w-full p-2 bg-gray-600 border border-gray-500 rounded-md text-white mb-2">
+      <p id="feedback-text" class="text-center text-lg mb-1">&nbsp;</p>
+      <p id="correct-answer-text" class="text-center text-sm text-gray-400 mb-2">&nbsp;</p>
     </div>
     
-    <div id="score-container" class="mb-6 text-center">
-      <p class="text-xl">Score: <span id="score-correct" class="font-bold text-green-400">0</span> / <span id="score-total" class="font-bold text-red-400">0</span></p>
+    <div class="flex justify-between items-center mb-4">
+      <div class="text-gray-300">
+        Score: <span id="score-correct">0</span>/<span id="score-total">0</span>
+      </div>
+      <button id="submit-answer-btn" class="bg-cyan-600 hover:bg-cyan-700 text-white px-4 py-2 rounded-md">Submit Answer</button>
     </div>
-
+    
     <button id="next-card-btn" class="w-full bg-indigo-600 p-3 rounded-xl hover:bg-indigo-700">Next Card</button>
   </div>
 

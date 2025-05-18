@@ -8,11 +8,20 @@
   <link rel="icon" href="AeroVista-Logo.png" type="image/png">
   <title>FantasyForge - Team Browser</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+  <!-- Import map to ensure modules load correctly on GitHub Pages -->
+  <script type="importmap">
+    {
+      "imports": {
+        "./data-service.js": "./data-service.js",
+        "./utils.js": "./utils.js"
+      }
+    }
+  </script>
 </head>
 <body class="bg-gray-900 text-white p-4">
   <h1 class="text-2xl font-bold mb-4">Browse Teams</h1>
   <select id="team-select" aria-label="Select a Team" class="bg-gray-800 text-white p-2 rounded mb-4"></select>
   <div id="team-roster" class="grid gap-4 sm:grid-cols-2 md:grid-cols-3"></div>
-  <script src="team-filter.js"></script>
+  <script src="team-filter.js" type="module"></script>
 </body>
 </html>

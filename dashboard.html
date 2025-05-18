@@ -8,25 +8,107 @@
   <link rel="icon" href="AeroVista-Logo.png" type="image/png">
   <title>FantasyForge Dashboard</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <!-- Import map to ensure modules load correctly on GitHub Pages -->
+  <script type="importmap">
+    {
+      "imports": {
+        "./data-service.js": "./data-service.js",
+        "./utils.js": "./utils.js",
+        "./my-squad.js": "./my-squad.js",
+        "./coach.js": "./coach.js",
+        "./header-nav.js": "./header-nav.js",
+        "./search.js": "./search.js"
+      }
+    }
+  </script>
+  <style>
+    .feature-icon {
+      font-size: 1.5rem;
+    }
+    .section-header-icon {
+      font-size: 1.2rem;
+      margin-right: 0.5rem;
+    }
+    .action-button {
+      transition: transform 0.2s;
+    }
+    .action-button:hover {
+      transform: scale(1.05);
+    }
+    .footer {
+      background-color: rgba(15, 23, 42, 0.9);
+      border-top: 1px solid #2d3748;
+      padding: 1rem;
+      text-align: center;
+      font-style: italic;
+      color: #a0aec0;
+    }
+    /* Theme selector */
+    .theme-switch {
+      position: fixed;
+      top: 80px;
+      right: 20px;
+      z-index: 100;
+    }
+    /* Dark theme is default */
+    :root {
+      --bg-primary: #0f172a;
+      --bg-secondary: #1e293b;
+      --text-primary: #f1f5f9;
+      --accent-color: #0ea5e9;
+    }
+    /* Light theme */
+    [data-theme="light"] {
+      --bg-primary: #f1f5f9;
+      --bg-secondary: #e2e8f0;
+      --text-primary: #1e293b;
+      --accent-color: #0369a1;
+    }
+    /* Apply theme variables */
+    body {
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+    }
+    .bg-card {
+      background-color: var(--bg-secondary);
+    }
+  </style>
 </head>
 <body class="bg-gray-900 text-white font-sans min-h-screen">
   <!-- Header will be injected by header-nav.js -->
+
+  <!-- Theme switcher -->
+  <div class="theme-switch">
+    <button id="theme-toggle" class="bg-gray-700 text-white p-2 rounded-full">
+      <span id="theme-icon">🌙</span>
+    </button>
+  </div>
 
   <!-- Sections -->
   <main class="px-4 pb-10 space-y-8">
 
     <!-- Quick Draft Tools -->
     <section>
-      <h2 class="text-lg font-semibold text-cyan-300 mb-2">🧠 Quick Draft Tools</h2>
+      <h2 class="text-lg font-semibold text-cyan-300 mb-4 flex items-center">
+        <span class="section-header-icon">🧠</span> Quick Draft Tools
+      </h2>
       <div class="grid grid-cols-2 gap-4">
-        <a href="mock-draft.html" class="block bg-cyan-600 p-3 rounded-xl hover:bg-cyan-700 text-center">Mock Draft</a>
-        <a href="cheat-sheet.html" class="block bg-indigo-600 p-3 rounded-xl hover:bg-indigo-700 text-center">Cheat Sheet</a>
+        <a href="mock-draft.html" class="action-button flex items-center justify-center bg-cyan-600 p-4 rounded-xl hover:bg-cyan-700 text-center">
+          <span class="feature-icon mr-2">🎮</span>
+          <span>Mock Draft</span>
+        </a>
+        <a href="cheat-sheet.html" class="action-button flex items-center justify-center bg-indigo-600 p-4 rounded-xl hover:bg-indigo-700 text-center">
+          <span class="feature-icon mr-2">📋</span>
+          <span>Cheat Sheet</span>
+        </a>
       </div>
     </section>
 
     <!-- Featured Players -->
     <section>
-      <h2 class="text-lg font-semibold text-cyan-300 mb-2">🔥 Featured Players</h2>
+      <h2 class="text-lg font-semibold text-cyan-300 mb-4 flex items-center">
+        <span class="section-header-icon">🔥</span> Featured Players
+      </h2>
       <div id="featured-players-container" class="grid grid-cols-2 gap-4">
         <div class="bg-gray-800 p-4 rounded-xl text-sm text-gray-400 italic">Loading featured...</div>
         <div class="bg-gray-800 p-4 rounded-xl text-sm text-gray-400 italic">Loading featured...</div>
@@ -37,7 +119,9 @@
 
     <!-- My Squad -->
     <section>
-      <h2 class="text-lg font-semibold text-cyan-300 mb-2">🎮 My Squad</h2>
+      <h2 class="text-lg font-semibold text-cyan-300 mb-4 flex items-center">
+        <span class="section-header-icon">🎮</span> My Squad
+      </h2>
       <div id="my-squad-container" class="bg-gray-800 p-4 rounded-xl text-sm text-gray-400 italic text-center">
         You haven't drafted anyone yet.
       </div>
@@ -45,26 +129,59 @@
 
     <!-- League Leaders -->
     <section>
-      <h2 class="text-lg font-semibold text-cyan-300 mb-2">🏆 League Leaders</h2>
+      <h2 class="text-lg font-semibold text-cyan-300 mb-4 flex items-center">
+        <span class="section-header-icon">🏆</span> League Leaders
+      </h2>
       <div id="league-leaders-container" class="grid grid-cols-3 gap-2 text-xs text-center text-gray-300">
-        <div class="bg-gray-800 p-2 rounded"><div class="text-xs text-cyan-400 font-semibold mb-1">Top QBs</div><div class="text-gray-500 text-sm italic">Loading...</div></div>
-        <div class="bg-gray-800 p-2 rounded"><div class="text-xs text-cyan-400 font-semibold mb-1">Top RBs</div><div class="text-gray-500 text-sm italic">Loading...</div></div>
-        <div class="bg-gray-800 p-2 rounded"><div class="text-xs text-cyan-400 font-semibold mb-1">Top WRs</div><div class="text-gray-500 text-sm italic">Loading...</div></div>
+        <div class="bg-gray-800 p-3 rounded"><div class="text-xs text-cyan-400 font-semibold mb-1">Top QBs</div><div class="text-gray-500 text-sm italic">Loading...</div></div>
+        <div class="bg-gray-800 p-3 rounded"><div class="text-xs text-cyan-400 font-semibold mb-1">Top RBs</div><div class="text-gray-500 text-sm italic">Loading...</div></div>
+        <div class="bg-gray-800 p-3 rounded"><div class="text-xs text-cyan-400 font-semibold mb-1">Top WRs</div><div class="text-gray-500 text-sm italic">Loading...</div></div>
       </div>
     </section>
 
     <!-- Coach AI Preview -->
     <section>
-      <h2 class="text-lg font-semibold text-cyan-300 mb-2">🧠 Coach Says</h2>
+      <h2 class="text-lg font-semibold text-cyan-300 mb-4 flex items-center">
+        <span class="section-header-icon">🧠</span> Coach Says
+      </h2>
       <div class="bg-purple-800 p-4 rounded-xl italic text-sm">
         "You've stacked KC players. Watch the Week 10 bye."
       </div>
     </section>
 
   </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    An AeroVista Production - where vision takes flight
+  </footer>
+
   <script src="my-squad.js" type="module"></script>
   <script src="coach.js" type="module"></script>
   <script src="search.js" type="module"></script>
   <script src="dashboard.js" type="module"></script>
+  
+  <script>
+    // Theme switcher functionality
+    document.addEventListener('DOMContentLoaded', () => {
+      const themeToggle = document.getElementById('theme-toggle');
+      const themeIcon = document.getElementById('theme-icon');
+      
+      // Check for saved theme preference or use default
+      const savedTheme = localStorage.getItem('theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', savedTheme);
+      themeIcon.textContent = savedTheme === 'dark' ? '🌙' : '☀️';
+      
+      // Toggle theme
+      themeToggle.addEventListener('click', () => {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        
+        document.documentElement.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        themeIcon.textContent = newTheme === 'dark' ? '🌙' : '☀️';
+      });
+    });
+  </script>
 </body>
 </html>
