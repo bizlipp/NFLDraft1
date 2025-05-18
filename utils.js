@@ -1,26 +1,37 @@
 // utils.js
 
 /**
- * Gets a cleaned experience string for a player.
- * Prioritizes experience_years, then experience_years_alt, then experience.
- * @param {Object} player - The player object.
- * @returns {string} The experience string or 'N/A'.
+ * Cleans and formats player experience data
+ * @param {Object} player - The player object with experience data
+ * @returns {string} - Formatted experience string
  */
 export function getCleanExperience(player) {
-  if (!player) return 'N/A';
-  return player.experience_years ?? player.experience_years_alt ?? player.experience ?? 'N/A';
+  if (!player.experience) return "N/A";
+  if (typeof player.experience === 'number') {
+    return player.experience === 0 ? "Rookie" : `${player.experience} ${player.experience === 1 ? 'year' : 'years'}`;
+  }
+  return player.experience;
 }
 
 /**
- * Gets formatted height and weight strings for a player.
- * Uses physical_height_str and physical_weight_lbs.
- * @param {Object} player - The player object.
- * @returns {{height: string, weight: string}} Object with height and weight strings.
+ * Formats player height and weight into readable format
+ * @param {Object} player - The player object with height and weight data
+ * @returns {Object} - Object with formatted height and weight
  */
 export function getFormattedHeightWeight(player) {
-  if (!player) return { height: '-', weight: '-' };
-  const height = player.physical_height_str || '-';
-  const weight = player.physical_weight_lbs ? `${player.physical_weight_lbs} lbs` : '-';
+  let height = "N/A";
+  let weight = "N/A";
+  
+  if (player.height) {
+    const feet = Math.floor(player.height / 12);
+    const inches = player.height % 12;
+    height = `${feet}'${inches}"`;
+  }
+  
+  if (player.weight) {
+    weight = `${player.weight} lbs`;
+  }
+  
   return { height, weight };
 }
 

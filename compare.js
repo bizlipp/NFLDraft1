@@ -20,18 +20,26 @@ if (!a || !b) {
   ])
   .then(([playerA, playerB]) => {
     if (!playerA || !playerB) {
-      container.innerHTML = `<p class='text-red-400 text-center'>One or both players not found. <a href='dashboard.html' class='text-cyan-400 hover:underline'>Back to Dashboard</a></p>`;
+      container.innerHTML = `<p class='text-red-400 text-center col-span-1 md:col-span-2'>One or both players not found. <br><a href='dashboard.html' class='text-cyan-400 hover:underline'>Back to Dashboard</a></p>`;
       return;
     }
-
-    // Check for shared bye weeks
+    
+    // Check if players share a bye week (advanced comparison)
     let sharedByeWeekWarning = '';
     if (playerA.flags && playerB.flags) {
-      const byeA = playerA.flags.find(f => f.toLowerCase().includes('bye_week_risk'));
-      const byeB = playerB.flags.find(f => f.toLowerCase().includes('bye_week_risk'));
-      if (byeA && byeB && byeA === byeB) {
-        const week = byeA.split('_').pop();
-        sharedByeWeekWarning = `<p class="text-center text-yellow-400 font-semibold my-4 col-span-1 md:col-span-2">⚠️ Warning: Both players share a bye in ${week || 'the same week'}!</p>`;
+      const playerAByeWeeks = playerA.flags.filter(f => f.includes('bye_week_risk_'));
+      const playerBByeWeeks = playerB.flags.filter(f => f.includes('bye_week_risk_'));
+      
+      if (playerAByeWeeks.length > 0 && playerBByeWeeks.length > 0) {
+        // Extract week number
+        const aWeek = playerAByeWeeks[0].split('_').pop();
+        const bWeek = playerBByeWeeks[0].split('_').pop();
+        
+        if (aWeek === bWeek) {
+          sharedByeWeekWarning = `<div class="col-span-1 md:col-span-2 bg-orange-700 p-3 rounded-xl text-white text-center mb-4">
+            ⚠️ Both players share ${aWeek} bye week. Be careful when drafting both.
+          </div>`;
+        }
       }
     }
     
@@ -73,7 +81,7 @@ if (!a || !b) {
     `}).join('');
   })
   .catch(error => {
-      console.error("Error loading player data for compare page:", error);
-      container.innerHTML = `<p class='text-red-400 text-center'>Error loading player data. ${error.message} <a href='dashboard.html' class='text-cyan-400 hover:underline'>Back to Dashboard</a></p>`;
+    console.error("Error in player comparison:", error);
+    container.innerHTML = `<p class='text-red-400 text-center col-span-1 md:col-span-2'>Error loading comparison data: ${error.message} <br><a href='dashboard.html' class='text-cyan-400 hover:underline'>Back to Dashboard</a></p>`;
   });
 }

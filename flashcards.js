@@ -42,137 +42,111 @@ document.addEventListener("DOMContentLoaded", () => {
     <span>Loading player data...</span>
   </div>`;
 
-  // Use the centralized data service
+  // Load player data
   getPlayerData()
-  .then(playersData => {
-    allPlayers = playersData.filter(p => p.name && p.team && p.position); // Ensure basic data for questions
-    console.log("✅ Loaded", allPlayers.length, "players for flashcards using centralized data service");
-    loadScore();
-    generateNewCard();
-  })
-  .catch(error => {
-    console.error("Error loading player data for flashcards:", error);
-    questionTextEl.innerHTML = `<div class="text-red-500">
-      <p>Error loading player data: ${error.message}</p>
-      <button class="mt-4 bg-cyan-600 py-2 px-4 rounded hover:bg-cyan-700 text-white" onclick="location.reload()">Try Again</button>
-    </div>`;
-    submitAnswerBtn.disabled = true;
-    nextCardBtn.disabled = true;
-  });
+    .then(players => {
+      allPlayers = players.filter(p => p.position && p.team && p.name); // Only players with required data
+      showNextCard();
+    })
+    .catch(error => {
+      console.error("Error loading player data for flashcards:", error);
+      questionTextEl.innerHTML = `<p class="text-red-500">Error loading player data: ${error.message}</p>`;
+    });
 
-  function generateNewCard() {
-    if (allPlayers.length === 0) {
-      questionTextEl.textContent = "No player data available or suitable for questions.";
-      submitAnswerBtn.disabled = true;
+  // Generate a random flashcard
+  function generateFlashcard() {
+    if (allPlayers.length === 0) return null;
+
+    const randomPlayer = allPlayers[Math.floor(Math.random() * allPlayers.length)];
+    const cardTypes = [
+      { type: "position", question: `What position does ${randomPlayer.name} play?`, answer: randomPlayer.position },
+      { type: "team", question: `Which team does ${randomPlayer.name} play for?`, answer: randomPlayer.team },
+      { type: "playerName", question: `Which player is ${randomPlayer.position} for the ${randomPlayer.team}?`, answer: randomPlayer.name }
+    ];
+
+    // Add college question if available
+    if (randomPlayer.college) {
+      cardTypes.push({ 
+        type: "college", 
+        question: `Which college did ${randomPlayer.name} attend?`, 
+        answer: randomPlayer.college 
+      });
+    }
+
+    // Select random question type
+    const cardType = cardTypes[Math.floor(Math.random() * cardTypes.length)];
+    return {
+      player: randomPlayer,
+      type: cardType.type,
+      question: cardType.question,
+      answer: cardType.answer
+    };
+  }
+
+  // Show next card
+  function showNextCard() {
+    currentFlashcard = generateFlashcard();
+    if (!currentFlashcard) {
+      questionTextEl.innerHTML = "<p>No player data available for flashcards</p>";
       return;
     }
 
-    const randomPlayer = allPlayers[Math.floor(Math.random() * allPlayers.length)];
-    const questionTypes = [];
-
-    // Basic questions available for most players
-    if (randomPlayer.name && randomPlayer.team) {
-        questionTypes.push({ type: "team", question: `Which NFL team is ${randomPlayer.name} on? (e.g. KC, ARI)`, answer: randomPlayer.team, inputType: 'text' });
-    }
-    if (randomPlayer.name && randomPlayer.position) {
-        questionTypes.push({ type: "position", question: `What position does ${randomPlayer.name} play? (e.g. QB, WR)`, answer: randomPlayer.position, inputType: 'text' });
-    }
-    if (randomPlayer.name && randomPlayer.college) {
-        questionTypes.push({ type: "college", question: `Which college did ${randomPlayer.name} attend?`, answer: randomPlayer.college, inputType: 'text' });
-    }
-    if (randomPlayer.name && randomPlayer.birthplace) {
-        questionTypes.push({ type: "birthplace", question: `Where was ${randomPlayer.name} born?`, answer: randomPlayer.birthplace, inputType: 'text' });
-    }
-    if (randomPlayer.name && randomPlayer.age) {
-        questionTypes.push({ type: "age", question: `How old is ${randomPlayer.name}?`, answer: String(randomPlayer.age), inputType: 'number' });
-    }
-    
-    // Stats questions (ensure stats for 2024 exist)
-    const stats2024 = randomPlayer.stats?.['2024'];
-    if (stats2024) {
-        if (randomPlayer.name && stats2024.touchdowns !== undefined) {
-            questionTypes.push({ type: "tds_2024", question: `How many total TDs did ${randomPlayer.name} score in 2024?`, answer: String(stats2024.touchdowns), inputType: 'number' });
-        }
-        if (randomPlayer.name && stats2024.passingYards !== undefined) {
-            questionTypes.push({ type: "passyds_2024", question: `How many passing yards did ${randomPlayer.name} have in 2024?`, answer: String(stats2024.passingYards), inputType: 'number' });
-        }
-        if (randomPlayer.name && stats2024.rushingYards !== undefined) {
-            questionTypes.push({ type: "rushyds_2024", question: `How many rushing yards did ${randomPlayer.name} have in 2024?`, answer: String(stats2024.rushingYards), inputType: 'number' });
-        }
-        if (randomPlayer.name && stats2024.receivingYards !== undefined) {
-            questionTypes.push({ type: "recyds_2024", question: `How many receiving yards did ${randomPlayer.name} have in 2024?`, answer: String(stats2024.receivingYards), inputType: 'number' });
-        }
-        if (randomPlayer.name && stats2024.interceptions !== undefined && randomPlayer.position === 'QB') { // Makes sense for QB
-            questionTypes.push({ type: "ints_2024", question: `How many interceptions did ${randomPlayer.name} throw in 2024?`, answer: String(stats2024.interceptions), inputType: 'number' });
-        }
-    }
-    // Fantasy points
-    if (randomPlayer.name && randomPlayer.fantasy?.pprPoints !== undefined) {
-        questionTypes.push({ type: "ppr_2024", question: `How many PPR fantasy points did ${randomPlayer.name} have in 2024 (to one decimal)?`, answer: String(randomPlayer.fantasy.pprPoints.toFixed(1)), inputType: 'number' });
-    }
-
-    if (questionTypes.length === 0) {
-        // Fallback if no suitable questions could be generated for this player (should be rare with initial filter)
-        console.warn("Could not generate any question for player:", randomPlayer);
-        generateNewCard(); // Try another player
-        return;
-    }
-
-    currentFlashcard = questionTypes[Math.floor(Math.random() * questionTypes.length)];
-    answerInputEl.type = currentFlashcard.inputType || 'text'; // Set input type
-
     questionTextEl.textContent = currentFlashcard.question;
     answerInputEl.value = "";
-    feedbackTextEl.innerHTML = "&nbsp;";
-    correctAnswerTextEl.innerHTML = "&nbsp;";
-    submitAnswerBtn.disabled = false;
+    feedbackTextEl.textContent = "";
+    correctAnswerTextEl.textContent = "";
     answerInputEl.disabled = false;
+    submitAnswerBtn.disabled = false;
+    nextCardBtn.classList.add("hidden");
     answerInputEl.focus();
   }
 
-  function handleSubmitAnswer() {
-    if (!currentFlashcard || !currentFlashcard.answer) return;
+  // Check answer
+  function checkAnswer() {
+    if (!currentFlashcard) return;
 
     const userAnswer = answerInputEl.value.trim();
+    if (!userAnswer) return;
+
+    answerInputEl.disabled = true;
+    submitAnswerBtn.disabled = true;
+    
+    const correctAnswer = currentFlashcard.answer;
+    const isCorrect = userAnswer.toLowerCase() === correctAnswer.toLowerCase();
+    
     score.total++;
-    let isCorrect = false;
-
-    // Case-insensitive comparison for text answers, exact for numbers or specific formats
-    if (currentFlashcard.inputType === 'number' || currentFlashcard.type === 'ppr_2024') {
-        // For PPR, allow for slight variations if needed, or ensure exact match if toFixed(1)
-        isCorrect = userAnswer === currentFlashcard.answer; 
-    } else {
-        isCorrect = userAnswer.toLowerCase() === currentFlashcard.answer.toLowerCase();
-    }
-    // For team codes, accept full team name if mapped, or just code for now
-    if (currentFlashcard.type === 'team' && userAnswer.length > 3) { // User entered full name
-        // Potentially map full names to codes if player.team is always a code
-        // For now, this will likely fail if answer is just the code. 
-        // Better to instruct user to enter code, or have a mapping.
-    }
-
     if (isCorrect) {
       score.correct++;
       feedbackTextEl.textContent = "Correct!";
-      feedbackTextEl.className = "text-lg text-green-400";
+      feedbackTextEl.className = "text-green-500 font-semibold";
     } else {
       feedbackTextEl.textContent = "Incorrect!";
-      feedbackTextEl.className = "text-lg text-red-400";
-      correctAnswerTextEl.textContent = `Correct answer: ${currentFlashcard.answer}`;
+      feedbackTextEl.className = "text-red-500 font-semibold";
+      correctAnswerTextEl.textContent = `The correct answer is: ${correctAnswer}`;
     }
-
-    updateScoreDisplay();
+    
     saveScore();
-    submitAnswerBtn.disabled = true;
-    answerInputEl.disabled = true;
+    updateScoreDisplay();
+    nextCardBtn.classList.remove("hidden");
   }
 
-  submitAnswerBtn.addEventListener("click", handleSubmitAnswer);
-  answerInputEl.addEventListener("keypress", function(event) {
-    if (event.key === "Enter" && !submitAnswerBtn.disabled) {
-      handleSubmitAnswer();
-    }
-  });
-  nextCardBtn.addEventListener("click", generateNewCard);
+  // Event listeners
+  if (submitAnswerBtn) {
+    submitAnswerBtn.addEventListener("click", checkAnswer);
+  }
 
+  if (answerInputEl) {
+    answerInputEl.addEventListener("keypress", (e) => {
+      if (e.key === "Enter") {
+        checkAnswer();
+      }
+    });
+  }
+
+  if (nextCardBtn) {
+    nextCardBtn.addEventListener("click", showNextCard);
+  }
+
+  // Initialize
+  loadScore();
 }); 
