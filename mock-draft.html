@@ -9,6 +9,7 @@
   <title>FantasyForge - Mock Draft</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/mock-draft.css">
+  <link rel="stylesheet" href="css/nfl-themes.css">
   <!-- Import map to ensure modules load correctly on GitHub Pages -->
   <script type="importmap">
     {
@@ -23,6 +24,67 @@
 </head>
 <body class="bg-gray-900 text-white min-h-screen p-6">
   <!-- Header will be injected by header-nav.js -->
+
+  <!-- Theme Selector -->
+  <div class="theme-switcher fixed top-4 right-4 z-50">
+    <button id="theme-toggle" class="theme-toggle flex items-center justify-center w-10 h-10 rounded-full bg-gray-800 text-white shadow-lg" title="Change Theme" aria-label="Toggle theme selection menu">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
+      </svg>
+    </button>
+    <div id="theme-dropdown" class="hidden absolute right-0 mt-2 py-2 w-48 bg-gray-800 rounded-md shadow-xl z-20">
+      <div class="px-4 py-2 text-sm text-gray-300 border-b border-gray-700">Select Theme</div>
+      <div class="theme-option-group px-2 py-1">
+        <div class="theme-option-heading text-xs text-gray-500 uppercase tracking-wider py-1">NFL Team Themes</div>
+        <div class="theme-option" data-theme="cardinals">
+          <div class="flex items-center p-2 hover:bg-gray-700 rounded">
+            <div class="w-4 h-4 bg-cardinals mr-2 rounded"></div>
+            <span>Cardinals</span>
+          </div>
+        </div>
+        <div class="theme-option" data-theme="chiefs">
+          <div class="flex items-center p-2 hover:bg-gray-700 rounded">
+            <div class="w-4 h-4 bg-chiefs mr-2 rounded"></div>
+            <span>Chiefs</span>
+          </div>
+        </div>
+        <div class="theme-option" data-theme="cowboys">
+          <div class="flex items-center p-2 hover:bg-gray-700 rounded">
+            <div class="w-4 h-4 bg-cowboys mr-2 rounded"></div>
+            <span>Cowboys</span>
+          </div>
+        </div>
+        <div class="theme-option" data-theme="packers">
+          <div class="flex items-center p-2 hover:bg-gray-700 rounded">
+            <div class="w-4 h-4 bg-packers mr-2 rounded"></div>
+            <span>Packers</span>
+          </div>
+        </div>
+        <div class="theme-option" data-theme="seahawks">
+          <div class="flex items-center p-2 hover:bg-gray-700 rounded">
+            <div class="w-4 h-4 bg-seahawks mr-2 rounded"></div>
+            <span>Seahawks</span>
+          </div>
+        </div>
+        <div class="theme-option" data-theme="steelers">
+          <div class="flex items-center p-2 hover:bg-gray-700 rounded">
+            <div class="w-4 h-4 bg-steelers mr-2 rounded"></div>
+            <span>Steelers</span>
+          </div>
+        </div>
+        <!-- Add more NFL team options as needed -->
+      </div>
+      <div class="theme-option-group px-2 py-1 border-t border-gray-700">
+        <div class="theme-option-heading text-xs text-gray-500 uppercase tracking-wider py-1">Default Themes</div>
+        <div class="theme-option" data-theme="default">
+          <div class="flex items-center p-2 hover:bg-gray-700 rounded">
+            <div class="w-4 h-4 bg-gray-900 mr-2 rounded"></div>
+            <span>Default (NFL Blue)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <main class="container mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6 mt-12">
     <!-- Draft Controls & Current Pick -->

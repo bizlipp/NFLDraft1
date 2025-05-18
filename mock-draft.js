@@ -21,8 +21,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const startAIDraftBtn = document.getElementById("start-ai-draft-btn");
   const draftRoundEl = document.getElementById("draft-round");
   const draftPickEl = document.getElementById("draft-pick");
+  const themeToggleBtn = document.getElementById("theme-toggle");
+  const themeDropdown = document.getElementById("theme-dropdown");
+  const themeOptions = document.querySelectorAll(".theme-option");
 
   const MOCK_DRAFT_TEAM_KEY = "mockDraftTeam";
+  const THEME_STORAGE_KEY = "preferred-nfl-theme";
   const MAX_TEAM_SIZE = 15;
   const NUM_AI_TEAMS = 11; // Standard 12-team league (user + 11 AI teams)
   
@@ -40,6 +44,79 @@ document.addEventListener("DOMContentLoaded", () => {
   let currentAvailablePositionFilter = "ALL";
   let currentMockDraftSearchQuery = "";
   let aiDraftTimer = null;
+
+  // Theme functionality
+  function initTheme() {
+    // Set the theme from localStorage or default to standard NFL theme
+    const savedTheme = localStorage.getItem(THEME_STORAGE_KEY) || 'default';
+    applyTheme(savedTheme);
+    
+    // Toggle the theme dropdown
+    if (themeToggleBtn) {
+      themeToggleBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        themeDropdown.classList.toggle('hidden');
+      });
+    }
+    
+    // Hide dropdown when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!themeDropdown.contains(e.target) && e.target !== themeToggleBtn) {
+        themeDropdown.classList.add('hidden');
+      }
+    });
+    
+    // Apply theme when option is clicked
+    themeOptions.forEach(option => {
+      option.addEventListener('click', () => {
+        const theme = option.getAttribute('data-theme');
+        applyTheme(theme);
+        localStorage.setItem(THEME_STORAGE_KEY, theme);
+        themeDropdown.classList.add('hidden');
+      });
+    });
+  }
+  
+  function applyTheme(theme) {
+    // Remove any existing theme
+    document.body.classList.forEach(cls => {
+      if (cls.startsWith('theme-')) document.body.classList.remove(cls);
+    });
+    
+    // Remove data-theme attribute
+    document.documentElement.removeAttribute('data-theme');
+    
+    // Apply the selected theme
+    if (theme && theme !== 'default') {
+      document.documentElement.setAttribute('data-theme', theme);
+      document.body.classList.add(`theme-${theme}`);
+      
+      // Update the highlight for the team's draft cells
+      if (theme !== 'default') {
+        document.querySelectorAll('.bg-cyan-900').forEach(el => {
+          el.classList.remove('bg-cyan-900');
+          el.classList.add('bg-team');
+        });
+        
+        // Update other cyan elements to use team colors
+        document.querySelectorAll('.text-cyan-300, .text-cyan-400').forEach(el => {
+          el.classList.remove('text-cyan-300', 'text-cyan-400');
+          el.classList.add('text-team-accent');
+        });
+      }
+    } else {
+      // Restore default theme elements
+      document.querySelectorAll('.bg-team').forEach(el => {
+        el.classList.remove('bg-team');
+        el.classList.add('bg-cyan-900');
+      });
+      
+      document.querySelectorAll('.text-team-accent').forEach(el => {
+        el.classList.remove('text-team-accent');
+        el.classList.add('text-cyan-300');
+      });
+    }
+  }
 
   function loadMockTeam() {
     const storedTeam = sessionStorage.getItem(MOCK_DRAFT_TEAM_KEY);
@@ -112,6 +189,9 @@ document.addEventListener("DOMContentLoaded", () => {
       startAIDraftBtn.textContent = "Start AI Draft";
     }
   }
+
+  // Initialize the theme system
+  initTheme();
 
   function renderAvailablePlayers() {
     if (!availablePlayersListEl) return;
@@ -373,7 +453,7 @@ document.addEventListener("DOMContentLoaded", () => {
         startAIDraftBtn.disabled = false;
         startAIDraftBtn.textContent = "Reset & Restart Draft";
       }
-      alert("Draft complete!");
+      showDraftAnalysis();
       return;
     }
     
@@ -384,7 +464,7 @@ document.addEventListener("DOMContentLoaded", () => {
         startAIDraftBtn.disabled = false;
         startAIDraftBtn.textContent = "Reset & Restart Draft";
       }
-      alert("Draft complete!");
+      showDraftAnalysis();
       return;
     }
     
@@ -423,6 +503,212 @@ document.addEventListener("DOMContentLoaded", () => {
       makeAIDraftPick();
       continueAIDraft(); // Continue to next pick
     }, 500); // 500ms delay between AI picks
+  }
+  
+  function showDraftAnalysis() {
+    // Create the analysis modal container if it doesn't exist
+    let analysisModal = document.getElementById('draft-analysis-modal');
+    if (!analysisModal) {
+      analysisModal = document.createElement('div');
+      analysisModal.id = 'draft-analysis-modal';
+      analysisModal.className = 'fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-75 p-4';
+      document.body.appendChild(analysisModal);
+    }
+    
+    // Analyze all teams (user + AI)
+    const allTeams = [myMockTeam, ...aiTeams];
+    const teamAnalyses = [];
+    
+    // Calculate fantasy points for each team
+    const teamScores = allTeams.map((team, index) => {
+      // Sum PPR points for the team, ignoring kickers and defense
+      let pprPointsTotal = team.reduce((sum, player) => {
+        if (player.position !== 'K' && player.position !== 'DEF' && typeof player.fantasyPprPoints === 'number') {
+          return sum + player.fantasyPprPoints;
+        }
+        return sum;
+      }, 0);
+      
+      // Count positions
+      const positionCounts = {
+        QB: team.filter(p => p.position === 'QB').length,
+        RB: team.filter(p => p.position === 'RB').length,
+        WR: team.filter(p => p.position === 'WR').length,
+        TE: team.filter(p => p.position === 'TE').length,
+        K: team.filter(p => p.position === 'K').length,
+        DEF: team.filter(p => p.position === 'DEF').length
+      };
+      
+      // Top player on the team
+      const topPlayer = [...team].sort((a, b) => 
+        (b.fantasyPprPoints || 0) - (a.fantasyPprPoints || 0)
+      )[0];
+      
+      return {
+        teamIndex: index,
+        teamName: index === 0 ? 'Your Team' : `Team ${index}`,
+        pprPoints: pprPointsTotal.toFixed(1),
+        positionCounts,
+        topPlayer: topPlayer ? { 
+          name: topPlayer.name, 
+          position: topPlayer.position, 
+          points: topPlayer.fantasyPprPoints 
+        } : null,
+        needsQB: positionCounts.QB === 0,
+        needsRB: positionCounts.RB < 2,
+        needsWR: positionCounts.WR < 2,
+        needsTE: positionCounts.TE === 0,
+        needsK: positionCounts.K === 0,
+        needsDEF: positionCounts.DEF === 0
+      };
+    });
+    
+    // Sort by PPR points (highest first)
+    teamScores.sort((a, b) => parseFloat(b.pprPoints) - parseFloat(a.pprPoints));
+    
+    // Find the user's rank
+    const userRank = teamScores.findIndex(t => t.teamIndex === 0) + 1;
+    
+    // Find the best value pick for user's team - a pick that was drafted much later than their projected value
+    let bestValuePick = null;
+    if (myMockTeam.length > 0) {
+      myMockTeam.forEach((player, pickIndex) => {
+        if (player.adp && pickIndex > 0) {
+          const valueScore = player.adp - pickIndex;
+          if (!bestValuePick || valueScore > bestValuePick.valueScore) {
+            bestValuePick = {
+              player,
+              valueScore,
+              round: pickIndex + 1 // 1-indexed round
+            };
+          }
+        }
+      });
+    }
+    
+    // Generate analysis HTML
+    let analysisHTML = `
+      <div class="bg-gray-800 rounded-xl shadow-xl max-w-4xl max-h-[90vh] overflow-auto">
+        <div class="p-6 border-b border-gray-700">
+          <div class="flex justify-between items-center">
+            <h2 class="text-2xl font-bold text-white">Draft Analysis</h2>
+            <button id="close-analysis" class="text-gray-400 hover:text-white">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+        </div>
+        
+        <div class="p-6">
+          <!-- User Team Overview -->
+          <div class="bg-gradient-to-r from-gray-700 to-gray-800 p-4 rounded-lg mb-6">
+            <h3 class="text-xl font-semibold mb-2 text-cyan-300">Your Team Overview</h3>
+            <p class="mb-2">Your team ranked <span class="font-bold text-${userRank <= 3 ? 'green' : userRank <= 6 ? 'yellow' : 'red'}-400">#${userRank}</span> out of ${teamScores.length} teams with <span class="font-bold">${teamScores.find(t => t.teamIndex === 0)?.pprPoints}</span> projected PPR points.</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+              <div>
+                <h4 class="font-semibold text-white mb-2">Position Breakdown:</h4>
+                <div class="flex flex-wrap gap-2">
+                  ${Object.entries(teamScores.find(t => t.teamIndex === 0)?.positionCounts || {}).map(([pos, count]) => 
+                    `<span class="px-2 py-1 rounded bg-gray-600 text-sm">${pos}: ${count}</span>`
+                  ).join('')}
+                </div>
+              </div>
+              
+              <div>
+                <h4 class="font-semibold text-white mb-2">Team Needs:</h4>
+                <div class="flex flex-wrap gap-2">
+                  ${(() => {
+                    const needs = [];
+                    const userTeam = teamScores.find(t => t.teamIndex === 0);
+                    if (userTeam) {
+                      if (userTeam.needsQB) needs.push('<span class="px-2 py-1 rounded bg-red-900 text-red-100 text-sm">QB</span>');
+                      if (userTeam.needsRB) needs.push('<span class="px-2 py-1 rounded bg-red-900 text-red-100 text-sm">RB</span>');
+                      if (userTeam.needsWR) needs.push('<span class="px-2 py-1 rounded bg-red-900 text-red-100 text-sm">WR</span>');
+                      if (userTeam.needsTE) needs.push('<span class="px-2 py-1 rounded bg-red-900 text-red-100 text-sm">TE</span>');
+                      if (userTeam.needsK) needs.push('<span class="px-2 py-1 rounded bg-red-900 text-red-100 text-sm">K</span>');
+                      if (userTeam.needsDEF) needs.push('<span class="px-2 py-1 rounded bg-red-900 text-red-100 text-sm">DEF</span>');
+                    }
+                    return needs.length > 0 ? needs.join('') : '<span class="px-2 py-1 rounded bg-green-900 text-green-100 text-sm">Team Complete!</span>';
+                  })()}
+                </div>
+              </div>
+            </div>
+            
+            ${bestValuePick ? 
+              `<div class="mt-4">
+                <h4 class="font-semibold text-white mb-2">Best Value Pick:</h4>
+                <div class="p-3 bg-gray-700 rounded flex items-center">
+                  <div class="bg-yellow-600 text-white rounded-full w-8 h-8 flex items-center justify-center mr-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                      <path fill-rule="evenodd" d="M12.395 2.553a1 1 0 00-1.45-.385c-.345.23-.614.558-.822.88-.214.33-.403.713-.57 1.116-.334.804-.614 1.768-.84 2.734a31.365 31.365 0 00-.613 3.58 2.64 2.64 0 01-.945-1.067c-.328-.68-.398-1.534-.398-2.654A1 1 0 005.05 6.05c-.867 3.14-.3 5.63 1.132 7.49.761.99 1.73 1.79 2.801 2.34 1.025.528 2.176.935 3.341 1.176a1 1 0 00.715-.288c.496-.53.84-1.19 1.086-1.855.247-.67.415-1.386.535-2.11.16-.946.277-1.89.372-2.83.416-4.1-1.285-6.97-2.637-8.22z" clip-rule="evenodd" />
+                    </svg>
+                  </div>
+                  <div>
+                    <p class="font-medium text-white">${bestValuePick.player.name} (${bestValuePick.player.position})</p>
+                    <p class="text-sm text-gray-300">Drafted in round ${bestValuePick.round} - Great value pick!</p>
+                  </div>
+                </div>
+              </div>` 
+            : ''}
+          </div>
+          
+          <!-- League Rankings -->
+          <div class="mb-6">
+            <h3 class="text-xl font-semibold mb-4 text-cyan-300">League Rankings</h3>
+            <div class="space-y-3">
+              ${teamScores.map((team, index) => `
+                <div class="flex items-center p-3 ${team.teamIndex === 0 ? 'bg-gray-700' : 'bg-gray-800'} rounded-lg">
+                  <div class="flex-shrink-0 w-8 h-8 rounded-full ${index < 3 ? ['bg-yellow-500', 'bg-gray-300', 'bg-amber-700'][index] : 'bg-gray-600'} flex items-center justify-center mr-3 font-bold">
+                    ${index + 1}
+                  </div>
+                  <div class="flex-1">
+                    <p class="font-medium ${team.teamIndex === 0 ? 'text-cyan-300' : 'text-white'}">${team.teamName}</p>
+                    <div class="flex text-xs text-gray-400 mt-1">
+                      <span class="mr-3">PPR: ${team.pprPoints}</span>
+                      <span>QB: ${team.positionCounts.QB}</span>
+                      <span class="mx-1">·</span>
+                      <span>RB: ${team.positionCounts.RB}</span>
+                      <span class="mx-1">·</span>
+                      <span>WR: ${team.positionCounts.WR}</span>
+                      <span class="mx-1">·</span>
+                      <span>TE: ${team.positionCounts.TE}</span>
+                    </div>
+                  </div>
+                  ${team.topPlayer ? 
+                    `<div class="text-right">
+                      <p class="text-sm font-medium text-gray-300">Best Player</p>
+                      <p class="text-xs text-cyan-300">${team.topPlayer.name} (${team.topPlayer.position})</p>
+                    </div>` 
+                  : ''}
+                </div>
+              `).join('')}
+            </div>
+          </div>
+          
+          <div class="mt-6 text-center">
+            <button id="close-analysis-btn" class="px-4 py-2 bg-cyan-600 hover:bg-cyan-700 text-white rounded transition-colors">
+              Close Analysis
+            </button>
+          </div>
+        </div>
+      </div>
+    `;
+    
+    analysisModal.innerHTML = analysisHTML;
+    
+    // Add event listeners to close buttons
+    document.getElementById('close-analysis').addEventListener('click', () => {
+      analysisModal.remove();
+    });
+    
+    document.getElementById('close-analysis-btn').addEventListener('click', () => {
+      analysisModal.remove();
+    });
+    
+    // Show an alert that draft is complete
+    alert("Draft complete! Showing analysis...");
   }
   
   function updateDraftRoundPick() {
@@ -588,10 +874,25 @@ document.addEventListener("DOMContentLoaded", () => {
       }
       
       myMockTeam = [];
+      aiTeams = Array(NUM_AI_TEAMS).fill().map(() => []); // Reset AI teams as well
       currentMockDraftSearchQuery = ""; // Reset search on draft reset
       if(mockDraftPlayerSearchEl) mockDraftPlayerSearchEl.value = "";
       sessionStorage.removeItem(MOCK_DRAFT_TEAM_KEY);
-      initializeDraftState(); 
+      
+      // Reset draft state completely
+      totalDraftPicks = 0;
+      currentDraftRound = 1;
+      currentDraftPick = 1;
+      isAIDraftInProgress = false;
+      
+      // Fully refresh the UI
+      initializeDraftState();
+      
+      // If start AI draft button exists, reset its state
+      if (startAIDraftBtn) {
+        startAIDraftBtn.disabled = false;
+        startAIDraftBtn.textContent = "Start AI Draft";
+      }
     });
   }
   
