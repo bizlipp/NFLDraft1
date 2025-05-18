@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="FantasyForge Dashboard - Manage your squad, access draft tools, and get AI coach advice.">
+  <meta name="keywords" content="fantasy football, NFL, dashboard, squad, draft, coach, mock draft, cheat sheet">
+  <link rel="icon" href="AeroVista-Logo.png" type="image/png">
+  <title>FantasyForge Dashboard</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-900 text-white font-sans min-h-screen">
+  <!-- Header -->
+  <header class="flex items-center justify-between p-4 border-b border-gray-700 bg-gray-800">
+    <h1 class="text-xl font-bold text-cyan-400">FantasyForge</h1>
+    <div class="space-x-4">
+      <button class="text-sm text-gray-300 hover:text-white">Coach Mode</button>
+      <button class="text-sm text-gray-300 hover:text-white">Settings</button>
+    </div>
+  </header>
+
+  <!-- Search Bar -->
+  <div class="p-4">
+    <input type="text" placeholder="Search players..." class="w-full p-2 rounded-md bg-gray-800 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-cyan-500" />
+  </div>
+
+  <!-- Sections -->
+  <main class="px-4 pb-10 space-y-8">
+
+    <!-- Quick Draft Tools -->
+    <section>
+      <h2 class="text-lg font-semibold text-cyan-300 mb-2">🧠 Quick Draft Tools</h2>
+      <div class="grid grid-cols-2 gap-4">
+        <a href="mock-draft.html" class="block bg-cyan-600 p-3 rounded-xl hover:bg-cyan-700 text-center">Mock Draft</a>
+        <a href="cheat-sheet.html" class="block bg-indigo-600 p-3 rounded-xl hover:bg-indigo-700 text-center">Cheat Sheet</a>
+      </div>
+    </section>
+
+    <!-- Featured Players -->
+    <section>
+      <h2 class="text-lg font-semibold text-cyan-300 mb-2">🔥 Featured Players</h2>
+      <div id="featured-players-container" class="grid grid-cols-2 gap-4">
+        <div class="bg-gray-800 p-4 rounded-xl text-sm text-gray-400 italic">Loading featured...</div>
+        <div class="bg-gray-800 p-4 rounded-xl text-sm text-gray-400 italic">Loading featured...</div>
+        <div class="bg-gray-800 p-4 rounded-xl text-sm text-gray-400 italic">Loading featured...</div>
+        <div class="bg-gray-800 p-4 rounded-xl text-sm text-gray-400 italic">Loading featured...</div>
+      </div>
+    </section>
+
+    <!-- My Squad -->
+    <section>
+      <h2 class="text-lg font-semibold text-cyan-300 mb-2">🎮 My Squad</h2>
+      <div id="my-squad-container" class="bg-gray-800 p-4 rounded-xl text-sm text-gray-400 italic text-center">
+        You haven't drafted anyone yet.
+      </div>
+    </section>
+
+    <!-- League Leaders -->
+    <section>
+      <h2 class="text-lg font-semibold text-cyan-300 mb-2">🏆 League Leaders</h2>
+      <div class="grid grid-cols-3 gap-2 text-xs text-center text-gray-300">
+        <div class="bg-gray-800 p-2 rounded">Top QBs</div>
+        <div class="bg-gray-800 p-2 rounded">Top RBs</div>
+        <div class="bg-gray-800 p-2 rounded">Top WRs</div>
+      </div>
+    </section>
+
+    <!-- Coach AI Preview -->
+    <section>
+      <h2 class="text-lg font-semibold text-cyan-300 mb-2">🧠 Coach Says</h2>
+      <div class="bg-purple-800 p-4 rounded-xl italic text-sm">
+        "You've stacked KC players. Watch the Week 10 bye."
+      </div>
+    </section>
+
+  </main>
+  <script src="my-squad.js"></script>
+  <script src="coach.js"></script>
+  <script src="dashboard.js"></script>
+</body>
+</html>

@@ -2,130 +2,73 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>FantasyForge: Timbr Edition</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="FantasyForge - Your Ultimate Fantasy Football Toolkit. Draft, analyze, and dominate your league.">
+  <meta name="keywords" content="fantasy football, NFL, draft, toolkit, stats, players, mock draft, cheat sheet, squad builder">
+  <link rel="icon" href="AeroVista-Logo.png" type="image/png">
+  <title>FantasyForge - Splash</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <style>
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+    @keyframes pulseFade {
+      0%, 100% { opacity: 0.6; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.05); }
     }
-    @keyframes buttonPress {
-      0% { transform: scale(1); }
-      50% { transform: scale(0.95); }
-      100% { transform: scale(1); }
+    .pulse {
+      animation: pulseFade 3s infinite;
     }
-    body { 
-      font-family: 'Segoe UI', sans-serif; 
-      overflow-x: hidden; /* Prevent accidental horizontal scroll */
+    .glow-text {
+      text-shadow: 0 0 10px #0ff, 0 0 20px #0ff, 0 0 30px #0ff;
     }
-    .animated-section {
-      animation: fadeInUp 0.6s ease-out forwards;
+    .glitch {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      mix-blend-mode: screen;
     }
-    .player-card, .team-card {
-      @apply bg-black/20 border border-gray-600 rounded-lg p-4 mb-3 backdrop-blur-sm shadow-md transition-all duration-300 ease-in-out hover:bg-black/40 hover:scale-105 hover:shadow-xl;
+    body {
+      background-image: url('splash.png');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
     }
-    .player-card em, .team-card em {
-      @apply text-gray-300 text-sm;
-    }
-    .pos-filter-btn {
-      @apply px-3 py-1.5 bg-white/10 border border-white/20 rounded-md text-sm font-medium transition-all duration-150 ease-in-out hover:bg-white/30 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-400 focus:ring-offset-current;
-    }
-    .pos-filter-btn:active {
-      animation: buttonPress 0.2s ease-out;
-      @apply brightness-90;
-    }
-    .active-filter {
-      @apply bg-yellow-400 text-green-900 hover:bg-yellow-500;
-    }
-    .action-button {
-      @apply px-3 py-1.5 mt-2 mr-2 text-xs font-semibold bg-yellow-400 text-green-900 rounded shadow transition-all duration-150 ease-in-out hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-400 focus:ring-offset-current;
-    }
-    .action-button:active {
-      animation: buttonPress 0.2s ease-out;
-      @apply brightness-90;
-    }
-    .section-title {
-      @apply text-3xl font-bold tracking-tight mb-5;
-    }
-    .subsection-title {
-      @apply text-2xl font-bold text-yellow-300 mb-4 tracking-tight;
-    }
-    /* Subtle Webkit Scrollbar Styling */
-    .overflow-y-auto::-webkit-scrollbar {
-      width: 8px;
-    }
-    .overflow-y-auto::-webkit-scrollbar-track {
-      @apply bg-transparent;
-    }
-    .overflow-y-auto::-webkit-scrollbar-thumb {
-      @apply bg-yellow-400/50 rounded-full;
-    }
-    .overflow-y-auto::-webkit-scrollbar-thumb:hover {
-      @apply bg-yellow-400/80;
+    .overlay {
+      background-color: rgba(0, 0, 0, 0.6);
     }
   </style>
 </head>
-<body class="bg-gradient-to-br from-green-800 via-yellow-400 to-red-700 min-h-screen text-white p-6 md:p-8">
+<body class="bg-black text-white h-screen flex items-center justify-center">
+  <div class="relative w-full h-full">
+    <img src="./splash.png" alt="Splash Background" class="absolute inset-0 w-full h-full object-cover opacity-80" />
 
-  <h1 class="text-5xl font-bold text-center mb-10 drop-shadow-xl animated-section">🏈 FantasyForge: Packers vs. Chiefs 🏈</h1>
+    <!-- Glitch Spark Overlay -->
+    <svg class="glitch" viewBox="0 0 100 100" preserveAspectRatio="none">
+      <defs>
+        <filter id="glitchFilter">
+          <feTurbulence type="turbulence" baseFrequency="0.5" numOctaves="1" result="turbulence" />
+          <feDisplacementMap in="SourceGraphic" in2="turbulence" scale="5" xChannelSelector="R" yChannelSelector="G" />
+        </filter>
+      </defs>
+      <rect width="100" height="100" fill="transparent" filter="url(#glitchFilter)" />
+    </svg>
 
-  <!-- 🔍 Search Bar -->
-  <div class="max-w-2xl mx-auto mb-8 animated-section" style="animation-delay: 0.1s;">
-    <input id="search-input" type="text" placeholder="Search players by name, team, position..." 
-      class="w-full p-4 text-white bg-white/10 rounded-lg border-2 border-white/20 shadow-lg placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 transition-all duration-150 ease-in-out" />
-  </div>
-
-  <!-- 🧠 Main Content Grid -->
-  <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8 animated-section" style="animation-delay: 0.2s;">
-
-    <!-- 📜 Player Pool (Packers Theme) -->
-    <div class="bg-green-900/70 rounded-xl p-6 shadow-2xl col-span-1 border-2 border-yellow-400">
-      <h2 class="subsection-title text-yellow-400">G.B. Draft Pool</h2>
-      
-      <!-- Position Filters -->
-      <div id="position-filters" class="mb-5 flex flex-wrap gap-2">
-        <button class="pos-filter-btn active-filter" onclick="window.filterPlayersByPosition('All')">All</button>
-        <button class="pos-filter-btn" onclick="window.filterPlayersByPosition('QB')">QB</button>
-        <button class="pos-filter-btn" onclick="window.filterPlayersByPosition('RB')">RB</button>
-        <button class="pos-filter-btn" onclick="window.filterPlayersByPosition('WR')">WR</button>
-        <button class="pos-filter-btn" onclick="window.filterPlayersByPosition('TE')">TE</button>
-        <button class="pos-filter-btn" onclick="window.filterPlayersByPosition('K')">K</button>
-        <button class="pos-filter-btn" onclick="window.filterPlayersByPosition('DST')">DST</button>
+    <div class="absolute inset-0 flex flex-col items-center justify-center text-center z-10">
+      <img src="./AeroVista-Logo.png" alt="AeroVista Logo" class="w-28 h-28 md:w-32 md:h-32 mb-4 pulse">
+      <h1 class="text-4xl md:text-6xl font-bold text-cyan-400 glow-text">FantasyForge</h1>
+      <p class="text-sm md:text-base text-cyan-200 mt-2">Powered by AeroVista</p>
+      <div class="mt-6">
+        <p class="text-sm text-gray-300 italic animate-pulse">// INITIATING DRAFT SYNC...</p>
       </div>
-
-      <div id="player-list" class="space-y-3 max-h-[600px] overflow-y-auto pr-2"></div>
     </div>
-
-    <!-- 🏆 My Team (Chiefs Theme) -->
-    <div class="bg-red-800/70 rounded-xl p-6 shadow-2xl col-span-1 border-2 border-yellow-400">
-      <h2 class="subsection-title text-yellow-400">K.C. Dream Team</h2>
-      <div id="team-list" class="space-y-3 max-h-[600px] overflow-y-auto pr-2"></div>
-    </div>
-
-    <!-- 📊 Compare Box (Neutral Theme) -->
-    <div class="bg-slate-800/70 rounded-xl p-6 shadow-2xl col-span-1 border-2 border-slate-600">
-      <h2 class="subsection-title text-slate-300">Player Comparison</h2>
-      <div id="compare-box" class="space-y-3 text-sm max-h-[600px] overflow-y-auto pr-2"></div>
-    </div>
-
   </div>
 
-  <!-- 🎮 Flashcard Section (Neutral Theme) -->
-  <div class="mt-10 md:mt-12 bg-slate-700/70 rounded-xl p-6 shadow-2xl border-2 border-slate-500 animated-section" style="animation-delay: 0.3s;">
-    <h2 class="subsection-title text-yellow-300 text-center">🎲 Flashcard Challenge 🎲</h2>
-    <div id="flashcard-box" class="text-center space-y-4"></div>
-  </div>
-
-  <!-- 👣 Footer -->
-  <footer class="text-center mt-12 mb-4 text-sm text-white/70 animated-section" style="animation-delay: 0.4s;">
-    Built with 🏈 by Timbr & Byte · GitHub-Ready · Fully Offline
-  </footer>
-
-  <!-- 🔗 Scripts -->
-  <script type="module" src="main.js"></script>
-  <script type="module" src="search.js"></script>
-  <script type="module" src="compare.js"></script>
-  <script type="module" src="flashcards.js"></script>
+  <script>
+    // Simulate loading effect and redirect
+    setTimeout(() => {
+      window.location.href = "dashboard.html";
+    }, 3500);
+  </script>
 </body>
 </html>

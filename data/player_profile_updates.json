@@ -1,0 +1,18 @@
+{
+  "2578570": {
+    "aiCommentary": "Jacoby Brissett: Solid veteran backup, provides stability if needed. Good depth for your squad.",
+    "flags": ["veteran_presence", "reliable_backup"]
+  },
+  "3917315": {
+    "aiCommentary": "Kyler Murray: High-upside QB. Potential for big fantasy numbers, but ensure your roster has cover for ARI's Week 12 bye.",
+    "flags": ["dual_threat", "upside_potential", "bye_week_risk_ARI_W12"]
+  },
+  "example_kc_player_id_1": {
+    "aiCommentary": "This KC player is a key part of their offense. Great pick!",
+    "flags": ["kc_player", "bye_week_risk_KC_W10"]
+  },
+  "example_kc_player_id_2": {
+    "aiCommentary": "Another strong KC asset. They have a Week 10 bye.",
+    "flags": ["kc_player", "bye_week_risk_KC_W10"]
+  }
+} 
