@@ -1,7 +1,13 @@
 // cheat-sheet.js
 import { getCleanExperience, getFormattedHeightWeight, getFlagIconsHtml, standardTagDisplayConfig, getTagBadgesHtml } from './utils.js';
+import { getSquad, addToSquad } from './my-squad.js';
+import { getPlayerData } from './data-service.js';
+import { initializeHeader } from './header-nav.js';
 
 document.addEventListener("DOMContentLoaded", () => {
+  // Initialize the header with current page highlighted
+  initializeHeader('cheatsheet');
+  
   const positionFilterEl = document.getElementById("position-filter");
   const sortByEl = document.getElementById("sort-by");
   const playerNameSearchEl = document.getElementById("player-name-search");
@@ -43,8 +49,14 @@ document.addEventListener("DOMContentLoaded", () => {
     }));
   }
 
-  fetch("./data/nfl_players_2025_enriched_full_final.json")
-    .then(res => res.json())
+  // Loading indicator message
+  loadingMessageEl.innerHTML = `<div class="flex justify-center items-center p-8">
+    <div class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-cyan-500"></div>
+    <span class="ml-4 text-cyan-400">Loading player data...</span>
+  </div>`;
+
+  // Use our centralized data service
+  getPlayerData()
     .then(playersData => {
       allPlayers = playersData.map(player => {
         const pprPoints = (player.fantasy && typeof player.fantasy.pprPoints === 'number') ? player.fantasy.pprPoints : -Infinity; // Use -Infinity for sorting
@@ -52,7 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const { height, weight } = getFormattedHeightWeight(player);
         return { ...player, fantasyPprPoints: pprPoints, experience, height, weight };
       });
-      console.log("✅ Loaded", allPlayers.length, "players for cheat sheet from consolidated file.");
+      console.log("✅ Loaded", allPlayers.length, "players for cheat sheet using centralized data service");
       populateTeamFilter();
       loadPreferences();
       renderPlayerTable();
@@ -61,7 +73,11 @@ document.addEventListener("DOMContentLoaded", () => {
     })
     .catch(error => {
       console.error("Error loading player data for cheat sheet:", error);
-      loadingMessageEl.textContent = "Error loading player data. Please try again.";
+      loadingMessageEl.innerHTML = `<div class="text-red-500 p-4 rounded-lg text-center">
+        <p class="text-lg font-bold">Error loading player data</p>
+        <p>${error.message}</p>
+        <button class="mt-4 bg-cyan-600 py-2 px-4 rounded hover:bg-cyan-700" onclick="location.reload()">Try Again</button>
+      </div>`;
     });
 
   function populateTeamFilter() {
@@ -136,6 +152,14 @@ document.addEventListener("DOMContentLoaded", () => {
     playerTableBodyEl.innerHTML = "";
     let processedPlayers = filterPlayers(allPlayers);
     processedPlayers = sortPlayers(processedPlayers);
+
+    // Check if we have no matching players after filtering
+    if (processedPlayers.length === 0) {
+      playerTableBodyEl.innerHTML = `<tr><td colspan="7" class="px-4 py-8 text-center text-gray-500">
+        No players match your current filters. Try adjusting your search criteria.
+      </td></tr>`;
+      return;
+    }
 
     processedPlayers.slice(0, 250).forEach((player, index) => { // Show top 250, or adjust
       const row = playerTableBodyEl.insertRow();
@@ -230,7 +254,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function updateAddToSquadButtonStates() {
-      const squad = getSquad(); // Assuming getSquad is available from my-squad.js
+      const squad = getSquad(); // Using imported function
       document.querySelectorAll('.add-to-squad-cheat-btn').forEach(button => {
           const playerId = button.dataset.playerId;
           if (squad.some(p => p.playerId === playerId)) {
@@ -257,20 +281,16 @@ document.addEventListener("DOMContentLoaded", () => {
               team: button.dataset.playerTeam,
               position: button.dataset.playerPosition
           };
-          if (typeof addToSquad === 'function') {
-              const wasAdded = addToSquad(playerDetails);
-              if (wasAdded) {
-                  button.textContent = 'In Squad';
-                  button.disabled = true;
-                  button.classList.remove('bg-green-600', 'hover:bg-green-700');
-                  button.classList.add('bg-gray-500');
-              } else {
-                  // Already in squad or error
-                  alert(`${playerDetails.name} is already in your squad or an error occurred.`);
-              }
+          
+          const wasAdded = addToSquad(playerDetails); // Using imported function
+          if (wasAdded) {
+              button.textContent = 'In Squad';
+              button.disabled = true;
+              button.classList.remove('bg-green-600', 'hover:bg-green-700');
+              button.classList.add('bg-gray-500');
           } else {
-              console.error('addToSquad function not found. Ensure my-squad.js is loaded.');
-              alert('Squad functionality is not available.');
+              // Already in squad or error
+              alert(`${playerDetails.name} is already in your squad or an error occurred.`);
           }
       }
   });
@@ -313,9 +333,3 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 }); 
-// Make sure my-squad.js functions getSquad and addToSquad are available globally or properly imported.
-// For example, if my-squad.js uses ES6 modules, cheat-sheet.js needs to import them:
-// import { getSquad, addToSquad } from './my-squad.js';
-
-// For example, if my-squad.js uses ES6 modules, cheat-sheet.js needs to import them:
-// import { getSquad, addToSquad } from './my-squad.js'; 

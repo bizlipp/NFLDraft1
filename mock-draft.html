@@ -10,15 +10,41 @@
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body class="bg-gray-900 text-white min-h-screen p-6">
-  <header class="mb-6 flex justify-between items-center">
-    <a href="dashboard.html" class="text-cyan-400 hover:text-cyan-300">&larr; Back to Dashboard</a>
-    <h1 class="text-3xl font-bold text-center text-cyan-400 flex-grow">Mock Draft Simulator</h1>
-    <div class="w-1/4"></div> <!-- Spacer for centering title -->
-  </header>
+  <!-- Header will be injected by header-nav.js -->
 
-  <main class="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
+  <main class="container mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6 mt-12">
+    <!-- Draft Controls & Current Pick -->
+    <section class="lg:col-span-3 bg-gray-800 p-4 rounded-xl shadow-lg flex flex-col lg:flex-row justify-between items-center mb-2">
+      <div class="flex flex-col md:flex-row gap-4 items-center mb-2 lg:mb-0">
+        <div class="bg-gray-700 rounded-lg p-3 text-center">
+          <div class="text-xs text-gray-400">ROUND</div>
+          <div class="text-xl font-bold" id="draft-round">1</div>
+        </div>
+        <div class="bg-gray-700 rounded-lg p-3 text-center">
+          <div class="text-xs text-gray-400">PICK</div>
+          <div class="text-xl font-bold" id="draft-pick">1</div>
+        </div>
+        <div class="bg-gray-700 rounded-lg p-3 text-center">
+          <div class="text-xs text-gray-400">ON THE CLOCK</div>
+          <div class="text-xl font-bold text-cyan-400" id="on-the-clock">You</div>
+        </div>
+      </div>
+      <div class="flex gap-3">
+        <button id="start-ai-draft-btn" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-md">Start AI Draft</button>
+        <button id="reset-mock-draft" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-md">Reset Draft</button>
+      </div>
+    </section>
+
+    <!-- Draft Board -->
+    <section class="lg:col-span-3 bg-gray-800 p-4 rounded-xl shadow-lg mb-2">
+      <h2 class="text-lg font-semibold text-cyan-300 mb-3">Draft Board</h2>
+      <div id="draft-board-container" class="text-xs">
+        <!-- Draft board will be injected here -->
+      </div>
+    </section>
+    
     <!-- Available Players -->
-    <section class="md:col-span-2 bg-gray-800 p-4 rounded-xl shadow-lg flex flex-col">
+    <section class="lg:col-span-2 bg-gray-800 p-4 rounded-xl shadow-lg flex flex-col">
       <div class="flex justify-between items-center mb-4">
         <h2 class="text-xl font-semibold text-cyan-300">Available Players</h2>
         <div class="flex gap-2 items-center">
@@ -35,25 +61,24 @@
           </select>
         </div>
       </div>
-      <div id="available-players-list" class="space-y-2 flex-grow overflow-y-auto" style="max-height: 70vh;">
+      <div id="available-players-list" class="space-y-2 flex-grow overflow-y-auto" style="max-height: 60vh;">
         <p id="loading-players-message" class="text-center text-gray-400">Loading available players...</p>
         <!-- Player items will be injected here -->
       </div>
     </section>
 
     <!-- My Mock Team -->
-    <section class="md:col-span-1 bg-gray-800 p-4 rounded-xl shadow-lg flex flex-col">
+    <section class="lg:col-span-1 bg-gray-800 p-4 rounded-xl shadow-lg flex flex-col">
       <h2 class="text-xl font-semibold text-cyan-300 mb-2">My Mock Team (<span id="mock-team-count">0</span>/<span id="max-team-size">15</span>)</h2>
       <div id="mock-team-position-summary" class="text-xs text-gray-400 mb-2"></div>
-      <div id="my-mock-team-list" class="space-y-1 flex-grow overflow-y-auto border-t border-b border-gray-700 py-2" style="max-height: calc(70vh - 100px);">
+      <div id="my-mock-team-list" class="space-y-1 flex-grow overflow-y-auto border-t border-b border-gray-700 py-2" style="max-height: calc(60vh - 100px);">
         <p id="empty-mock-team-message" class="text-center text-gray-400 italic">Your drafted players will appear here.</p>
         <!-- Drafted player items will be injected here -->
       </div>
-      <button id="reset-mock-draft" class="mt-4 w-full bg-red-600 p-2 rounded-md hover:bg-red-700">Reset Draft</button>
     </section>
   </main>
 
-  <script src="my-squad.js"></script> <!-- Included but not actively used by mock-draft.js to modify global squad -->
-  <script src="mock-draft.js"></script>
+  <script src="my-squad.js" type="module"></script>
+  <script src="mock-draft.js" type="module"></script>
 </body>
 </html> 

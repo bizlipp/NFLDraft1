@@ -1,8 +1,15 @@
 // dashboard.js
-import { getTagBadgesHtml, standardTagDisplayConfig, getFlagIconsHtml } from './utils.js'; // Import if needed for other parts, or for consistency
+import { getTagBadgesHtml, standardTagDisplayConfig, getFlagIconsHtml } from './utils.js';
+import { getSquad, removeFromSquad } from './my-squad.js';
+import { getCoachAdvice } from './coach.js';
+import { getPlayerData } from './data-service.js';
+import { initializeHeader } from './header-nav.js';
 
 // Store references to key elements
 document.addEventListener("DOMContentLoaded", () => {
+    // Initialize the header with current page highlighted
+    initializeHeader('dashboard');
+  
     const searchInput = document.querySelector("input[type='text']");
     // Note: search.js handles its own search results container logic now.
     // const searchResultsContainer = document.createElement("div");
@@ -10,33 +17,21 @@ document.addEventListener("DOMContentLoaded", () => {
     // document.querySelector(".p-4")?.appendChild(searchResultsContainer);
   
     let allPlayers = [];
-    // let playerUpdates = {}; // Removed: No longer needed with the new consolidated data file
   
-    // Load player data
-    fetch("./data/nfl_players_2025_enriched_full_final.json") // Updated file path
-    .then(res => res.json())
+    // Load player data using our centralized data service
+    getPlayerData()
     .then(playersData => {
-      // playerUpdates = updatesData; // Removed
-      allPlayers = playersData; // Data is already merged
-      // allPlayers = playersData.map(player => { // Removed mapping logic
-      //   const updates = playerUpdates[player.playerId];
-      //   if (updates) {
-      //     return { ...player, ...updates }; // Merge updates into player object
-      //   }
-      //   return player;
-      // });
-
-      console.log("✅ Loaded", allPlayers.length, "players from the new consolidated data file for dashboard");
-      // console.log(allPlayers.find(p => p.playerId === "3917315")); // For testing merge
+      allPlayers = playersData;
+      console.log("✅ Loaded", allPlayers.length, "players for dashboard using centralized data service");
 
       injectFeaturedPlayers(allPlayers);
       displayMySquad();
-      updateCoachCommentary(); // New function to update coach commentary
-      populateLeagueLeaders(allPlayers); // Added call
+      updateCoachCommentary();
+      populateLeagueLeaders(allPlayers);
     })
     .catch(error => {
       console.error("Error loading player data for dashboard:", error);
-      // Display an error message to the user in the UI if appropriate
+      // Display error messages in the UI
       const featuredContainer = document.getElementById("featured-players-container");
       if (featuredContainer) {
         featuredContainer.innerHTML = `<p class="col-span-2 text-red-400 text-center">Error loading featured players data.</p>`;
@@ -148,7 +143,7 @@ document.addEventListener("DOMContentLoaded", () => {
   
     // Function to display My Squad
     function displayMySquad() {
-      const squad = getSquad(); // From my-squad.js
+      const squad = getSquad(); // Using imported function
       const squadContainer = document.getElementById("my-squad-container");
 
       if (!squadContainer) {
@@ -178,14 +173,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Make removePlayerFromSquadAndRefresh globally accessible for the inline onclick
     window.removePlayerFromSquadAndRefresh = (playerId) => {
-      removeFromSquad(playerId); // from my-squad.js
+      removeFromSquad(playerId); // Using imported function
       displayMySquad(); // Refresh the displayed squad
       updateCoachCommentary(); // Refresh coach commentary after squad changes
     };
   
     // Function to update Coach Commentary
     function updateCoachCommentary() {
-      const squad = getSquad(); // Get current squad
+      const squad = getSquad(); // Using imported function
       const coachCommentaryContainer = document.querySelector("section:nth-of-type(5) .bg-purple-800"); // Target the coach says div
 
       if (!coachCommentaryContainer) {
@@ -193,9 +188,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      // Get advice from coach.js
-      // Ensure allPlayers is accessible here or pass it as an argument if its scope is limited.
-      // For this structure, allPlayers is in the outer scope of the DOMContentLoaded listener.
+      // Get advice from coach.js (using imported function)
       const advice = getCoachAdvice(squad, allPlayers);
 
       coachCommentaryContainer.textContent = advice;

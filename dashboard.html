@@ -10,19 +10,7 @@
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body class="bg-gray-900 text-white font-sans min-h-screen">
-  <!-- Header -->
-  <header class="flex items-center justify-between p-4 border-b border-gray-700 bg-gray-800">
-    <h1 class="text-xl font-bold text-cyan-400">FantasyForge</h1>
-    <div class="space-x-4">
-      
-      
-    </div>
-  </header>
-
-  <!-- Search Bar -->
-  <div class="p-4">
-    <input type="text" placeholder="Search players..." class="w-full p-2 rounded-md bg-gray-800 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-cyan-500" />
-  </div>
+  <!-- Header will be injected by header-nav.js -->
 
   <!-- Sections -->
   <main class="px-4 pb-10 space-y-8">
@@ -74,8 +62,8 @@
     </section>
 
   </main>
-  <script src="my-squad.js"></script>
-  <script src="coach.js"></script>
-  <script src="dashboard.js"></script>
+  <script src="my-squad.js" type="module"></script>
+  <script src="coach.js" type="module"></script>
+  <script src="dashboard.js" type="module"></script>
 </body>
 </html>

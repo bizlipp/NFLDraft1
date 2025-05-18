@@ -1,5 +1,6 @@
 // flashcards.js
-import { getCleanExperience, getFormattedHeightWeight } from './utils.js'; // Import if needed for other data points
+import { getCleanExperience, getFormattedHeightWeight } from './utils.js';
+import { getPlayerData } from './data-service.js';
 
 document.addEventListener("DOMContentLoaded", () => {
   const questionTextEl = document.getElementById("question-text");
@@ -35,18 +36,26 @@ document.addEventListener("DOMContentLoaded", () => {
     scoreTotalEl.textContent = score.total;
   }
 
-  // Load player data (similar to dashboard.js, merging profile updates)
-  fetch("./data/nfl_players_2025_enriched_full_final.json") // Updated file path
-  .then(res => res.json())
+  // Loading indicator
+  questionTextEl.innerHTML = `<div class="flex items-center justify-center">
+    <div class="animate-spin rounded-full h-6 w-6 border-t-2 border-b-2 border-cyan-500 mr-3"></div>
+    <span>Loading player data...</span>
+  </div>`;
+
+  // Use the centralized data service
+  getPlayerData()
   .then(playersData => {
     allPlayers = playersData.filter(p => p.name && p.team && p.position); // Ensure basic data for questions
-    console.log("✅ Loaded", allPlayers.length, "players for flashcards from consolidated file.");
+    console.log("✅ Loaded", allPlayers.length, "players for flashcards using centralized data service");
     loadScore();
     generateNewCard();
   })
   .catch(error => {
     console.error("Error loading player data for flashcards:", error);
-    questionTextEl.textContent = "Error loading player data. Please try again later.";
+    questionTextEl.innerHTML = `<div class="text-red-500">
+      <p>Error loading player data: ${error.message}</p>
+      <button class="mt-4 bg-cyan-600 py-2 px-4 rounded hover:bg-cyan-700 text-white" onclick="location.reload()">Try Again</button>
+    </div>`;
     submitAnswerBtn.disabled = true;
     nextCardBtn.disabled = true;
   });

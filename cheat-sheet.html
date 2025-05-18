@@ -28,13 +28,12 @@
   </style>
 </head>
 <body class="bg-gray-900 text-white min-h-screen p-6">
-  <header class="mb-6 flex justify-between items-center">
-    <a href="dashboard.html" class="text-cyan-400 hover:text-cyan-300">&larr; Back to Dashboard</a>
-    <h1 class="text-3xl font-bold text-center text-cyan-400 flex-grow">Player Cheat Sheet</h1>
-    <div class="w-1/4"><button id="compare-selected-btn" class="bg-purple-600 hover:bg-purple-700 text-white px-3 py-1.5 rounded-md text-sm float-right" disabled>Compare Selected (0)</button></div>
-  </header>
+  <!-- Header will be injected by header-nav.js -->
+  <div class="float-right mb-4">
+    <button id="compare-selected-btn" class="bg-purple-600 hover:bg-purple-700 text-white px-3 py-1.5 rounded-md text-sm" disabled>Compare Selected (0)</button>
+  </div>
 
-  <main class="container mx-auto">
+  <main class="container mx-auto mt-12">
     <div class="mb-6 bg-gray-800 p-4 rounded-xl shadow-lg">
       <div class="grid grid-cols-1 md:grid-cols-4 gap-4 items-end">
         <div>
@@ -92,7 +91,7 @@
       </table>
     </div>
   </main>
-  <script src="my-squad.js"></script>
-  <script src="cheat-sheet.js"></script>
+  <script src="my-squad.js" type="module"></script>
+  <script src="cheat-sheet.js" type="module"></script>
 </body>
 </html> 

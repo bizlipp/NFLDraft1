@@ -4,7 +4,7 @@
  * @param {Array} allPlayers - The complete list of all players, including merged profile updates (aiCommentary, flags).
  * @returns {string} Coach's advice.
  */
-function getCoachAdvice(squad, allPlayers) {
+export function getCoachAdvice(squad, allPlayers) {
   if (!squad || squad.length === 0) {
     return "Draft some players to get personalized advice from the coach!";
   }
@@ -60,4 +60,9 @@ function getCoachAdvice(squad, allPlayers) {
 
   // Default advice if no specific rules are met
   return "Your squad is looking interesting! Keep an eye on player news and matchups.";
+}
+
+// Backward compatibility for non-module scripts
+if (typeof window !== 'undefined') {
+  window.getCoachAdvice = getCoachAdvice;
 } 
