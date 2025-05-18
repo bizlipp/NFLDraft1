@@ -8,18 +8,91 @@
   <link rel="icon" href="AeroVista-Logo.png" type="image/png">
   <title>FantasyForge - Cheat Sheet</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    .sticky-header th {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .sort-indicator {
+      font-size: 0.7em;
+      margin-left: 4px;
+    }
+    .player-flag-icon {
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        margin-right: 4px;
+        vertical-align: middle;
+    }
+  </style>
 </head>
 <body class="bg-gray-900 text-white min-h-screen p-6">
-  <header class="mb-6">
+  <header class="mb-6 flex justify-between items-center">
     <a href="dashboard.html" class="text-cyan-400 hover:text-cyan-300">&larr; Back to Dashboard</a>
-    <h1 class="text-3xl font-bold text-center text-cyan-400 mt-2">Player Cheat Sheet</h1>
+    <h1 class="text-3xl font-bold text-center text-cyan-400 flex-grow">Player Cheat Sheet</h1>
+    <div class="w-1/4"><button id="compare-selected-btn" class="bg-purple-600 hover:bg-purple-700 text-white px-3 py-1.5 rounded-md text-sm float-right" disabled>Compare Selected (0)</button></div>
   </header>
-  <main>
-    <p class="text-center text-gray-400">Top players by position, sortable. (Functionality to be implemented)</p>
-    <!-- Placeholder for player rankings -->
-    <div class="mt-6 p-4 bg-gray-800 rounded-xl">
-        <p class="text-lg font-semibold">Rankings (Coming Soon)</p>
+
+  <main class="container mx-auto">
+    <div class="mb-6 bg-gray-800 p-4 rounded-xl shadow-lg">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4 items-end">
+        <div>
+          <label for="player-name-search" class="block text-sm font-medium text-gray-300 mb-1">Search by Name:</label>
+          <input type="text" id="player-name-search" placeholder="Enter player name..." class="w-full bg-gray-700 text-white p-2 rounded-md focus:ring-cyan-500 focus:border-cyan-500">
+        </div>
+        <div>
+          <label for="position-filter" class="block text-sm font-medium text-gray-300 mb-1">Filter by Position:</label>
+          <select id="position-filter" name="position-filter" class="w-full bg-gray-700 text-white p-2 rounded-md focus:ring-cyan-500 focus:border-cyan-500">
+            <option value="ALL">All Positions</option>
+            <option value="QB">QB</option>
+            <option value="RB">RB</option>
+            <option value="WR">WR</option>
+            <option value="TE">TE</option>
+            <option value="K">K</option>
+            <option value="DEF">DEF</option>
+          </select>
+        </div>
+        <div>
+          <label for="team-filter" class="block text-sm font-medium text-gray-300 mb-1">Filter by Team:</label>
+          <select id="team-filter" name="team-filter" class="w-full bg-gray-700 text-white p-2 rounded-md focus:ring-cyan-500 focus:border-cyan-500">
+            <option value="ALL">All Teams</option>
+            <!-- Team options will be populated by JS -->
+          </select>
+        </div>
+        <div>
+          <label for="sort-by" class="block text-sm font-medium text-gray-300 mb-1">Sort By:</label>
+          <select id="sort-by" name="sort-by" class="w-full bg-gray-700 text-white p-2 rounded-md focus:ring-cyan-500 focus:border-cyan-500">
+            <option value="fantasyPprPoints">Fantasy Points (PPR)</option>
+            <option value="name">Name</option>
+            <option value="team">Team</option>
+            <option value="position">Position</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div id="player-list-container" class="bg-gray-800 rounded-xl shadow-lg overflow-x-auto">
+      <p id="loading-message" class="text-center text-gray-400 p-4">Loading player rankings...</p>
+      <table id="player-table" class="min-w-full divide-y divide-gray-700 hidden">
+        <thead class="bg-gray-700 sticky-header">
+          <tr>
+            <th scope="col" class="px-2 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Comp.</th>
+            <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider cursor-pointer hover:bg-gray-600" data-sort="rank">Rank <span class="sort-indicator"></span></th>
+            <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider cursor-pointer hover:bg-gray-600" data-sort="name">Name / Flags <span class="sort-indicator"></span></th>
+            <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider cursor-pointer hover:bg-gray-600" data-sort="position">Pos <span class="sort-indicator"></span></th>
+            <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider cursor-pointer hover:bg-gray-600" data-sort="team">Team <span class="sort-indicator"></span></th>
+            <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider cursor-pointer hover:bg-gray-600" data-sort="fantasyPprPoints">PPR Pts <span class="sort-indicator"></span></th>
+            <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Actions</th>
+          </tr>
+        </thead>
+        <tbody id="player-table-body" class="bg-gray-800 divide-y divide-gray-600">
+          <!-- Player rows will be injected here -->
+        </tbody>
+      </table>
     </div>
   </main>
+  <script src="my-squad.js"></script>
+  <script src="cheat-sheet.js"></script>
 </body>
 </html> 

@@ -1,3 +1,4 @@
+{
 "offseasonTrades": [
   {
     "year": 2024,
@@ -5,7 +6,7 @@
     "fromTeam": "New York Giants",
     "toTeam": "Philadelphia Eagles",
     "transactionType": "Free Agent Signing",
-    "details": "Barkley signed a one-year deal with Philly in 2024 after no long-term deal with NYG. He thrived behind the Eagles’ O-line (2,005 rush yards):contentReference[oaicite:93]{index=93}, leading the NFL in rushing."
+    "details": "Barkley signed a one-year deal with Philly in 2024 after no long-term deal with NYG. He thrived behind the Eagles' O-line (2,005 rush yards):contentReference[oaicite:93]{index=93}, leading the NFL in rushing."
   },
   {
     "year": 2024,
@@ -37,7 +38,7 @@
     "fromTeam": "Chicago Bears",
     "toTeam": "New York Jets",
     "transactionType": "Trade",
-    "details": "Chicago dealt Fields after drafting Caleb Williams. The Jets, reeling from Aaron Rodgers’ injury, acquired Fields to be their young QB. He started 10 games for New York in 2024:contentReference[oaicite:97]{index=97}."
+    "details": "Chicago dealt Fields after drafting Caleb Williams. The Jets, reeling from Aaron Rodgers' injury, acquired Fields to be their young QB. He started 10 games for New York in 2024:contentReference[oaicite:97]{index=97}."
   },
   {
     "year": 2024,
@@ -61,7 +62,7 @@
     "fromTeam": "Seattle Seahawks",
     "toTeam": "Las Vegas Raiders",
     "transactionType": "Trade",
-    "details": "Las Vegas traded for Geno Smith to replace Jimmy Garoppolo. Geno, coming off a Pro Bowl in Seattle, had 4,320 passing yards as the Raiders’ starter in 2024:contentReference[oaicite:100]{index=100}."
+    "details": "Las Vegas traded for Geno Smith to replace Jimmy Garoppolo. Geno, coming off a Pro Bowl in Seattle, had 4,320 passing yards as the Raiders' starter in 2024:contentReference[oaicite:100]{index=100}."
   },
   {
     "year": 2024,
@@ -112,3 +113,4 @@
     "details": "After New England drafted Drake Maye in 2024, Mac Jones has been rumored on the trade block heading into 2025. No deal materialized before the draft, but this will be a situation to monitor."
   }
 ]
+}

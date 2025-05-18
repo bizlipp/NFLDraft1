@@ -10,16 +10,49 @@
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body class="bg-gray-900 text-white min-h-screen p-6">
-  <header class="mb-6">
+  <header class="mb-6 flex justify-between items-center">
     <a href="dashboard.html" class="text-cyan-400 hover:text-cyan-300">&larr; Back to Dashboard</a>
-    <h1 class="text-3xl font-bold text-center text-cyan-400 mt-2">Mock Draft Simulator</h1>
+    <h1 class="text-3xl font-bold text-center text-cyan-400 flex-grow">Mock Draft Simulator</h1>
+    <div class="w-1/4"></div> <!-- Spacer for centering title -->
   </header>
-  <main>
-    <p class="text-center text-gray-400">Mock draft interface will be here. (Click-to-draft functionality to be implemented)</p>
-    <!-- Placeholder for draft board or player list -->
-    <div class="mt-6 p-4 bg-gray-800 rounded-xl">
-        <p class="text-lg font-semibold">Draft Board (Coming Soon)</p>
-    </div>
+
+  <main class="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
+    <!-- Available Players -->
+    <section class="md:col-span-2 bg-gray-800 p-4 rounded-xl shadow-lg flex flex-col">
+      <div class="flex justify-between items-center mb-4">
+        <h2 class="text-xl font-semibold text-cyan-300">Available Players</h2>
+        <div>
+          <label for="available-position-filter" class="sr-only">Filter by Position:</label>
+          <select id="available-position-filter" class="bg-gray-700 text-white p-2 rounded-md text-sm focus:ring-cyan-500 focus:border-cyan-500">
+            <option value="ALL">All</option>
+            <option value="QB">QB</option>
+            <option value="RB">RB</option>
+            <option value="WR">WR</option>
+            <option value="TE">TE</option>
+            <option value="K">K</option>
+            <option value="DEF">DEF</option>
+          </select>
+        </div>
+      </div>
+      <div id="available-players-list" class="space-y-2 flex-grow overflow-y-auto" style="max-height: 70vh;">
+        <p id="loading-players-message" class="text-center text-gray-400">Loading available players...</p>
+        <!-- Player items will be injected here -->
+      </div>
+    </section>
+
+    <!-- My Mock Team -->
+    <section class="md:col-span-1 bg-gray-800 p-4 rounded-xl shadow-lg flex flex-col">
+      <h2 class="text-xl font-semibold text-cyan-300 mb-2">My Mock Team (<span id="mock-team-count">0</span>/<span id="max-team-size">15</span>)</h2>
+      <div id="mock-team-position-summary" class="text-xs text-gray-400 mb-2"></div>
+      <div id="my-mock-team-list" class="space-y-1 flex-grow overflow-y-auto border-t border-b border-gray-700 py-2" style="max-height: calc(70vh - 100px);">
+        <p id="empty-mock-team-message" class="text-center text-gray-400 italic">Your drafted players will appear here.</p>
+        <!-- Drafted player items will be injected here -->
+      </div>
+      <button id="reset-mock-draft" class="mt-4 w-full bg-red-600 p-2 rounded-md hover:bg-red-700">Reset Draft</button>
+    </section>
   </main>
+
+  <script src="my-squad.js"></script> <!-- Included but not actively used by mock-draft.js to modify global squad -->
+  <script src="mock-draft.js"></script>
 </body>
 </html> 

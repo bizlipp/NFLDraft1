@@ -1,4 +1,5 @@
 // compare.js
+import { getCleanExperience, getFormattedHeightWeight, getTagBadgesHtml, standardTagDisplayConfig, getFlagIconsHtml } from './utils.js';
 
 const container = document.getElementById("compare-grid");
 const params = new URLSearchParams(window.location.search);
@@ -6,37 +7,69 @@ const a = params.get("a");
 const b = params.get("b");
 
 if (!a || !b) {
-  container.innerHTML = `<p class='text-red-400'>Missing player IDs in query. Use ?a=12345&b=67890</p>`;
+  container.innerHTML = `<p class='text-red-400 text-center'>Missing player IDs. Usage: ?a=PLAYER_ID&b=PLAYER_ID <br><a href='dashboard.html' class='text-cyan-400 hover:underline'>Back to Dashboard</a></p>`;
 } else {
-  fetch("./data/nfl_players_2025_enriched.json")
+  fetch("./data/nfl_players_2025_enriched_full_final.json")
     .then(res => res.json())
     .then(data => {
       const playerA = data.find(p => p.playerId == a);
       const playerB = data.find(p => p.playerId == b);
 
       if (!playerA || !playerB) {
-        container.innerHTML = `<p class='text-red-400'>One or both players not found</p>`;
+        container.innerHTML = `<p class='text-red-400 text-center'>One or both players not found. <a href='dashboard.html' class='text-cyan-400 hover:underline'>Back to Dashboard</a></p>`;
         return;
       }
 
-      const players = [playerA, playerB];
-      container.innerHTML = players.map(p => `
-        <div class="bg-gray-800 p-4 rounded-xl shadow text-center">
-          <img src="${p.headshot || './placeholder.png'}" alt="${p.name}" class="w-24 h-24 rounded-full mx-auto mb-2 border-4 border-cyan-500" />
-          <h2 class="text-xl font-bold text-cyan-300">${p.name}</h2>
-          <div class="text-gray-400 text-sm mb-3">${p.position} • ${p.team}</div>
-          <ul class="text-sm text-left text-gray-300 space-y-1">
+      // Check for shared bye weeks
+      let sharedByeWeekWarning = '';
+      if (playerA.flags && playerB.flags) {
+        const byeA = playerA.flags.find(f => f.toLowerCase().includes('bye_week_risk'));
+        const byeB = playerB.flags.find(f => f.toLowerCase().includes('bye_week_risk'));
+        if (byeA && byeB && byeA === byeB) {
+          const week = byeA.split('_').pop();
+          sharedByeWeekWarning = `<p class="text-center text-yellow-400 font-semibold my-4 col-span-1 md:col-span-2">⚠️ Warning: Both players share a bye in ${week || 'the same week'}!</p>`;
+        }
+      }
+      
+      container.innerHTML = sharedByeWeekWarning + [playerA, playerB].map(p => {
+        const { height, weight } = getFormattedHeightWeight(p);
+        const experience = getCleanExperience(p);
+        let playerTagsHtml = getTagBadgesHtml(p.tags, standardTagDisplayConfig);
+        if (!p.tags || p.tags.length === 0) {
+          playerTagsHtml = getTagBadgesHtml(['unscouted'], standardTagDisplayConfig);
+        }
+        const playerFlagsHtml = getFlagIconsHtml(p.flags);
+
+        return `
+        <div class="bg-gray-800 p-4 rounded-xl shadow text-sm">
+          <img src="${p.headshot || './AeroVista-Logo.png'}" alt="${p.name}" class="w-24 h-24 rounded-full mx-auto mb-3 border-4 border-cyan-500 object-cover" />
+          <h2 class="text-xl font-bold text-cyan-300 text-center">${p.name}</h2>
+          <div class="text-gray-400 text-xs text-center mb-1">${p.position} • ${p.team} ${p.number ? `#${p.number}`: ''}</div>
+          <div class="mt-2 mb-3 flex gap-x-2 gap-y-1 flex-wrap justify-center">
+            ${playerTagsHtml}
+          </div>
+          <div class="mb-3 flex gap-x-2 gap-y-1 flex-wrap justify-center">
+            ${playerFlagsHtml}
+          </div>
+          <ul class="text-xs text-gray-300 space-y-1 border-t border-gray-700 pt-2">
+            <li><strong>Age:</strong> ${p.age || '-'}</li>
+            <li><strong>Height/Weight:</strong> ${height} / ${weight}</li>
             <li><strong>College:</strong> ${p.college || '-'}</li>
-            <li><strong>Height/Weight:</strong> ${p.height || '-'} / ${p.weight || '-'}</li>
-            <li><strong>Fantasy Pts (PPR):</strong> ${p.fantasy?.pprPoints || '-'}</li>
-            <li><strong>TDs:</strong> ${p.stats?.['2024']?.touchdowns || '-'}</li>
-            <li><strong>Yards:</strong> ${p.stats?.['2024']?.passingYards || p.stats?.['2024']?.receivingYards || '-'}</li>
-            <li><strong>INTs:</strong> ${p.stats?.['2024']?.interceptions || '-'}</li>
+            <li><strong>Experience:</strong> ${experience}</li>
+            <li><strong>Draft Info:</strong> ${p.draftInfo || '-'}</li>
+            <li class="mt-1 pt-1 border-t border-gray-600"><strong>Fantasy Pts (PPR '24):</strong> ${p.fantasy?.pprPoints?.toFixed(1) || '-'}</li>
+            <li><strong>TDs ('24):</strong> ${p.stats?.['2024']?.touchdowns || '-'}</li>
+            <li><strong>Yards ('24):</strong> ${p.stats?.['2024']?.passingYards || p.stats?.['2024']?.rushingYards || p.stats?.['2024']?.receivingYards || '-'}</li>
+            <li><strong>INTs ('24):</strong> ${p.stats?.['2024']?.interceptions || '-'}</li>
           </ul>
-          <div class="mt-3">
-            <a href="player-page.html?id=${p.playerId}" class="inline-block mt-2 text-cyan-400 hover:underline text-sm">View Full Page</a>
+          <div class="mt-3 text-center">
+            <a href="player-page.html?id=${p.playerId}" class="inline-block text-cyan-400 hover:underline text-xs">View Full Player Page</a>
           </div>
         </div>
-      `).join('');
+      `}).join('');
+    })
+    .catch(error => {
+        console.error("Error loading player data for compare page:", error);
+        container.innerHTML = `<p class='text-red-400 text-center'>Error loading player data. ${error.message} <a href='dashboard.html' class='text-cyan-400 hover:underline'>Back to Dashboard</a></p>`;
     });
 }

@@ -1,3 +1,4 @@
+{
 "draft2025": [
   {
     "pick": 1,
@@ -13,7 +14,7 @@
     "player": "Travis Hunter",
     "position": "CB/WR",
     "college": "Colorado",
-    "scoutingReport": "Best overall talent in the draft. The Heisman-winning two-way star becomes Cleveland’s WR1 and will play some snaps at CB as well:contentReference[oaicite:109]{index=109}, a la Charles Woodson. Dynamic playmaker on both sides of the ball."
+    "scoutingReport": "Best overall talent in the draft. The Heisman-winning two-way star becomes Cleveland's WR1 and will play some snaps at CB as well:contentReference[oaicite:109]{index=109}, a la Charles Woodson. Dynamic playmaker on both sides of the ball."
   },
   {
     "pick": 3,
@@ -29,7 +30,7 @@
     "player": "Will Campbell",
     "position": "OT",
     "college": "LSU",
-    "scoutingReport": "New England opts for a polished left tackle:contentReference[oaicite:111]{index=111} to anchor their line. Campbell is a 6'6\" technician who should start Week 1 protecting Drake Maye (last year’s pick)."
+    "scoutingReport": "New England opts for a polished left tackle:contentReference[oaicite:111]{index=111} to anchor their line. Campbell is a 6'6\" technician who should start Week 1 protecting Drake Maye (last year's pick)."
   },
   {
     "pick": 5,
@@ -37,7 +38,7 @@
     "player": "Ashton Jeanty",
     "position": "RB",
     "college": "Boise State",
-    "scoutingReport": "A surprise pick that draws gasps:contentReference[oaicite:112]{index=112}. New Jags coach Liam Coen adds an elite do-it-all running back to pair with Trevor Lawrence. Jeanty’s Alvin Kamara-like skill set (pass catching and rushing) will diversify the Jags’ offense."
+    "scoutingReport": "A surprise pick that draws gasps:contentReference[oaicite:112]{index=112}. New Jags coach Liam Coen adds an elite do-it-all running back to pair with Trevor Lawrence. Jeanty's Alvin Kamara-like skill set (pass catching and rushing) will diversify the Jags' offense."
   },
   {
     "pick": 6,
@@ -61,7 +62,7 @@
     "player": "Mason Graham",
     "position": "DT",
     "college": "Michigan",
-    "scoutingReport": "Carolina’s defense was abysmal in 2024, so they bolster the interior with Graham:contentReference[oaicite:115]{index=115}. He’s a powerful All-American tackle who will pair with Derrick Brown to fortify the run defense and push the pocket."
+    "scoutingReport": "Carolina's defense was abysmal in 2024, so they bolster the interior with Graham:contentReference[oaicite:115]{index=115}. He's a powerful All-American tackle who will pair with Derrick Brown to fortify the run defense and push the pocket."
   },
   {
     "pick": 9,
@@ -93,7 +94,7 @@
     "player": "Tetairoa McMillan",
     "position": "WR",
     "college": "Arizona",
-    "scoutingReport": "Dallas grabs a big-bodied WR to pair with CeeDee Lamb:contentReference[oaicite:120]{index=120}. “T-Mac” McMillan (6'4\") uses his size, strong hands, and catch radius to dominate contested catches. He’ll fill the Michael Gallup role as a physical outside receiver."
+    "scoutingReport": "Dallas grabs a big-bodied WR to pair with CeeDee Lamb:contentReference[oaicite:120]{index=120}. \"T-Mac\" McMillan (6'4\") uses his size, strong hands, and catch radius to dominate contested catches. He'll fill the Michael Gallup role as a physical outside receiver."
   },
   {
     "pick": 13,
@@ -101,7 +102,7 @@
     "player": "Will Johnson",
     "position": "CB",
     "college": "Michigan",
-    "scoutingReport": "With veteran Jalen Ramsey likely on the move:contentReference[oaicite:121]{index=121}, Miami drafts his replacement. Johnson is a sticky cover corner with great ball skills. His aggressive style mirrors Ramsey’s attitude, even if he’s not as long. Day-one starter at CB."
+    "scoutingReport": "With veteran Jalen Ramsey likely on the move:contentReference[oaicite:121]{index=121}, Miami drafts his replacement. Johnson is a sticky cover corner with great ball skills. His aggressive style mirrors Ramsey's attitude, even if he's not as long. Day-one starter at CB."
   },
   {
     "pick": 14,
@@ -117,7 +118,7 @@
     "player": "Derrick Harmon",
     "position": "DT",
     "college": "Oregon",
-    "scoutingReport": "Falcons address the defensive interior. With longtime DT Grady Jarrett now in Chicago, Harmon brings youth and energy to Atlanta’s D-line:contentReference[oaicite:123]{index=123}. A stout run defender with upside as a pass rusher, he fits the Falcons’ need for trench toughness."
+    "scoutingReport": "Falcons address the defensive interior. With longtime DT Grady Jarrett now in Chicago, Harmon brings youth and energy to Atlanta's D-line:contentReference[oaicite:123]{index=123}. A stout run defender with upside as a pass rusher, he fits the Falcons' need for trench toughness."
   },
   {
     "pick": 16,
@@ -149,7 +150,7 @@
     "player": "J.J. McCarthy",
     "position": "QB",
     "college": "Michigan",
-    "scoutingReport": "Surprise pick – Seattle drafts a QB in Round 1 despite recently acquiring Sam Darnold. McCarthy slid out of the top 10 after an up-and-down senior year, but Pete Carroll can’t pass on his arm talent here. He’ll sit behind Darnold initially."
+    "scoutingReport": "Surprise pick – Seattle drafts a QB in Round 1 despite recently acquiring Sam Darnold. McCarthy slid out of the top 10 after an up-and-down senior year, but Pete Carroll can't pass on his arm talent here. He'll sit behind Darnold initially."
   },
   {
     "pick": 20,
@@ -157,7 +158,7 @@
     "player": "Javon Bullard",
     "position": "CB",
     "college": "Georgia",
-    "scoutingReport": "Washington addresses the secondary with the gritty Bullard. A two-time national champion at Georgia, he’s a tough, nickel corner who can also play safety. Fills the void left by Kendall Fuller’s departure."
+    "scoutingReport": "Washington addresses the secondary with the gritty Bullard. A two-time national champion at Georgia, he's a tough, nickel corner who can also play safety. Fills the void left by Kendall Fuller's departure."
   },
   {
     "pick": 21,
@@ -173,7 +174,7 @@
     "player": "Jared Verse",
     "position": "EDGE",
     "college": "Florida State",
-    "scoutingReport": "The Bills happily snag Verse, who slips a bit due to a 2024 knee injury. Preseason, he was considered a top-10 talent. A ferocious edge rusher with bend and burst, he’ll learn from Von Miller and Greg Rousseau as he gets fully healthy."
+    "scoutingReport": "The Bills happily snag Verse, who slips a bit due to a 2024 knee injury. Preseason, he was considered a top-10 talent. A ferocious edge rusher with bend and burst, he'll learn from Von Miller and Greg Rousseau as he gets fully healthy."
   },
   {
     "pick": 23,
@@ -197,7 +198,7 @@
     "player": "Mason Taylor",
     "position": "TE",
     "college": "LSU",
-    "scoutingReport": "The rich get richer: KC grabs Travis Kelce’s heir apparent:contentReference[oaicite:125]{index=125}. Mason Taylor (Jason Taylor’s son) is an athletic move tight end who can learn from Kelce for a year. This pick keeps the Chiefs’ offense stocked for Mahomes long-term."
+    "scoutingReport": "The rich get richer: KC grabs Travis Kelce's heir apparent:contentReference[oaicite:125]{index=125}. Mason Taylor (Jason Taylor's son) is an athletic move tight end who can learn from Kelce for a year. This pick keeps the Chiefs' offense stocked for Mahomes long-term."
   },
   {
     "pick": 26,
@@ -213,7 +214,7 @@
     "player": "Patrick Paul",
     "position": "OT",
     "college": "Houston",
-    "scoutingReport": "Chargers continue investing in Justin Herbert’s protection. Paul is a massive left tackle (6'7\", 315) who dominated at Houston. With Rashawn Slater’s contract nearing end, Paul provides insurance or a bookend on the right side immediately."
+    "scoutingReport": "Chargers continue investing in Justin Herbert's protection. Paul is a massive left tackle (6'7\", 315) who dominated at Houston. With Rashawn Slater's contract nearing end, Paul provides insurance or a bookend on the right side immediately."
   },
   {
     "pick": 28,
@@ -221,7 +222,7 @@
     "player": "Brayden Taylor",
     "position": "CB",
     "college": "Utah",
-    "scoutingReport": "Philly’s secondary gets younger. Taylor is a physical corner who excels in press coverage – a potential successor to Darius Slay or James Bradberry. The Eagles prioritize the trenches normally, but here they pounce on a falling top-20 talent."
+    "scoutingReport": "Philly's secondary gets younger. Taylor is a physical corner who excels in press coverage – a potential successor to Darius Slay or James Bradberry. The Eagles prioritize the trenches normally, but here they pounce on a falling top-20 talent."
   },
   {
     "pick": 29,
@@ -229,7 +230,7 @@
     "player": "Shedeur Sanders",
     "position": "QB",
     "college": "Colorado",
-    "scoutingReport": "Trade! The Browns move back into Round 1 to grab their QB-in-waiting. Shedeur, Coach Prime’s son, has first-round traits (arm talent, poise) but slipped due to questions about level of competition. Cleveland gives him a year to develop behind Watson before an out in Watson’s contract after 2025."
+    "scoutingReport": "Trade! The Browns move back into Round 1 to grab their QB-in-waiting. Shedeur, Coach Prime's son, has first-round traits (arm talent, poise) but slipped due to questions about level of competition. Cleveland gives him a year to develop behind Watson before an out in Watson's contract after 2025."
   },
   {
     "pick": 30,
@@ -237,7 +238,7 @@
     "player": "Kingsley Suamataia",
     "position": "OT",
     "college": "BYU",
-    "scoutingReport": "Tampa Bay addresses O-line by taking the massive Suamataia, a former 5-star recruit. He’s raw but incredibly strong – the Bucs see shades of Tristan Wirfs in him. Fills the RT spot immediately to help protect whomever is at QB in 2025."
+    "scoutingReport": "Tampa Bay addresses O-line by taking the massive Suamataia, a former 5-star recruit. He's raw but incredibly strong – the Bucs see shades of Tristan Wirfs in him. Fills the RT spot immediately to help protect whomever is at QB in 2025."
   },
   {
     "pick": 31,
@@ -253,6 +254,7 @@
     "player": "Colston Loveland",
     "position": "TE",
     "college": "Michigan",
-    "scoutingReport": "After trading Dawson Knox, Buffalo uses the pick acquired from Dallas to select Loveland, a seam-stretching tight end. He was a favorite target at Michigan and will team with Dalton Kincaid to give Josh Allen two athletic TEs (echoes of the Patriots’ Gronk-Hernandez strategy)."
+    "scoutingReport": "After trading Dawson Knox, Buffalo uses the pick acquired from Dallas to select Loveland, a seam-stretching tight end. He was a favorite target at Michigan and will team with Dalton Kincaid to give Josh Allen two athletic TEs (echoes of the Patriots' Gronk-Hernandez strategy)."
   }
 ]
+}

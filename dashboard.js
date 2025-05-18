@@ -1,31 +1,32 @@
 // dashboard.js
+import { getTagBadgesHtml, standardTagDisplayConfig, getFlagIconsHtml } from './utils.js'; // Import if needed for other parts, or for consistency
 
 // Store references to key elements
 document.addEventListener("DOMContentLoaded", () => {
     const searchInput = document.querySelector("input[type='text']");
-    const searchResultsContainer = document.createElement("div");
-    searchResultsContainer.className = "absolute top-16 left-0 right-0 bg-gray-800 rounded-md z-20 max-h-64 overflow-y-auto shadow-lg border border-gray-600 hidden";
-    document.querySelector(".p-4")?.appendChild(searchResultsContainer);
+    // Note: search.js handles its own search results container logic now.
+    // const searchResultsContainer = document.createElement("div");
+    // searchResultsContainer.className = "absolute top-16 left-0 right-0 bg-gray-800 rounded-md z-20 max-h-64 overflow-y-auto shadow-lg border border-gray-600 hidden";
+    // document.querySelector(".p-4")?.appendChild(searchResultsContainer);
   
     let allPlayers = [];
-    let playerUpdates = {}; // To store data from player_profile_updates.json
+    // let playerUpdates = {}; // Removed: No longer needed with the new consolidated data file
   
-    // Load player data and profile updates
-    Promise.all([
-      fetch("./data/nfl_players_2025_enriched.json").then(res => res.json()),
-      fetch("./data/player_profile_updates.json").then(res => res.json())
-    ])
-    .then(([playersData, updatesData]) => {
-      playerUpdates = updatesData;
-      allPlayers = playersData.map(player => {
-        const updates = playerUpdates[player.playerId];
-        if (updates) {
-          return { ...player, ...updates }; // Merge updates into player object
-        }
-        return player;
-      });
+    // Load player data
+    fetch("./data/nfl_players_2025_enriched_full_final.json") // Updated file path
+    .then(res => res.json())
+    .then(playersData => {
+      // playerUpdates = updatesData; // Removed
+      allPlayers = playersData; // Data is already merged
+      // allPlayers = playersData.map(player => { // Removed mapping logic
+      //   const updates = playerUpdates[player.playerId];
+      //   if (updates) {
+      //     return { ...player, ...updates }; // Merge updates into player object
+      //   }
+      //   return player;
+      // });
 
-      console.log("✅ Loaded", allPlayers.length, "players and merged profile updates");
+      console.log("✅ Loaded", allPlayers.length, "players from the new consolidated data file for dashboard");
       // console.log(allPlayers.find(p => p.playerId === "3917315")); // For testing merge
 
       injectFeaturedPlayers(allPlayers);
@@ -33,7 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
       updateCoachCommentary(); // New function to update coach commentary
     })
     .catch(error => {
-      console.error("Error loading player data:", error);
+      console.error("Error loading player data for dashboard:", error);
       // Display an error message to the user in the UI if appropriate
       const featuredContainer = document.getElementById("featured-players-container");
       if (featuredContainer) {
@@ -53,17 +54,60 @@ document.addEventListener("DOMContentLoaded", () => {
         console.error("Featured players container not found!");
         return;
       }
-      const tagsToDisplay = ["🔥 Sleeper", "🚑 Injury Risk", "📈 Trending", "💰 Value Pick", "🚀 Starter Forward"];
-      featuredContainer.innerHTML = "";
+      // Use standardTagDisplayConfig from utils.js if imported and suitable, or define locally
+      const featuredTagMap = {
+        "🔥 Sleeper": "sleeper",
+        "🚑 Injury Risk": "injuryrisk",
+        "📈 Trending": "trending",
+        "💰 Value Pick": "valuepick",
+        "🚀 Starter Forward": "starterforward"
+        // Add other tags you want to feature, ensure keys match standardTagDisplayConfig if using it for consistency
+      };
+      const tagsToDisplay = Object.keys(featuredTagMap);
+      featuredContainer.innerHTML = ""; // Clear loading message
   
       tagsToDisplay.forEach((tagDisplayName) => {
-        const player = players.find(p => p.tags?.some(t => tagDisplayName.includes(t)));
-        const name = player ? player.name : "TBD";
+        const tagKey = featuredTagMap[tagDisplayName];
+        // Find the first player that has this specific tag.
+        const player = players.find(p => p.tags?.map(t => t.toLowerCase().replace(/[^a-zA-Z0-9]/g, "")).includes(tagKey));
+        
         const el = document.createElement("div");
-        el.className = "bg-gray-800 p-4 rounded-xl text-sm";
-        el.innerHTML = `${tagDisplayName}: <strong>${name}</strong>`;
+        el.className = "bg-gray-800 p-3 rounded-xl text-sm shadow-md hover:shadow-lg transition-shadow";
+        
+        let contentHtml = '';
+        if (player) {
+          contentHtml = `
+            <div class="flex items-center gap-2">
+              <img src="${player.headshot || './AeroVista-Logo.png'}" alt="${player.name}" class="w-10 h-10 rounded-full object-cover">
+              <div>
+                <span class="block font-semibold text-cyan-400">${tagDisplayName}</span>
+                <a href="player-page.html?id=${player.playerId}" class="text-white hover:underline">${player.name}</a>
+                <span class="text-xs text-gray-400"> (${player.position} - ${player.team})</span>
+              </div>
+            </div>`;
+        } else {
+          contentHtml = `
+            <div class="flex items-center gap-2">
+              <span class="text-2xl">${tagDisplayName.split(' ')[0]}</span> {/* Just the emoji */}
+              <div>
+                <span class="block font-semibold text-cyan-400">${tagDisplayName.substring(tagDisplayName.indexOf(' ') + 1)}</span>
+                <span class="text-gray-500 italic">No player currently highlighted for this tag.</span>
+              </div>
+            </div>`;
+        }
+        el.innerHTML = contentHtml;
         featuredContainer.appendChild(el);
       });
+      // Ensure grid has enough columns if fewer than 4 tags are found/displayed
+      if (tagsToDisplay.length < 4 && featuredContainer.children.length > 0) {
+        // Add placeholders if you want to maintain a 2x2 grid appearance
+        for (let i = featuredContainer.children.length; i < 4; i++) {
+            const placeholderEl = document.createElement("div");
+            placeholderEl.className = "bg-gray-800 p-3 rounded-xl text-sm shadow-md flex items-center justify-center text-gray-600 italic";
+            placeholderEl.textContent = "More insights soon...";
+            featuredContainer.appendChild(placeholderEl);
+        }
+      }
     }
   
     // Function to display My Squad
@@ -125,7 +169,7 @@ document.addEventListener("DOMContentLoaded", () => {
     searchInput?.addEventListener("input", (e) => {
       const query = e.target.value.toLowerCase();
       if (!query || allPlayers.length === 0) {
-        searchResultsContainer.classList.add("hidden");
+        // searchResultsContainer.classList.add("hidden");
         return;
       }
   
@@ -135,26 +179,26 @@ document.addEventListener("DOMContentLoaded", () => {
         p.position.toLowerCase().includes(query)
       ).slice(0, 10);
   
-      searchResultsContainer.innerHTML = matches.map((p) => `
-        <div class="p-2 hover:bg-gray-700 cursor-pointer text-sm border-b border-gray-700" data-player-id="${p.playerId}">
-          <strong>${p.name}</strong> – ${p.position} (${p.team})
-        </div>
-      `).join("");
+      // searchResultsContainer.innerHTML = matches.map((p) => `
+      //   <div class="p-2 hover:bg-gray-700 cursor-pointer text-sm border-b border-gray-700" data-player-id="${p.playerId}">
+      //     <strong>${p.name}</strong> – ${p.position} (${p.team})
+      //   </div>
+      // `).join("");
   
-      searchResultsContainer.classList.remove("hidden");
+      // searchResultsContainer.classList.remove("hidden");
   
       // Click handler
-      Array.from(searchResultsContainer.children).forEach(el => {
-        el.addEventListener("click", () => {
-          const id = el.getAttribute("data-player-id");
-          const player = allPlayers.find(p => p.playerId == id);
-          if (player) {
-            console.log("➡️ Open Player Page:", player);
-            window.location.href = `player-page.html?id=${player.playerId}`; // Route to full player view
-          }
-          searchResultsContainer.classList.add("hidden");
-        });
-      });
+      // Array.from(searchResultsContainer.children).forEach(el => {
+      //   el.addEventListener("click", () => {
+      //     const id = el.getAttribute("data-player-id");
+      //     const player = allPlayers.find(p => p.playerId == id);
+      //     if (player) {
+      //       console.log("➡️ Open Player Page:", player);
+      //       window.location.href = `player-page.html?id=${player.playerId}`; // Route to full player view
+      //     }
+      //     searchResultsContainer.classList.add("hidden");
+      //   });
+      // });
     });
   });
   
