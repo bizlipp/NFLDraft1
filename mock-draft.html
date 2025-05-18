@@ -21,7 +21,8 @@
     <section class="md:col-span-2 bg-gray-800 p-4 rounded-xl shadow-lg flex flex-col">
       <div class="flex justify-between items-center mb-4">
         <h2 class="text-xl font-semibold text-cyan-300">Available Players</h2>
-        <div>
+        <div class="flex gap-2 items-center">
+          <input type="text" id="mock-draft-player-search" placeholder="Search available..." class="bg-gray-700 text-white p-2 rounded-md text-sm focus:ring-cyan-500 focus:border-cyan-500">
           <label for="available-position-filter" class="sr-only">Filter by Position:</label>
           <select id="available-position-filter" class="bg-gray-700 text-white p-2 rounded-md text-sm focus:ring-cyan-500 focus:border-cyan-500">
             <option value="ALL">All</option>

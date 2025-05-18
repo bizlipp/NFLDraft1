@@ -32,6 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
       injectFeaturedPlayers(allPlayers);
       displayMySquad();
       updateCoachCommentary(); // New function to update coach commentary
+      populateLeagueLeaders(allPlayers); // Added call
     })
     .catch(error => {
       console.error("Error loading player data for dashboard:", error);
@@ -54,23 +55,34 @@ document.addEventListener("DOMContentLoaded", () => {
         console.error("Featured players container not found!");
         return;
       }
-      // Use standardTagDisplayConfig from utils.js if imported and suitable, or define locally
+      console.log("[Dashboard] Injecting featured players. Total players available:", players.length);
+
       const featuredTagMap = {
         "🔥 Sleeper": "sleeper",
         "🚑 Injury Risk": "injuryrisk",
         "📈 Trending": "trending",
         "💰 Value Pick": "valuepick",
         "🚀 Starter Forward": "starterforward"
-        // Add other tags you want to feature, ensure keys match standardTagDisplayConfig if using it for consistency
       };
       const tagsToDisplay = Object.keys(featuredTagMap);
-      featuredContainer.innerHTML = ""; // Clear loading message
-  
+      featuredContainer.innerHTML = ""; 
+      let playersFoundForAnyTag = false;
+
       tagsToDisplay.forEach((tagDisplayName) => {
         const tagKey = featuredTagMap[tagDisplayName];
-        // Find the first player that has this specific tag.
-        const player = players.find(p => p.tags?.map(t => t.toLowerCase().replace(/[^a-zA-Z0-9]/g, "")).includes(tagKey));
+        console.log(`[Dashboard] Searching for featured player with tag key: ${tagKey}`);
+        const player = players.find(p => {
+            const normalizedPlayerTags = p.tags?.map(t => t.toLowerCase().replace(/[^a-zA-Z0-9]/g, ""));
+            return normalizedPlayerTags?.includes(tagKey);
+        });
         
+        if(player) {
+            console.log(`[Dashboard] Found player for ${tagDisplayName}:`, player.name);
+            playersFoundForAnyTag = true;
+        } else {
+            console.log(`[Dashboard] No player found for tag: ${tagDisplayName} (key: ${tagKey})`);
+        }
+
         const el = document.createElement("div");
         el.className = "bg-gray-800 p-3 rounded-xl text-sm shadow-md hover:shadow-lg transition-shadow";
         
@@ -98,9 +110,33 @@ document.addEventListener("DOMContentLoaded", () => {
         el.innerHTML = contentHtml;
         featuredContainer.appendChild(el);
       });
-      // Ensure grid has enough columns if fewer than 4 tags are found/displayed
-      if (tagsToDisplay.length < 4 && featuredContainer.children.length > 0) {
-        // Add placeholders if you want to maintain a 2x2 grid appearance
+
+      console.log("[Dashboard] Finished processing featured tags. Players found for any tag:", playersFoundForAnyTag);
+      console.log("[Dashboard] Featured container children count:", featuredContainer.children.length);
+
+      if (featuredContainer.children.length === 0 && tagsToDisplay.length > 0) {
+          // This case means no players were found for ANY tag, and no placeholders were added yet.
+          tagsToDisplay.forEach(tagDisplayName => {
+              const el = document.createElement("div");
+              el.className = "bg-gray-800 p-3 rounded-xl text-sm shadow-md hover:shadow-lg transition-shadow";
+              el.innerHTML = `
+                <div class="flex items-center gap-2">
+                  <span class="text-2xl">${tagDisplayName.split(' ')[0]}</span>
+                  <div>
+                    <span class="block font-semibold text-cyan-400">${tagDisplayName.substring(tagDisplayName.indexOf(' ') + 1)}</span>
+                    <span class="text-gray-500 italic">No player currently highlighted.</span>
+                  </div>
+                </div>`;
+              featuredContainer.appendChild(el);
+          });
+          console.log("[Dashboard] Added default placeholders as no players were found for any featured tag.");
+      } else if (featuredContainer.children.length < tagsToDisplay.length && featuredContainer.children.length > 0) {
+        // If some players were found, but not enough to fill all tag categories, fill remaining
+        // This case might be covered if the main loop already adds a placeholder if player is not found for a specific tag.
+        // The existing logic inside the loop that adds a placeholder when `player` is null for a tag handles this.
+      }
+      // Ensure grid has enough columns (e.g. up to 4 items total)
+      if (featuredContainer.children.length > 0 && featuredContainer.children.length < 4) {
         for (let i = featuredContainer.children.length; i < 4; i++) {
             const placeholderEl = document.createElement("div");
             placeholderEl.className = "bg-gray-800 p-3 rounded-xl text-sm shadow-md flex items-center justify-center text-gray-600 italic";
@@ -165,40 +201,60 @@ document.addEventListener("DOMContentLoaded", () => {
       coachCommentaryContainer.textContent = advice;
     }
   
-    // Search behavior
-    searchInput?.addEventListener("input", (e) => {
-      const query = e.target.value.toLowerCase();
-      if (!query || allPlayers.length === 0) {
-        // searchResultsContainer.classList.add("hidden");
-        return;
+    function populateLeagueLeaders(players) {
+      const positionsToLead = {
+        "Top QBs": "QB",
+        "Top RBs": "RB",
+        "Top WRs": "WR"
+      };
+
+      const leaderSections = document.querySelectorAll("#league-leaders-container .bg-gray-800");
+      if (!leaderSections || leaderSections.length !== Object.keys(positionsToLead).length) {
+        console.warn("[Dashboard] League leader section divs not found or mismatch count. Expected 3.");
+        // Try a more specific selector if the generic one fails
+        const container = document.querySelector("section h2 + div.grid.grid-cols-3"); // Based on HTML structure around League Leaders
+        if(container && container.children.length === 3){
+            // If this works, proceed with container.children[0], container.children[1], etc.
+            // This is a fallback, ideally the querySelectorAll above is more robust.
+        } else {
+             console.error("[Dashboard] Could not find league leader containers accurately.");
+             return;
+        }
       }
+
+      let sectionIndex = 0;
+      for (const sectionTitle in positionsToLead) {
+        const position = positionsToLead[sectionTitle];
+        const positionPlayers = players.filter(p => p.position === position && p.fantasy?.pprPoints !== undefined && p.fantasy.pprPoints !== null);
+        
+        if (positionPlayers.length > 0) {
+          positionPlayers.sort((a, b) => (b.fantasy.pprPoints ?? -Infinity) - (a.fantasy.pprPoints ?? -Infinity));
+          const leader = positionPlayers[0]; // Top 1 leader
+
+          const sectionDiv = leaderSections[sectionIndex];
+          if (sectionDiv) {
+            sectionDiv.innerHTML = `
+              <div class="text-xs text-cyan-400 font-semibold mb-1">${sectionTitle}</div>
+              <a href="player-page.html?id=${leader.playerId}" class="text-white hover:underline text-sm block truncate" title="${leader.name}">${leader.name}</a>
+              <div class="text-xs text-gray-400">${(leader.fantasy.pprPoints).toFixed(1)} pts</div>
+            `;
+          } else {
+            console.warn(`[Dashboard] League leader section div not found for ${sectionTitle}`);
+          }
+        } else {
+          const sectionDiv = leaderSections[sectionIndex];
+          if (sectionDiv) {
+            sectionDiv.innerHTML = `
+              <div class="text-xs text-cyan-400 font-semibold mb-1">${sectionTitle}</div>
+              <div class="text-gray-500 text-sm italic">N/A</div>
+            `;
+          }
+        }
+        sectionIndex++;
+      }
+    }
   
-      const matches = allPlayers.filter((p) =>
-        p.name.toLowerCase().includes(query) ||
-        p.team.toLowerCase().includes(query) ||
-        p.position.toLowerCase().includes(query)
-      ).slice(0, 10);
-  
-      // searchResultsContainer.innerHTML = matches.map((p) => `
-      //   <div class="p-2 hover:bg-gray-700 cursor-pointer text-sm border-b border-gray-700" data-player-id="${p.playerId}">
-      //     <strong>${p.name}</strong> – ${p.position} (${p.team})
-      //   </div>
-      // `).join("");
-  
-      // searchResultsContainer.classList.remove("hidden");
-  
-      // Click handler
-      // Array.from(searchResultsContainer.children).forEach(el => {
-      //   el.addEventListener("click", () => {
-      //     const id = el.getAttribute("data-player-id");
-      //     const player = allPlayers.find(p => p.playerId == id);
-      //     if (player) {
-      //       console.log("➡️ Open Player Page:", player);
-      //       window.location.href = `player-page.html?id=${player.playerId}`; // Route to full player view
-      //     }
-      //     searchResultsContainer.classList.add("hidden");
-      //   });
-      // });
-    });
+    // Search behavior (commented out as search.js handles this globally now)
+    // searchInput?.addEventListener("input", (e) => { ... });
   });
   
