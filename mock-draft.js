@@ -242,6 +242,20 @@ document.addEventListener("DOMContentLoaded", () => {
     const aiTeamIndex = draftOrder[totalDraftPicks] - 1; // -1 because 1-based for AI teams
     if (aiTeamIndex < 0) return; // User's turn
     
+    // Skip if this AI team is already full
+    if (aiTeams[aiTeamIndex].length >= MAX_TEAM_SIZE) {
+      totalDraftPicks++;
+      updateDraftRoundPick();
+      return;
+    }
+    
+    // Skip if there are no available players
+    if (availablePlayersPool.length === 0) {
+      totalDraftPicks++;
+      updateDraftRoundPick();
+      return;
+    }
+    
     const aiTeam = aiTeams[aiTeamIndex];
     let selectedPlayer;
     
@@ -310,7 +324,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     
     // Take the top player from our filtered and sorted pool
-    selectedPlayer = draftPool[0];
+    selectedPlayer = draftPool.length > 0 ? draftPool[0] : null;
     
     // Make the pick
     if (selectedPlayer) {
@@ -327,7 +341,15 @@ document.addEventListener("DOMContentLoaded", () => {
         
         // Highlight the pick in the draft board
         highlightLatestPick();
+      } else {
+        // Somehow player not found in pool, increment counter and move on
+        totalDraftPicks++;
+        updateDraftRoundPick();
       }
+    } else {
+      // No suitable player, increment counter and move on
+      totalDraftPicks++;
+      updateDraftRoundPick();
     }
   }
   
@@ -338,7 +360,24 @@ document.addEventListener("DOMContentLoaded", () => {
       aiDraftTimer = null;
     }
     
-    // Check if draft is complete
+    // Check if draft is complete - either by total picks or if all teams are full
+    const teamsInLeague = NUM_AI_TEAMS + 1;
+    const maxPossiblePicks = teamsInLeague * MAX_TEAM_SIZE;
+    
+    const isUserTeamFull = myMockTeam.length >= MAX_TEAM_SIZE;
+    const areAITeamsFull = aiTeams.every(team => team.length >= MAX_TEAM_SIZE);
+    
+    if (totalDraftPicks >= maxPossiblePicks || (isUserTeamFull && areAITeamsFull)) {
+      isAIDraftInProgress = false;
+      if (startAIDraftBtn) {
+        startAIDraftBtn.disabled = false;
+        startAIDraftBtn.textContent = "Reset & Restart Draft";
+      }
+      alert("Draft complete!");
+      return;
+    }
+    
+    // Check if we've reached the end of the draft order array
     if (totalDraftPicks >= draftOrder.length) {
       isAIDraftInProgress = false;
       if (startAIDraftBtn) {
@@ -347,6 +386,27 @@ document.addEventListener("DOMContentLoaded", () => {
       }
       alert("Draft complete!");
       return;
+    }
+    
+    // Check if it's the user's turn and their team is already full
+    if (draftOrder[totalDraftPicks] === 0 && myMockTeam.length >= MAX_TEAM_SIZE) {
+      // Skip user's turn if their team is full
+      totalDraftPicks++;
+      updateDraftRoundPick();
+      continueAIDraft();
+      return;
+    }
+    
+    // Check if it's an AI team's turn and that team is already full
+    if (draftOrder[totalDraftPicks] > 0) {
+      const aiTeamIndex = draftOrder[totalDraftPicks] - 1;
+      if (aiTeams[aiTeamIndex].length >= MAX_TEAM_SIZE) {
+        // Skip this AI team's turn if their team is full
+        totalDraftPicks++;
+        updateDraftRoundPick();
+        continueAIDraft();
+        return;
+      }
     }
     
     // Check if it's user's turn
@@ -425,10 +485,16 @@ document.addEventListener("DOMContentLoaded", () => {
       draftBoardContainer.innerHTML = boardHTML;
     }
     
-    // Fill in current picks
-    // User team
+    // We don't reset all cells to empty anymore
+    // Instead, we'll update only the cells that need updating
+    
+    // Process user team picks (team 0)
     myMockTeam.forEach((player, index) => {
-      const round = Math.floor(index / (NUM_AI_TEAMS + 1)) + 1;
+      if (index >= MAX_TEAM_SIZE) return; // Skip if we somehow have more than max team size
+      
+      // Find which round this pick belongs to
+      const round = index + 1; // User picks go one per round
+      
       const cellId = `draft-r${round}-t0`;
       const cell = document.getElementById(cellId);
       if (cell) {
@@ -437,11 +503,17 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
     
-    // AI teams
+    // Process AI team picks
     aiTeams.forEach((team, teamIndex) => {
-      team.forEach((player, playerIndex) => {
-        const round = Math.floor(playerIndex / (NUM_AI_TEAMS + 1)) + 1;
-        const cellId = `draft-r${round}-t${teamIndex + 1}`;
+      const teamId = teamIndex + 1; // AI teams start at index 1
+      
+      team.forEach((player, index) => {
+        if (index >= MAX_TEAM_SIZE) return; // Skip if we somehow have more than max team size
+        
+        // Find which round this pick belongs to
+        const round = index + 1; // Each AI team gets one pick per round
+        
+        const cellId = `draft-r${round}-t${teamId}`;
         const cell = document.getElementById(cellId);
         if (cell) {
           cell.innerHTML = `<div class="truncate">${player.name} <span class="text-gray-400">${player.position}</span></div>`;
@@ -458,13 +530,18 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     
     // Highlight the latest pick
-    if (totalDraftPicks > 0) {
+    if (totalDraftPicks > 0 && totalDraftPicks <= draftOrder.length) {
       const pickTeam = draftOrder[totalDraftPicks - 1];
-      const round = Math.floor((totalDraftPicks - 1) / (NUM_AI_TEAMS + 1)) + 1;
-      const cellId = `draft-r${round}-t${pickTeam}`;
-      const cell = document.getElementById(cellId);
-      if (cell) {
-        cell.classList.add('bg-cyan-900');
+      const teamsInLeague = NUM_AI_TEAMS + 1;
+      const round = Math.floor((totalDraftPicks - 1) / teamsInLeague) + 1;
+      
+      // Only highlight if within our max team size
+      if (round <= MAX_TEAM_SIZE) {
+        const cellId = `draft-r${round}-t${pickTeam}`;
+        const cell = document.getElementById(cellId);
+        if (cell) {
+          cell.classList.add('bg-cyan-900');
+        }
       }
     }
   }
