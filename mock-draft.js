@@ -21,12 +21,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const startAIDraftBtn = document.getElementById("start-ai-draft-btn");
   const draftRoundEl = document.getElementById("draft-round");
   const draftPickEl = document.getElementById("draft-pick");
-  const themeToggleBtn = document.getElementById("theme-toggle");
-  const themeDropdown = document.getElementById("theme-dropdown");
-  const themeOptions = document.querySelectorAll(".theme-option");
 
   const MOCK_DRAFT_TEAM_KEY = "mockDraftTeam";
-  const THEME_STORAGE_KEY = "preferred-nfl-theme";
   const MAX_TEAM_SIZE = 15;
   const NUM_AI_TEAMS = 11; // Standard 12-team league (user + 11 AI teams)
   
@@ -44,79 +40,6 @@ document.addEventListener("DOMContentLoaded", () => {
   let currentAvailablePositionFilter = "ALL";
   let currentMockDraftSearchQuery = "";
   let aiDraftTimer = null;
-
-  // Theme functionality
-  function initTheme() {
-    // Set the theme from localStorage or default to standard NFL theme
-    const savedTheme = localStorage.getItem(THEME_STORAGE_KEY) || 'default';
-    applyTheme(savedTheme);
-    
-    // Toggle the theme dropdown
-    if (themeToggleBtn) {
-      themeToggleBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        themeDropdown.classList.toggle('hidden');
-      });
-    }
-    
-    // Hide dropdown when clicking outside
-    document.addEventListener('click', (e) => {
-      if (!themeDropdown.contains(e.target) && e.target !== themeToggleBtn) {
-        themeDropdown.classList.add('hidden');
-      }
-    });
-    
-    // Apply theme when option is clicked
-    themeOptions.forEach(option => {
-      option.addEventListener('click', () => {
-        const theme = option.getAttribute('data-theme');
-        applyTheme(theme);
-        localStorage.setItem(THEME_STORAGE_KEY, theme);
-        themeDropdown.classList.add('hidden');
-      });
-    });
-  }
-  
-  function applyTheme(theme) {
-    // Remove any existing theme
-    document.body.classList.forEach(cls => {
-      if (cls.startsWith('theme-')) document.body.classList.remove(cls);
-    });
-    
-    // Remove data-theme attribute
-    document.documentElement.removeAttribute('data-theme');
-    
-    // Apply the selected theme
-    if (theme && theme !== 'default') {
-      document.documentElement.setAttribute('data-theme', theme);
-      document.body.classList.add(`theme-${theme}`);
-      
-      // Update the highlight for the team's draft cells
-      if (theme !== 'default') {
-        document.querySelectorAll('.bg-cyan-900').forEach(el => {
-          el.classList.remove('bg-cyan-900');
-          el.classList.add('bg-team');
-        });
-        
-        // Update other cyan elements to use team colors
-        document.querySelectorAll('.text-cyan-300, .text-cyan-400').forEach(el => {
-          el.classList.remove('text-cyan-300', 'text-cyan-400');
-          el.classList.add('text-team-accent');
-        });
-      }
-    } else {
-      // Restore default theme elements
-      document.querySelectorAll('.bg-team').forEach(el => {
-        el.classList.remove('bg-team');
-        el.classList.add('bg-cyan-900');
-      });
-      
-      document.querySelectorAll('.text-team-accent').forEach(el => {
-        el.classList.remove('text-team-accent');
-        el.classList.add('text-cyan-300');
-      });
-    }
-  }
 
   function loadMockTeam() {
     const storedTeam = sessionStorage.getItem(MOCK_DRAFT_TEAM_KEY);
@@ -189,9 +112,6 @@ document.addEventListener("DOMContentLoaded", () => {
       startAIDraftBtn.textContent = "Start AI Draft";
     }
   }
-
-  // Initialize the theme system
-  initTheme();
 
   function renderAvailablePlayers() {
     if (!availablePlayersListEl) return;

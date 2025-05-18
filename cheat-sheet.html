@@ -8,6 +8,8 @@
   <link rel="icon" href="AeroVista-Logo.png" type="image/png">
   <title>FantasyForge - Cheat Sheet</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/nfl-themes.css">
+  <link rel="stylesheet" href="css/cheat-sheet.css">
   <!-- Import map to ensure modules load correctly on GitHub Pages -->
   <script type="importmap">
     {
@@ -15,11 +17,12 @@
         "./data-service.js": "./data-service.js",
         "./utils.js": "./utils.js",
         "./my-squad.js": "./my-squad.js",
-        "./header-nav.js": "./header-nav.js"
+        "./header-nav.js": "./header-nav.js",
+        "./theme-manager.js": "./theme-manager.js",
+        "./search.js": "./search.js"
       }
     }
   </script>
-    <link rel="stylesheet" href="css/cheat-sheet.css">
 </head>
 <body class="bg-gray-900 text-white min-h-screen p-6">
   <!-- Header will be injected by header-nav.js -->
@@ -85,6 +88,14 @@
       </table>
     </div>
   </main>
+  
+  <script type="module">
+    import { initializeHeader } from './header-nav.js';
+    
+    document.addEventListener('DOMContentLoaded', function() {
+      initializeHeader('cheatsheet');
+    });
+  </script>
   <script src="my-squad.js" type="module"></script>
   <script src="cheat-sheet.js" type="module"></script>
 </body>

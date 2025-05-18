@@ -8,20 +8,35 @@
   <link rel="icon" href="AeroVista-Logo.png" type="image/png">
   <title>FantasyForge - Compare Players</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/nfl-themes.css">
   <link rel="stylesheet" href="css/compare.css">
   <!-- Import map to ensure modules load correctly on GitHub Pages -->
   <script type="importmap">
     {
       "imports": {
         "./data-service.js": "./data-service.js",
-        "./utils.js": "./utils.js"
+        "./utils.js": "./utils.js",
+        "./header-nav.js": "./header-nav.js",
+        "./theme-manager.js": "./theme-manager.js",
+        "./search.js": "./search.js"
       }
     }
   </script>
 </head>
 <body class="bg-gray-900 text-white p-4">
-  <h1 class="text-2xl font-bold mb-6 text-center">Player Comparison</h1>
-  <div id="compare-grid" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+  <!-- Header will be injected by header-nav.js -->
+  <div class="mt-16">
+    <h1 class="text-2xl font-bold mb-6 text-center">Player Comparison</h1>
+    <div id="compare-grid" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+  </div>
+  
+  <script type="module">
+    import { initializeHeader } from './header-nav.js';
+    
+    document.addEventListener('DOMContentLoaded', function() {
+      initializeHeader('compare');
+    });
+  </script>
   <script src="compare.js" type="module"></script>
 </body>
 </html>

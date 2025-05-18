@@ -60,10 +60,22 @@ export function applyTheme(theme) {
   // Remove data-theme attribute
   document.documentElement.removeAttribute('data-theme');
   
+  // Handle legacy theme naming
+  let normalizedTheme = theme;
+  if (theme === 'dark-base' || theme === 'dark-cyberpunk' || theme === 'dark-midnight') {
+    normalizedTheme = 'default'; // Map old dark themes to default
+  } else if (theme === 'light-base' || theme === 'light-mint') {
+    normalizedTheme = 'light'; // Map old light themes to light
+  } else if (theme === 'team-packers') {
+    normalizedTheme = 'packers';
+  } else if (theme === 'team-chiefs') {
+    normalizedTheme = 'chiefs';
+  }
+  
   // Apply the selected theme
-  if (theme && theme !== DEFAULT_THEME) {
-    document.documentElement.setAttribute('data-theme', theme);
-    document.body.classList.add(`theme-${theme}`);
+  if (normalizedTheme && normalizedTheme !== DEFAULT_THEME) {
+    document.documentElement.setAttribute('data-theme', normalizedTheme);
+    document.body.classList.add(`theme-${normalizedTheme}`);
     
     // Update UI elements with team colors
     updateUIColors(true);
@@ -71,6 +83,12 @@ export function applyTheme(theme) {
     // Restore default theme elements
     updateUIColors(false);
   }
+
+  // Store the normalized theme
+  localStorage.setItem(THEME_STORAGE_KEY, normalizedTheme);
+
+  // For debugging
+  console.log(`Theme applied: ${normalizedTheme}`);
 }
 
 /**
@@ -171,69 +189,97 @@ function insertThemeToggle() {
   const themeSwitcherHTML = `
     <div class="theme-switcher fixed top-4 right-4 z-50">
       <button id="theme-toggle" class="theme-toggle flex items-center justify-center w-10 h-10 rounded-full bg-gray-800 text-white shadow-lg" title="Change Theme" aria-label="Toggle theme selection menu">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
-        </svg>
+        <span>🎨</span>
       </button>
       <div id="theme-dropdown" class="hidden absolute right-0 mt-2 py-2 w-48 bg-gray-800 rounded-md shadow-xl z-20">
         <div class="px-4 py-2 text-sm text-gray-300 border-b border-gray-700">Select Theme</div>
+        
         <div class="theme-option-group px-2 py-1">
           <div class="theme-option-heading text-xs text-gray-500 uppercase tracking-wider py-1">NFL Team Themes</div>
           <div class="theme-option" data-theme="cardinals">
             <div class="flex items-center p-2 hover:bg-gray-700 rounded">
-              <div class="w-4 h-4 bg-cardinals mr-2 rounded"></div>
+              <div class="w-4 h-4 bg-red-700 mr-2 rounded"></div>
               <span>Cardinals</span>
             </div>
           </div>
           <div class="theme-option" data-theme="chiefs">
             <div class="flex items-center p-2 hover:bg-gray-700 rounded">
-              <div class="w-4 h-4 bg-chiefs mr-2 rounded"></div>
+              <div class="w-4 h-4 bg-red-600 mr-2 rounded"></div>
               <span>Chiefs</span>
             </div>
           </div>
           <div class="theme-option" data-theme="cowboys">
             <div class="flex items-center p-2 hover:bg-gray-700 rounded">
-              <div class="w-4 h-4 bg-cowboys mr-2 rounded"></div>
+              <div class="w-4 h-4 bg-blue-800 mr-2 rounded"></div>
               <span>Cowboys</span>
             </div>
           </div>
           <div class="theme-option" data-theme="packers">
             <div class="flex items-center p-2 hover:bg-gray-700 rounded">
-              <div class="w-4 h-4 bg-packers mr-2 rounded"></div>
+              <div class="w-4 h-4 bg-green-700 mr-2 rounded"></div>
               <span>Packers</span>
             </div>
           </div>
           <div class="theme-option" data-theme="seahawks">
             <div class="flex items-center p-2 hover:bg-gray-700 rounded">
-              <div class="w-4 h-4 bg-seahawks mr-2 rounded"></div>
+              <div class="w-4 h-4 bg-teal-600 mr-2 rounded"></div>
               <span>Seahawks</span>
             </div>
           </div>
           <div class="theme-option" data-theme="steelers">
             <div class="flex items-center p-2 hover:bg-gray-700 rounded">
-              <div class="w-4 h-4 bg-steelers mr-2 rounded"></div>
+              <div class="w-4 h-4 bg-yellow-500 mr-2 rounded"></div>
               <span>Steelers</span>
             </div>
           </div>
           <div class="theme-option" data-theme="niners">
             <div class="flex items-center p-2 hover:bg-gray-700 rounded">
-              <div class="w-4 h-4 bg-niners mr-2 rounded"></div>
+              <div class="w-4 h-4 bg-red-800 mr-2 rounded"></div>
               <span>49ers</span>
             </div>
           </div>
           <div class="theme-option" data-theme="patriots">
             <div class="flex items-center p-2 hover:bg-gray-700 rounded">
-              <div class="w-4 h-4 bg-patriots mr-2 rounded"></div>
+              <div class="w-4 h-4 bg-blue-900 mr-2 rounded"></div>
               <span>Patriots</span>
             </div>
           </div>
         </div>
+        
         <div class="theme-option-group px-2 py-1 border-t border-gray-700">
-          <div class="theme-option-heading text-xs text-gray-500 uppercase tracking-wider py-1">Default Themes</div>
+          <div class="theme-option-heading text-xs text-gray-500 uppercase tracking-wider py-1">Dark Themes</div>
           <div class="theme-option" data-theme="default">
             <div class="flex items-center p-2 hover:bg-gray-700 rounded">
               <div class="w-4 h-4 bg-gray-900 mr-2 rounded"></div>
               <span>Default (NFL Blue)</span>
+            </div>
+          </div>
+          <div class="theme-option" data-theme="dark-cyberpunk">
+            <div class="flex items-center p-2 hover:bg-gray-700 rounded">
+              <div class="w-4 h-4 bg-purple-900 mr-2 rounded"></div>
+              <span>Cyberpunk</span>
+            </div>
+          </div>
+          <div class="theme-option" data-theme="dark-midnight">
+            <div class="flex items-center p-2 hover:bg-gray-700 rounded">
+              <div class="w-4 h-4 bg-indigo-900 mr-2 rounded"></div>
+              <span>Midnight</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="theme-option-group px-2 py-1 border-t border-gray-700">
+          <div class="theme-option-heading text-xs text-gray-500 uppercase tracking-wider py-1">Light Themes</div>
+          <div class="theme-option" data-theme="light-base">
+            <div class="flex items-center p-2 hover:bg-gray-700 rounded">
+              <div class="w-4 h-4 bg-gray-300 mr-2 rounded"></div>
+              <span>Light Mode</span>
+            </div>
+          </div>
+          <div class="theme-option" data-theme="light-mint">
+            <div class="flex items-center p-2 hover:bg-gray-700 rounded">
+              <div class="w-4 h-4 bg-green-300 mr-2 rounded"></div>
+              <span>Mint Fresh</span>
             </div>
           </div>
         </div>
@@ -247,15 +293,112 @@ function insertThemeToggle() {
   bodyEl.appendChild(tempDiv.firstElementChild);
 }
 
-// Auto-initialize theme system when this script is included directly
-if (typeof document !== 'undefined') {
-  // Wait for DOM to be ready
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initializeThemeSystem);
-  } else {
-    initializeThemeSystem();
+// Add CSS variables for team colors
+function addTeamColorStyles() {
+  // Create a style element if it doesn't exist
+  let styleEl = document.getElementById('team-color-styles');
+  if (!styleEl) {
+    styleEl = document.createElement('style');
+    styleEl.id = 'team-color-styles';
+    document.head.appendChild(styleEl);
   }
+
+  // Define team color variables
+  styleEl.textContent = `
+    :root {
+      /* Default theme colors */
+      --team-primary: #0891b2;
+      --team-secondary: #06748e;
+      --team-accent: #67e8f9;
+    }
+    
+    /* Team-specific colors */
+    [data-theme="cardinals"] {
+      --team-primary: #97233F;
+      --team-secondary: #7B1D35;
+      --team-accent: #FFB612;
+    }
+    
+    [data-theme="chiefs"] {
+      --team-primary: #E31837;
+      --team-secondary: #C8102E;
+      --team-accent: #FFB81C;
+    }
+    
+    [data-theme="cowboys"] {
+      --team-primary: #003594;
+      --team-secondary: #00297B;
+      --team-accent: #B0B7BC;
+    }
+    
+    [data-theme="packers"] {
+      --team-primary: #203731;
+      --team-secondary: #1B2E2A;
+      --team-accent: #FFB612;
+    }
+    
+    [data-theme="seahawks"] {
+      --team-primary: #002244;
+      --team-secondary: #001B36;
+      --team-accent: #69BE28;
+    }
+    
+    [data-theme="steelers"] {
+      --team-primary: #101820;
+      --team-secondary: #000000;
+      --team-accent: #FFB612;
+    }
+    
+    [data-theme="niners"] {
+      --team-primary: #AA0000;
+      --team-secondary: #950000;
+      --team-accent: #B3995D;
+    }
+    
+    [data-theme="patriots"] {
+      --team-primary: #002244;
+      --team-secondary: #001B36;
+      --team-accent: #C60C30;
+    }
+    
+    /* Background colors */
+    .bg-team {
+      background-color: var(--team-primary);
+    }
+    
+    .bg-team-secondary {
+      background-color: var(--team-secondary);
+    }
+    
+    .hover\\:bg-team:hover {
+      background-color: var(--team-primary);
+    }
+    
+    .hover\\:bg-team-secondary:hover {
+      background-color: var(--team-secondary);
+    }
+    
+    /* Text colors */
+    .text-team-accent {
+      color: var(--team-accent);
+    }
+    
+    /* Border colors */
+    .border-team-accent {
+      border-color: var(--team-accent);
+    }
+    
+    /* Focus rings */
+    .focus\\:ring-team-accent:focus {
+      --tw-ring-color: var(--team-accent);
+    }
+  `;
 }
+
+// Auto-initialize theme system when page loads
+document.addEventListener('DOMContentLoaded', () => {
+  addTeamColorStyles();
+});
 
 // Export for those importing the module
 export default {

@@ -1,0 +1,507 @@
+/* NFL Team Color Themes 
+ * CSS Variables and utility classes for NFL team colors
+ */
+
+/* Root level variables for default theme */
+:root {
+  /* Default theme colors */
+  --team-primary: #0891b2;
+  --team-secondary: #06748e;
+  --team-accent: #67e8f9;
+
+  /* NFL Team Colors - Primary & Secondary colors for each team */
+  --cardinals-primary: #97233F;
+  --cardinals-secondary: #000000;
+  --falcons-primary: #A71930;
+  --falcons-secondary: #000000;
+  --ravens-primary: #241773;
+  --ravens-secondary: #000000;
+  --bills-primary: #00338D;
+  --bills-secondary: #C60C30;
+  --panthers-primary: #0085CA;
+  --panthers-secondary: #101820;
+  --bears-primary: #0B162A;
+  --bears-secondary: #C83803;
+  --bengals-primary: #FB4F14;
+  --bengals-secondary: #000000;
+  --browns-primary: #311D00;
+  --browns-secondary: #FF3C00;
+  --cowboys-primary: #003594;
+  --cowboys-secondary: #869397;
+  --broncos-primary: #FB4F14;
+  --broncos-secondary: #002244;
+  --lions-primary: #0076B6;
+  --lions-secondary: #B0B7BC;
+  --packers-primary: #203731;
+  --packers-secondary: #FFB612;
+  --texans-primary: #03202F;
+  --texans-secondary: #A71930;
+  --colts-primary: #002C5F;
+  --colts-secondary: #A2AAAD;
+  --jaguars-primary: #006778;
+  --jaguars-secondary: #9F792C;
+  --chiefs-primary: #E31837;
+  --chiefs-secondary: #FFB81C;
+  --raiders-primary: #000000;
+  --raiders-secondary: #A5ACAF;
+  --chargers-primary: #0080C6;
+  --chargers-secondary: #FFC20E;
+  --rams-primary: #003594;
+  --rams-secondary: #FFA300;
+  --dolphins-primary: #008E97;
+  --dolphins-secondary: #FC4C02;
+  --vikings-primary: #4F2683;
+  --vikings-secondary: #FFC62F;
+  --patriots-primary: #002244;
+  --patriots-secondary: #C60C30;
+  --saints-primary: #D3BC8D;
+  --saints-secondary: #101820;
+  --giants-primary: #0B2265;
+  --giants-secondary: #A71930;
+  --jets-primary: #125740;
+  --jets-secondary: #000000;
+  --eagles-primary: #004C54;
+  --eagles-secondary: #A5ACAF;
+  --steelers-primary: #101820;
+  --steelers-secondary: #FFB612;
+  --niners-primary: #AA0000;
+  --niners-secondary: #B3995D;
+  --seahawks-primary: #002244;
+  --seahawks-secondary: #69BE28;
+  --buccaneers-primary: #D50A0A;
+  --buccaneers-secondary: #FF7900;
+  --titans-primary: #0C2340;
+  --titans-secondary: #4B92DB;
+  --commanders-primary: #5A1414;
+  --commanders-secondary: #FFB612;
+}
+
+/* NFL Team Themes */
+[data-theme="cardinals"] {
+  --team-primary: #97233F;
+  --team-secondary: #7B1D35;
+  --team-accent: #FFB612;
+  --bg-primary: var(--cardinals-primary);
+  --bg-secondary: #1A1A1A;
+  --accent-color: #FFFFFF;
+  --text-primary: #FFFFFF;
+  --card-bg: #241A1A;
+  --border-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="falcons"] {
+  --bg-primary: var(--falcons-primary);
+  --bg-secondary: #000000;
+  --accent-color: #A7A9AC;
+  --text-primary: #FFFFFF;
+  --card-bg: #1A1A1A;
+  --border-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="ravens"] {
+  --bg-primary: var(--ravens-primary);
+  --bg-secondary: #000000;
+  --accent-color: #9E7C0C;
+  --text-primary: #FFFFFF;
+  --card-bg: #1A1A1A;
+  --border-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="bills"] {
+  --bg-primary: var(--bills-primary);
+  --bg-secondary: #122C56;
+  --accent-color: var(--bills-secondary);
+  --text-primary: #FFFFFF;
+  --card-bg: #122C56;
+  --border-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="panthers"] {
+  --bg-primary: var(--panthers-primary);
+  --bg-secondary: var(--panthers-secondary);
+  --accent-color: #BFC0BF;
+  --text-primary: #FFFFFF;
+  --card-bg: #192530;
+  --border-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="bears"] {
+  --bg-primary: var(--bears-primary);
+  --bg-secondary: #1A1A1A;
+  --accent-color: var(--bears-secondary);
+  --text-primary: #FFFFFF;
+  --card-bg: #1A1A1A;
+  --border-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="bengals"] {
+  --bg-primary: var(--bengals-secondary);
+  --bg-secondary: #1A1A1A;
+  --accent-color: var(--bengals-primary);
+  --text-primary: #FFFFFF;
+  --card-bg: #1A1A1A;
+  --border-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="browns"] {
+  --bg-primary: var(--browns-primary);
+  --bg-secondary: #1A1A1A;
+  --accent-color: var(--browns-secondary);
+  --text-primary: #FFFFFF;
+  --card-bg: #1A1A1A;
+  --border-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="cowboys"] {
+  --team-primary: #003594;
+  --team-secondary: #00297B;
+  --team-accent: #B0B7BC;
+  --bg-primary: var(--cowboys-primary);
+  --bg-secondary: #041E42;
+  --accent-color: #7F9695;
+  --text-primary: #FFFFFF;
+  --card-bg: #041E42;
+  --border-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="broncos"] {
+  --bg-primary: var(--broncos-secondary);
+  --bg-secondary: #001F3F;
+  --accent-color: var(--broncos-primary);
+  --text-primary: #FFFFFF;
+  --card-bg: #001F3F;
+  --border-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="lions"] {
+  --bg-primary: var(--lions-primary);
+  --bg-secondary: #0C4C8A;
+  --accent-color: var(--lions-secondary);
+  --text-primary: #FFFFFF;
+  --card-bg: #0C4C8A;
+  --border-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="packers"] {
+  --team-primary: #203731;
+  --team-secondary: #1B2E2A;
+  --team-accent: #FFB612;
+  --bg-primary: var(--packers-primary);
+  --bg-secondary: #1C2D29;
+  --accent-color: var(--packers-secondary);
+  --text-primary: #FFFFFF;
+  --card-bg: #1C2D29;
+  --border-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="chiefs"] {
+  --team-primary: #E31837;
+  --team-secondary: #C8102E;
+  --team-accent: #FFB81C;
+  --bg-primary: var(--chiefs-primary);
+  --bg-secondary: #B10721;
+  --accent-color: var(--chiefs-secondary);
+  --text-primary: #FFFFFF;
+  --card-bg: #B10721;
+  --border-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="raiders"] {
+  --bg-primary: var(--raiders-primary);
+  --bg-secondary: #121212;
+  --accent-color: var(--raiders-secondary);
+  --text-primary: #FFFFFF;
+  --card-bg: #121212;
+  --border-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="rams"] {
+  --bg-primary: var(--rams-primary);
+  --bg-secondary: #002369;
+  --accent-color: var(--rams-secondary);
+  --text-primary: #FFFFFF;
+  --card-bg: #002369;
+  --border-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dolphins"] {
+  --bg-primary: var(--dolphins-primary);
+  --bg-secondary: #006E75;
+  --accent-color: var(--dolphins-secondary);
+  --text-primary: #FFFFFF;
+  --card-bg: #006E75;
+  --border-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="vikings"] {
+  --bg-primary: var(--vikings-primary);
+  --bg-secondary: #3B1E6A;
+  --accent-color: var(--vikings-secondary);
+  --text-primary: #FFFFFF;
+  --card-bg: #3B1E6A;
+  --border-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="patriots"] {
+  --team-primary: #002244;
+  --team-secondary: #001B36;
+  --team-accent: #C60C30;
+  --bg-primary: var(--patriots-primary);
+  --bg-secondary: #001B36;
+  --accent-color: var(--patriots-secondary);
+  --text-primary: #FFFFFF;
+  --card-bg: #001B36;
+  --border-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="saints"] {
+  --bg-primary: #101820;
+  --bg-secondary: #1A1A1A;
+  --accent-color: var(--saints-primary);
+  --text-primary: #FFFFFF;
+  --card-bg: #1A1A1A;
+  --border-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="giants"] {
+  --bg-primary: var(--giants-primary);
+  --bg-secondary: #07174E;
+  --accent-color: var(--giants-secondary);
+  --text-primary: #FFFFFF;
+  --card-bg: #07174E;
+  --border-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="jets"] {
+  --bg-primary: var(--jets-primary);
+  --bg-secondary: #0C3D2D;
+  --accent-color: #FFFFFF;
+  --text-primary: #FFFFFF;
+  --card-bg: #0C3D2D;
+  --border-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="eagles"] {
+  --bg-primary: var(--eagles-primary);
+  --bg-secondary: #003941;
+  --accent-color: var(--eagles-secondary);
+  --text-primary: #FFFFFF;
+  --card-bg: #003941;
+  --border-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="steelers"] {
+  --team-primary: #101820;
+  --team-secondary: #000000;
+  --team-accent: #FFB612;
+  --bg-primary: var(--steelers-primary);
+  --bg-secondary: #1A1A1A;
+  --accent-color: var(--steelers-secondary);
+  --text-primary: #FFFFFF;
+  --card-bg: #1A1A1A;
+  --border-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="niners"] {
+  --team-primary: #AA0000;
+  --team-secondary: #950000;
+  --team-accent: #B3995D;
+  --bg-primary: var(--niners-primary);
+  --bg-secondary: #800000;
+  --accent-color: var(--niners-secondary);
+  --text-primary: #FFFFFF;
+  --card-bg: #800000;
+  --border-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="seahawks"] {
+  --team-primary: #002244;
+  --team-secondary: #001B36;
+  --team-accent: #69BE28;
+  --bg-primary: var(--seahawks-primary);
+  --bg-secondary: #001B36;
+  --accent-color: var(--seahawks-secondary);
+  --text-primary: #FFFFFF;
+  --card-bg: #001B36;
+  --border-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="buccaneers"] {
+  --bg-primary: var(--buccaneers-primary);
+  --bg-secondary: #A31308;
+  --accent-color: var(--buccaneers-secondary);
+  --text-primary: #FFFFFF;
+  --card-bg: #A31308;
+  --border-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="titans"] {
+  --bg-primary: var(--titans-primary);
+  --bg-secondary: #061A30;
+  --accent-color: var(--titans-secondary);
+  --text-primary: #FFFFFF;
+  --card-bg: #061A30;
+  --border-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="commanders"] {
+  --bg-primary: var(--commanders-primary);
+  --bg-secondary: #4A0F0F;
+  --accent-color: var(--commanders-secondary);
+  --text-primary: #FFFFFF;
+  --card-bg: #4A0F0F;
+  --border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Helper utility classes for team colors */
+.bg-team {
+  background-color: var(--team-primary);
+}
+
+.bg-team-secondary {
+  background-color: var(--team-secondary);
+}
+
+.hover\:bg-team:hover {
+  background-color: var(--team-primary);
+}
+
+.hover\:bg-team-secondary:hover {
+  background-color: var(--team-secondary);
+}
+
+/* Team specific background utility classes */
+.bg-cardinals { background-color: var(--cardinals-primary); }
+.bg-falcons { background-color: var(--falcons-primary); }
+.bg-ravens { background-color: var(--ravens-primary); }
+.bg-bills { background-color: var(--bills-primary); }
+.bg-panthers { background-color: var(--panthers-primary); }
+.bg-bears { background-color: var(--bears-primary); }
+.bg-bengals { background-color: var(--bengals-primary); }
+.bg-browns { background-color: var(--browns-primary); }
+.bg-cowboys { background-color: var(--cowboys-primary); }
+.bg-broncos { background-color: var(--broncos-primary); }
+.bg-lions { background-color: var(--lions-primary); }
+.bg-packers { background-color: var(--packers-primary); }
+.bg-texans { background-color: var(--texans-primary); }
+.bg-colts { background-color: var(--colts-primary); }
+.bg-jaguars { background-color: var(--jaguars-primary); }
+.bg-chiefs { background-color: var(--chiefs-primary); }
+.bg-raiders { background-color: var(--raiders-primary); }
+.bg-chargers { background-color: var(--chargers-primary); }
+.bg-rams { background-color: var(--rams-primary); }
+.bg-dolphins { background-color: var(--dolphins-primary); }
+.bg-vikings { background-color: var(--vikings-primary); }
+.bg-patriots { background-color: var(--patriots-primary); }
+.bg-saints { background-color: var(--saints-primary); }
+.bg-giants { background-color: var(--giants-primary); }
+.bg-jets { background-color: var(--jets-primary); }
+.bg-eagles { background-color: var(--eagles-primary); }
+.bg-steelers { background-color: var(--steelers-primary); }
+.bg-niners { background-color: var(--niners-primary); }
+.bg-seahawks { background-color: var(--seahawks-primary); }
+.bg-buccaneers { background-color: var(--buccaneers-primary); }
+.bg-titans { background-color: var(--titans-primary); }
+.bg-commanders { background-color: var(--commanders-primary); }
+
+/* Team specific accent color utility classes */
+.text-cardinals { color: var(--cardinals-primary); }
+.text-falcons { color: var(--falcons-primary); }
+.text-ravens { color: var(--ravens-primary); }
+.text-bills { color: var(--bills-primary); }
+.text-panthers { color: var(--panthers-primary); }
+.text-bears { color: var(--bears-primary); }
+.text-bengals { color: var(--bengals-primary); }
+.text-browns { color: var(--browns-primary); }
+.text-cowboys { color: var(--cowboys-primary); }
+.text-broncos { color: var(--broncos-primary); }
+.text-lions { color: var(--lions-primary); }
+.text-packers { color: var(--packers-primary); }
+.text-texans { color: var(--texans-primary); }
+.text-colts { color: var(--colts-primary); }
+.text-jaguars { color: var(--jaguars-primary); }
+.text-chiefs { color: var(--chiefs-primary); }
+.text-raiders { color: var(--raiders-primary); }
+.text-chargers { color: var(--chargers-primary); }
+.text-rams { color: var(--rams-primary); }
+.text-dolphins { color: var(--dolphins-primary); }
+.text-vikings { color: var(--vikings-primary); }
+.text-patriots { color: var(--patriots-primary); }
+.text-saints { color: var(--saints-primary); }
+.text-giants { color: var(--giants-primary); }
+.text-jets { color: var(--jets-primary); }
+.text-eagles { color: var(--eagles-primary); }
+.text-steelers { color: var(--steelers-primary); }
+.text-niners { color: var(--niners-primary); }
+.text-seahawks { color: var(--seahawks-primary); }
+.text-buccaneers { color: var(--buccaneers-primary); }
+.text-titans { color: var(--titans-primary); }
+.text-commanders { color: var(--commanders-primary); }
+
+/* Border colors */
+.border-team-accent {
+  border-color: var(--team-accent);
+}
+
+/* Gradients for team themes */
+.gradient-team {
+  background: linear-gradient(135deg, var(--team-primary), var(--team-secondary));
+}
+
+/* Gradient top to bottom */
+.gradient-team-vertical {
+  background: linear-gradient(to bottom, var(--team-primary), var(--team-secondary));
+}
+
+/* Custom animation for team-themed elements */
+@keyframes pulse-team {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(var(--team-accent), 0.7);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(var(--team-accent), 0);
+  }
+}
+
+.pulse-team {
+  animation: pulse-team 2s infinite;
+}
+
+/* Dark themes */
+[data-theme="dark-cyberpunk"] {
+  --team-primary: #6d28d9;
+  --team-secondary: #5b21b6;
+  --team-accent: #c4b5fd;
+}
+
+[data-theme="dark-midnight"] {
+  --team-primary: #1e3a8a;
+  --team-secondary: #1e3a73;
+  --team-accent: #93c5fd;
+}
+
+/* Light themes */
+[data-theme="light-base"] {
+  --team-primary: #64748b;
+  --team-secondary: #475569;
+  --team-accent: #0f172a;
+}
+
+[data-theme="light-mint"] {
+  --team-primary: #10b981;
+  --team-secondary: #059669;
+  --team-accent: #134e4a;
+}
+
+/* Legacy theme compatibility (backwards compatibility) */
+[data-theme="team-packers"] {
+  --team-primary: #203731;
+  --team-secondary: #1B2E2A;
+  --team-accent: #FFB612;
+}
+
+[data-theme="team-chiefs"] {
+  --team-primary: #E31837;
+  --team-secondary: #C8102E;
+  --team-accent: #FFB81C;
+} 

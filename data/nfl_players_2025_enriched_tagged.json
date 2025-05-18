@@ -634,22 +634,7 @@
     "aiScouted": true,
     "flags": [
       "unscouted"
-    ],
-    "2024Stats": {
-      "rec": 111,
-      "recYds": 1146,
-      "recTD": 2
-    },
-    "2022Stats": {
-      "rec": 29,
-      "recYds": 265,
-      "recTD": 1
-    },
-    "2023Stats": {
-      "rec": 52,
-      "recYds": 531,
-      "recTD": 1
-    }
+    ]
   },
   {
     "playerId": "4696700",
@@ -2613,25 +2598,7 @@
     "flags": [
       "unscouted",
       "workhorse_back"
-    ],
-    "2024Stats": {
-      "rushYds": 1456,
-      "rushTD": 14,
-      "recYds": 431,
-      "recTD": 1
-    },
-    "2022Stats": {
-      "rushYds": 1580,
-      "rushTD": 18,
-      "recYds": 314,
-      "recTD": 2
-    },
-    "2023Stats": {
-      "rushYds": 1035,
-      "rushTD": 7,
-      "recYds": 271,
-      "recTD": 2
-    }
+    ]
   },
   {
     "playerId": "4248425",
@@ -2790,22 +2757,7 @@
     "aiScouted": true,
     "flags": [
       "unscouted"
-    ],
-    "2024Stats": {
-      "rec": 100,
-      "recYds": 1271,
-      "recTD": 9
-    },
-    "2022Stats": {
-      "rec": 72,
-      "recYds": 866,
-      "recTD": 4
-    },
-    "2023Stats": {
-      "rec": 98,
-      "recYds": 1200,
-      "recTD": 6
-    }
+    ]
   },
   {
     "playerId": "4379569",
@@ -4344,25 +4296,7 @@
       "elite",
       "must_start",
       "unscouted"
-    ],
-    "2024Stats": {
-      "passYds": 4172,
-      "passTD": 41,
-      "rushYds": 915,
-      "rushTD": 4
-    },
-    "2022Stats": {
-      "passYds": 2242,
-      "passTD": 17,
-      "rushYds": 764,
-      "rushTD": 3
-    },
-    "2023Stats": {
-      "passYds": 3678,
-      "passTD": 24,
-      "rushYds": 821,
-      "rushTD": 5
-    }
+    ]
   },
   {
     "playerId": "3052170",
@@ -4800,25 +4734,7 @@
       "top_tier_qb",
       "unscouted",
       "veteran"
-    ],
-    "2024Stats": {
-      "passYds": 4172,
-      "passTD": 41,
-      "rushYds": 915,
-      "rushTD": 4
-    },
-    "2022Stats": {
-      "passYds": 2242,
-      "passTD": 17,
-      "rushYds": 764,
-      "rushTD": 3
-    },
-    "2023Stats": {
-      "passYds": 3678,
-      "passTD": 24,
-      "rushYds": 821,
-      "rushTD": 5
-    }
+    ]
   },
   {
     "playerId": "4361653",
@@ -4954,25 +4870,7 @@
     ],
     "transactionType": "Trade",
     "lastTeam": "Tennessee Titans",
-    "transactionYear": 2024,
-    "2024Stats": {
-      "rushYds": 1921,
-      "rushTD": 16,
-      "recYds": 193,
-      "recTD": 2
-    },
-    "2022Stats": {
-      "rushYds": 1538,
-      "rushTD": 13,
-      "recYds": 398,
-      "recTD": 0
-    },
-    "2023Stats": {
-      "rushYds": 1040,
-      "rushTD": 5,
-      "recYds": 123,
-      "recTD": 2
-    }
+    "transactionYear": 2024
   },
   {
     "playerId": "4038441",
@@ -7193,25 +7091,7 @@
       "top_tier_qb",
       "unscouted",
       "veteran"
-    ],
-    "2024Stats": {
-      "passYds": 3731,
-      "passTD": 28,
-      "rushYds": 531,
-      "rushTD": 12
-    },
-    "2022Stats": {
-      "passYds": 4283,
-      "passTD": 35,
-      "rushYds": 762,
-      "rushTD": 7
-    },
-    "2023Stats": {
-      "passYds": 4207,
-      "passTD": 33,
-      "rushYds": 777,
-      "rushTD": 7
-    }
+    ]
   },
   {
     "playerId": "4039034",
@@ -14132,25 +14012,7 @@
       "must_start",
       "top_tier_qb",
       "unscouted"
-    ],
-    "2024Stats": {
-      "passYds": 4918,
-      "passTD": 43,
-      "rushYds": 201,
-      "rushTD": 2
-    },
-    "2022Stats": {
-      "passYds": 4475,
-      "passTD": 35,
-      "rushYds": 257,
-      "rushTD": 5
-    },
-    "2023Stats": {
-      "passYds": 3820,
-      "passTD": 31,
-      "rushYds": 153,
-      "rushTD": 7
-    }
+    ]
   },
   {
     "playerId": "4430590",
@@ -14478,22 +14340,7 @@
       "elite",
       "must_start",
       "unscouted"
-    ],
-    "2024Stats": {
-      "rec": 127,
-      "recYds": 1708,
-      "recTD": 17
-    },
-    "2022Stats": {
-      "rec": 87,
-      "recYds": 1046,
-      "recTD": 9
-    },
-    "2023Stats": {
-      "rec": 134,
-      "recYds": 1490,
-      "recTD": 12
-    }
+    ]
   },
   {
     "playerId": "4239993",
@@ -19395,22 +19242,7 @@
     "aiScouted": true,
     "flags": [
       "unscouted"
-    ],
-    "2024Stats": {
-      "rec": 71,
-      "recYds": 765,
-      "recTD": 5
-    },
-    "2022Stats": {
-      "rec": 19,
-      "recYds": 174,
-      "recTD": 2
-    },
-    "2023Stats": {
-      "rec": 41,
-      "recYds": 402,
-      "recTD": 3
-    }
+    ]
   },
   {
     "playerId": "4695765",
@@ -21038,13 +20870,7 @@
     "aiScouted": true,
     "flags": [
       "unscouted"
-    ],
-    "2024Stats": {
-      "FGM": 44,
-      "FGA": 44,
-      "XPM": 49,
-      "XPA": 52
-    }
+    ]
   },
   {
     "playerId": "14950",
@@ -23464,25 +23290,7 @@
       "must_start",
       "unscouted",
       "workhorse_back"
-    ],
-    "2024Stats": {
-      "rushYds": 1412,
-      "rushTD": 16,
-      "recYds": 517,
-      "recTD": 4
-    },
-    "2022Stats": {
-      "rushYds": 926,
-      "rushTD": 3,
-      "recYds": 444,
-      "recTD": 3
-    },
-    "2023Stats": {
-      "rushYds": 511,
-      "rushTD": 3,
-      "recYds": 410,
-      "recTD": 0
-    }
+    ]
   },
   {
     "playerId": "3116136",
@@ -23848,22 +23656,7 @@
     "flags": [
       "alpha_receiver",
       "unscouted"
-    ],
-    "2024Stats": {
-      "rec": 115,
-      "recYds": 1263,
-      "recTD": 12
-    },
-    "2022Stats": {
-      "rec": 106,
-      "recYds": 1161,
-      "recTD": 6
-    },
-    "2023Stats": {
-      "rec": 106,
-      "recYds": 1165,
-      "recTD": 5
-    }
+    ]
   },
   {
     "playerId": "4408988",
@@ -33103,22 +32896,7 @@
       "rookie",
       "unknown_ceiling",
       "unscouted"
-    ],
-    "2024Stats": {
-      "rec": 87,
-      "recYds": 1282,
-      "recTD": 10
-    },
-    "2022Stats": {
-      "rec": 31,
-      "recYds": 361,
-      "recTD": 5
-    },
-    "2023Stats": {
-      "rec": 49,
-      "recYds": 731,
-      "recTD": 7
-    }
+    ]
   },
   {
     "playerId": "4244856",
@@ -35514,22 +35292,7 @@
       "depth_option",
       "unscouted",
       "veteran"
-    ],
-    "2024Stats": {
-      "rec": 81,
-      "recYds": 923,
-      "recTD": 6
-    },
-    "2022Stats": {
-      "rec": 110,
-      "recYds": 1338,
-      "recTD": 12
-    },
-    "2023Stats": {
-      "rec": 93,
-      "recYds": 984,
-      "recTD": 5
-    }
+    ]
   },
   {
     "playerId": "2975674",
@@ -37685,22 +37448,7 @@
       "recYds": 2971,
       "recTD": 29
     },
-    "collegeNotes": "Arguably the best college TE ever:contentReference[oaicite:78]{index=78} \u2013 a three-year star who even logged 5 rushing TD for UGA:contentReference[oaicite:79]{index=79}. Drafted by Las Vegas, he delivered on the hype with an All-Pro rookie year.",
-    "2024Stats": {
-      "rec": 112,
-      "recYds": 1194,
-      "recTD": 7
-    },
-    "2022Stats": {
-      "rec": 63,
-      "recYds": 942,
-      "recTD": 7
-    },
-    "2023Stats": {
-      "rec": 56,
-      "recYds": 714,
-      "recTD": 6
-    }
+    "collegeNotes": "Arguably the best college TE ever:contentReference[oaicite:78]{index=78} \u2013 a three-year star who even logged 5 rushing TD for UGA:contentReference[oaicite:79]{index=79}. Drafted by Las Vegas, he delivered on the hype with an All-Pro rookie year."
   },
   {
     "playerId": "4579667",
@@ -43857,25 +43605,7 @@
     "aiScouted": true,
     "flags": [
       "unscouted"
-    ],
-    "2024Stats": {
-      "rushYds": 907,
-      "rushTD": 5,
-      "recYds": 592,
-      "recTD": 6
-    },
-    "2022Stats": {
-      "rushYds": 1102,
-      "rushTD": 8,
-      "recYds": 196,
-      "recTD": 3
-    },
-    "2023Stats": {
-      "rushYds": 517,
-      "rushTD": 4,
-      "recYds": 151,
-      "recTD": 3
-    }
+    ]
   },
   {
     "playerId": "4711533",
@@ -46436,22 +46166,7 @@
     "flags": [
       "alpha_receiver",
       "unscouted"
-    ],
-    "2024Stats": {
-      "rec": 103,
-      "recYds": 1533,
-      "recTD": 10
-    },
-    "2022Stats": {
-      "rec": 128,
-      "recYds": 1809,
-      "recTD": 8
-    },
-    "2023Stats": {
-      "rec": 101,
-      "recYds": 1509,
-      "recTD": 8
-    }
+    ]
   },
   {
     "playerId": "4360637",
@@ -57618,25 +57333,7 @@
     ],
     "transactionType": "Free Agent Signing",
     "lastTeam": "New York Giants",
-    "transactionYear": 2024,
-    "2024Stats": {
-      "rushYds": 2005,
-      "rushTD": 13,
-      "recYds": 278,
-      "recTD": 2
-    },
-    "2022Stats": {
-      "rushYds": 1312,
-      "rushTD": 10,
-      "recYds": 338,
-      "recTD": 0
-    },
-    "2023Stats": {
-      "rushYds": 962,
-      "rushTD": 6,
-      "recYds": 280,
-      "recTD": 4
-    }
+    "transactionYear": 2024
   },
   {
     "playerId": "4239934",
@@ -62046,13 +61743,7 @@
       "depth_option",
       "unscouted",
       "veteran"
-    ],
-    "2024Stats": {
-      "FGM": 41,
-      "FGA": 44,
-      "XPM": 43,
-      "XPA": 45
-    }
+    ]
   },
   {
     "playerId": "4566158",
@@ -62845,22 +62536,7 @@
       "depth_option",
       "unscouted",
       "veteran"
-    ],
-    "2024Stats": {
-      "rec": 78,
-      "recYds": 1106,
-      "recTD": 8
-    },
-    "2022Stats": {
-      "rec": 60,
-      "recYds": 765,
-      "recTD": 11
-    },
-    "2023Stats": {
-      "rec": 65,
-      "recYds": 1020,
-      "recTD": 6
-    }
+    ]
   },
   {
     "playerId": "4911517",
@@ -66930,25 +66606,7 @@
       "top_tier_qb",
       "unscouted",
       "veteran"
-    ],
-    "2024Stats": {
-      "passYds": 4500,
-      "passTD": 41,
-      "rushYds": 378,
-      "rushTD": 3
-    },
-    "2022Stats": {
-      "passYds": 2163,
-      "passTD": 10,
-      "rushYds": 89,
-      "rushTD": 1
-    },
-    "2023Stats": {
-      "passYds": 3310,
-      "passTD": 18,
-      "rushYds": 191,
-      "rushTD": 1
-    }
+    ]
   },
   {
     "playerId": "4685039",
@@ -71527,25 +71185,7 @@
       "rushYds": 3796,
       "rushTD": 50
     },
-    "collegeNotes": "2023 Heisman Trophy winner and a historic dual-threat (only FBS player with 12k+ pass and 3k+ rush yards:contentReference[oaicite:75]{index=75}). Drafted 1.02 by Washington to be their QB of the future.",
-    "2024Stats": {
-      "passYds": 3568,
-      "passTD": 25,
-      "rushYds": 891,
-      "rushTD": 6
-    },
-    "2022Stats": {
-      "passYds": 2836,
-      "passTD": 17,
-      "rushYds": 885,
-      "rushTD": 11
-    },
-    "2023Stats": {
-      "passYds": 3264,
-      "passTD": 17,
-      "rushYds": 119,
-      "rushTD": 2
-    }
+    "collegeNotes": "2023 Heisman Trophy winner and a historic dual-threat (only FBS player with 12k+ pass and 3k+ rush yards:contentReference[oaicite:75]{index=75}). Drafted 1.02 by Washington to be their QB of the future."
   },
   {
     "playerId": "4361994",

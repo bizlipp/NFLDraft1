@@ -130,7 +130,7 @@ export function initializeHeader(currentPage) {
     }
     
     .nav-link.active {
-      color: var(--team-accent-color, #22d3ee);
+      color: var(--team-accent, #22d3ee);
       background-color: rgba(34, 211, 238, 0.1);
     }
     
@@ -185,6 +185,24 @@ export function initializeHeader(currentPage) {
   
   // Initialize search functionality
   initializeSearch();
+  
+  // Add event listeners to nav links
+  setupNavLinks();
+}
+
+/**
+ * Sets up click event listeners for navigation links
+ */
+function setupNavLinks() {
+  const navLinks = document.querySelectorAll('.nav-link');
+  navLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      const href = link.getAttribute('href');
+      if (href) {
+        window.location.href = href;
+      }
+    });
+  });
 }
 
 /**

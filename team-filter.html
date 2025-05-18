@@ -8,21 +8,36 @@
   <link rel="icon" href="AeroVista-Logo.png" type="image/png">
   <title>FantasyForge - Team Browser</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/nfl-themes.css">
   <link rel="stylesheet" href="css/team-filter.css">
   <!-- Import map to ensure modules load correctly on GitHub Pages -->
   <script type="importmap">
     {
       "imports": {
         "./data-service.js": "./data-service.js",
-        "./utils.js": "./utils.js"
+        "./utils.js": "./utils.js",
+        "./header-nav.js": "./header-nav.js",
+        "./theme-manager.js": "./theme-manager.js",
+        "./search.js": "./search.js"
       }
     }
   </script>
 </head>
 <body class="bg-gray-900 text-white p-4">
-  <h1 class="text-2xl font-bold mb-4">Browse Teams</h1>
-  <select id="team-select" aria-label="Select a Team" class="bg-gray-800 text-white p-2 rounded mb-4"></select>
-  <div id="team-roster" class="grid gap-4 sm:grid-cols-2 md:grid-cols-3"></div>
+  <!-- Header will be injected by header-nav.js -->
+  <div class="mt-16">
+    <h1 class="text-2xl font-bold mb-4">Browse Teams</h1>
+    <select id="team-select" aria-label="Select a Team" class="bg-gray-800 text-white p-2 rounded mb-4"></select>
+    <div id="team-roster" class="grid gap-4 sm:grid-cols-2 md:grid-cols-3"></div>
+  </div>
+  
+  <script type="module">
+    import { initializeHeader } from './header-nav.js';
+    
+    document.addEventListener('DOMContentLoaded', function() {
+      initializeHeader('teamfilter');
+    });
+  </script>
   <script src="team-filter.js" type="module"></script>
 </body>
 </html>

@@ -8,6 +8,7 @@
   <link rel="icon" href="AeroVista-Logo.png" type="image/png">
   <title>FantasyForge - Flashcards</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/nfl-themes.css">
   <link rel="stylesheet" href="css/flashcards.css">
   <!-- Import map to ensure modules load correctly on GitHub Pages -->
   <script type="importmap">
@@ -44,14 +45,6 @@
     <button id="next-card-btn" class="w-full bg-team p-3 rounded-xl hover:bg-team-secondary">Next Card</button>
   </div>
 
-  <script src="header-nav.js" type="module"></script>
   <script src="flashcards.js" type="module"></script>
-  
-  <script type="module">
-    import { initializeHeader } from './header-nav.js';
-    document.addEventListener('DOMContentLoaded', function() {
-      initializeHeader('flashcards');
-    });
-  </script>
 </body>
 </html> 

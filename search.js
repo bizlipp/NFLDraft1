@@ -132,13 +132,15 @@ function handleSearch(e, input, resultsContainer) {
     resultsContainer.innerHTML = `<div class='p-3 text-sm text-gray-400 text-center'>No players match your search.</div>`;
   } else {
     resultsContainer.innerHTML = matches.map((p) => `
-      <div class="p-3 hover:bg-gray-700 cursor-pointer text-sm border-b border-gray-700 last:border-b-0 flex items-center gap-3" data-id="${p.playerId}">
-        <img src="${p.headshot || './AeroVista-Logo.png'}" alt="${p.name}" class="w-8 h-8 rounded-full object-cover">
-        <div>
-            <strong>${p.name}</strong> – ${p.position} (${p.team || 'N/A'})
-            <div class="text-xs text-gray-400">${p.college || ''}</div>
+      <a href="player-page.html?id=${p.playerId}" class="block">
+        <div class="p-3 hover:bg-gray-700 cursor-pointer text-sm border-b border-gray-700 last:border-b-0 flex items-center gap-3" data-id="${p.playerId}">
+          <img src="${p.headshot || './AeroVista-Logo.png'}" alt="${p.name}" class="w-8 h-8 rounded-full object-cover">
+          <div>
+              <strong>${p.name}</strong> – ${p.position} (${p.team || 'N/A'})
+              <div class="text-xs text-gray-400">${p.college || ''}</div>
+          </div>
         </div>
-      </div>
+      </a>
     `).join("");
   }
 
