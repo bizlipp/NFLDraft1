@@ -14,12 +14,16 @@
     {
       "imports": {
         "./data-service.js": "./data-service.js",
-        "./utils.js": "./utils.js"
+        "./utils.js": "./utils.js",
+        "./header-nav.js": "./header-nav.js",
+        "./theme-manager.js": "./theme-manager.js"
       }
     }
   </script>
 </head>
 <body class="bg-gray-900 text-white min-h-screen p-4">
+  <!-- Header will be added by header-nav.js -->
+  
   <div class="max-w-2xl mx-auto bg-gray-800 rounded-xl p-6 shadow-lg mt-16">
     <h1 class="text-2xl font-bold text-cyan-400 mb-6 text-center">NFL Player Flashcards</h1>
     
@@ -34,12 +38,20 @@
       <div class="text-gray-300">
         Score: <span id="score-correct">0</span>/<span id="score-total">0</span>
       </div>
-      <button id="submit-answer-btn" class="bg-cyan-600 hover:bg-cyan-700 text-white px-4 py-2 rounded-md">Submit Answer</button>
+      <button id="submit-answer-btn" class="bg-team hover:bg-team-secondary text-white px-4 py-2 rounded-md">Submit Answer</button>
     </div>
     
-    <button id="next-card-btn" class="w-full bg-indigo-600 p-3 rounded-xl hover:bg-indigo-700">Next Card</button>
+    <button id="next-card-btn" class="w-full bg-team p-3 rounded-xl hover:bg-team-secondary">Next Card</button>
   </div>
 
+  <script src="header-nav.js" type="module"></script>
   <script src="flashcards.js" type="module"></script>
+  
+  <script type="module">
+    import { initializeHeader } from './header-nav.js';
+    document.addEventListener('DOMContentLoaded', function() {
+      initializeHeader('flashcards');
+    });
+  </script>
 </body>
 </html> 

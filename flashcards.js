@@ -1,8 +1,12 @@
 // flashcards.js
 import { getCleanExperience, getFormattedHeightWeight } from './utils.js';
 import { getPlayerData } from './data-service.js';
+import { initializeHeader } from './header-nav.js';
 
 document.addEventListener("DOMContentLoaded", () => {
+  // Initialize the header with current page highlighted
+  initializeHeader('flashcards');
+  
   const questionTextEl = document.getElementById("question-text");
   const answerInputEl = document.getElementById("answer-input");
   const submitAnswerBtn = document.getElementById("submit-answer-btn");

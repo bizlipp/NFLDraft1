@@ -4,52 +4,26 @@ import { getSquad, removeFromSquad } from './my-squad.js';
 import { getCoachAdvice } from './coach.js';
 import { getPlayerData } from './data-service.js';
 import { initializeHeader } from './header-nav.js';
+import { initializeThemeSystem } from './theme-manager.js';
+
+// Make function accessible to onclick handlers
+window.removePlayerFromSquadAndRefresh = function(playerId) {
+  removeFromSquad(playerId);
+  displayMySquad();
+  updateCoachCommentary();
+}
 
 // Store references to key elements
 document.addEventListener("DOMContentLoaded", () => {
     // Initialize the header with current page highlighted
     initializeHeader('dashboard');
   
-    const searchInput = document.querySelector("input[type='text']");
-    // Note: search.js handles its own search results container logic now.
-    // const searchResultsContainer = document.createElement("div");
-    // searchResultsContainer.className = "absolute top-16 left-0 right-0 bg-gray-800 rounded-md z-20 max-h-64 overflow-y-auto shadow-lg border border-gray-600 hidden";
-    // document.querySelector(".p-4")?.appendChild(searchResultsContainer);
+    // No need to handle search container setup anymore - search.js handles that
   
     let allPlayers = [];
   
-    // Initialize theme switcher dropdown functionality
-    const themeToggle = document.getElementById('theme-toggle');
-    const themeDropdown = document.getElementById('theme-dropdown');
-    
-    if (themeToggle && themeDropdown) {
-      // Set initial theme based on localStorage or default to dark-base
-      const savedTheme = localStorage.getItem('theme') || 'dark-base';
-      document.documentElement.setAttribute('data-theme', savedTheme);
-      
-      // Toggle dropdown visibility
-      themeToggle.addEventListener('click', () => {
-        themeDropdown.classList.toggle('hidden');
-      });
-      
-      // Close dropdown when clicking outside
-      document.addEventListener('click', (e) => {
-        if (!themeToggle.contains(e.target) && !themeDropdown.contains(e.target)) {
-          themeDropdown.classList.add('hidden');
-        }
-      });
-      
-      // Handle theme option selection
-      document.querySelectorAll('.theme-option').forEach(option => {
-        option.addEventListener('click', () => {
-          const theme = option.getAttribute('data-theme');
-          document.documentElement.setAttribute('data-theme', theme);
-          localStorage.setItem('theme', theme);
-          themeDropdown.classList.add('hidden');
-        });
-      });
-    }
-
+    // Theme handling is now done in theme-manager.js through the header
+  
     // Load player data using our centralized data service
     getPlayerData()
     .then(playersData => {
@@ -226,13 +200,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       }
     }
-
-    // Make removePlayerFromSquadAndRefresh globally accessible for the inline onclick
-    window.removePlayerFromSquadAndRefresh = (playerId) => {
-      removeFromSquad(playerId); // Using imported function
-      displayMySquad(); // Refresh the displayed squad
-      updateCoachCommentary(); // Refresh coach commentary after squad changes
-    };
   
     // Function to update Coach Commentary
     function updateCoachCommentary() {

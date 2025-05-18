@@ -1,4 +1,5 @@
 // header-nav.js - Consistent header and footer for all pages
+import { initializeThemeSystem } from './theme-manager.js';
 
 /**
  * Initializes the header navigation with the current page highlighted
@@ -32,8 +33,77 @@ export function initializeHeader(currentPage) {
           <a href="flashcards.html" class="nav-link ${currentPage === 'flashcards' ? 'active' : ''}" id="nav-flashcards">
             <span class="nav-icon">📇</span> Flashcards
           </a>
-          <div class="hidden md:block ml-2">
-            <input type="text" placeholder="Search players..." class="bg-gray-700 text-white text-sm rounded-md px-3 py-1.5 focus:outline-none focus:ring-2 focus:ring-cyan-400 w-40 lg:w-56">
+          <div class="hidden md:block ml-2 relative">
+            <input id="global-search-input" type="text" placeholder="Search players..." class="bg-gray-700 text-white text-sm rounded-md px-3 py-1.5 focus:outline-none focus:ring-2 focus:ring-cyan-400 w-40 lg:w-56">
+            <div id="global-search-results" class="absolute mt-1 w-full bg-gray-800 text-white rounded-md z-20 max-h-72 overflow-y-auto shadow-lg border border-gray-600 hidden"></div>
+          </div>
+          <div class="theme-switcher ml-2">
+            <button id="theme-toggle" class="theme-toggle flex items-center justify-center w-8 h-8 rounded-full bg-gray-700 text-white shadow-lg" title="Change Theme" aria-label="Toggle theme selection menu">
+              <span>🎨</span>
+            </button>
+            <div id="theme-dropdown" class="hidden absolute right-4 mt-2 py-2 w-48 bg-gray-800 rounded-md shadow-xl z-20">
+              <div class="px-4 py-2 text-sm text-gray-300 border-b border-gray-700">Select Theme</div>
+              <div class="theme-option-group px-2 py-1">
+                <div class="theme-option-heading text-xs text-gray-500 uppercase tracking-wider py-1">NFL Team Themes</div>
+                <div class="theme-option" data-theme="cardinals">
+                  <div class="flex items-center p-2 hover:bg-gray-700 rounded">
+                    <div class="w-4 h-4 bg-red-700 mr-2 rounded"></div>
+                    <span>Cardinals</span>
+                  </div>
+                </div>
+                <div class="theme-option" data-theme="chiefs">
+                  <div class="flex items-center p-2 hover:bg-gray-700 rounded">
+                    <div class="w-4 h-4 bg-red-600 mr-2 rounded"></div>
+                    <span>Chiefs</span>
+                  </div>
+                </div>
+                <div class="theme-option" data-theme="cowboys">
+                  <div class="flex items-center p-2 hover:bg-gray-700 rounded">
+                    <div class="w-4 h-4 bg-blue-800 mr-2 rounded"></div>
+                    <span>Cowboys</span>
+                  </div>
+                </div>
+                <div class="theme-option" data-theme="packers">
+                  <div class="flex items-center p-2 hover:bg-gray-700 rounded">
+                    <div class="w-4 h-4 bg-green-700 mr-2 rounded"></div>
+                    <span>Packers</span>
+                  </div>
+                </div>
+                <div class="theme-option" data-theme="seahawks">
+                  <div class="flex items-center p-2 hover:bg-gray-700 rounded">
+                    <div class="w-4 h-4 bg-teal-600 mr-2 rounded"></div>
+                    <span>Seahawks</span>
+                  </div>
+                </div>
+                <div class="theme-option" data-theme="steelers">
+                  <div class="flex items-center p-2 hover:bg-gray-700 rounded">
+                    <div class="w-4 h-4 bg-yellow-500 mr-2 rounded"></div>
+                    <span>Steelers</span>
+                  </div>
+                </div>
+                <div class="theme-option" data-theme="niners">
+                  <div class="flex items-center p-2 hover:bg-gray-700 rounded">
+                    <div class="w-4 h-4 bg-red-800 mr-2 rounded"></div>
+                    <span>49ers</span>
+                  </div>
+                </div>
+                <div class="theme-option" data-theme="patriots">
+                  <div class="flex items-center p-2 hover:bg-gray-700 rounded">
+                    <div class="w-4 h-4 bg-blue-900 mr-2 rounded"></div>
+                    <span>Patriots</span>
+                  </div>
+                </div>
+              </div>
+              <div class="theme-option-group px-2 py-1 border-t border-gray-700">
+                <div class="theme-option-heading text-xs text-gray-500 uppercase tracking-wider py-1">Default Theme</div>
+                <div class="theme-option" data-theme="default">
+                  <div class="flex items-center p-2 hover:bg-gray-700 rounded">
+                    <div class="w-4 h-4 bg-gray-900 mr-2 rounded"></div>
+                    <span>Default (NFL Blue)</span>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </nav>
       </div>
@@ -60,13 +130,17 @@ export function initializeHeader(currentPage) {
     }
     
     .nav-link.active {
-      color: #22d3ee;
+      color: var(--team-accent-color, #22d3ee);
       background-color: rgba(34, 211, 238, 0.1);
     }
     
     .nav-icon {
       font-size: 1.5rem;
       margin-bottom: 0.25rem;
+    }
+    
+    .theme-switcher {
+      position: relative;
     }
     
     @media (min-width: 768px) {
@@ -106,19 +180,20 @@ export function initializeHeader(currentPage) {
   // Add footer
   addFooter();
   
-  // Initialize search functionality if needed
+  // Initialize theme system
+  initializeThemeSystem();
+  
+  // Initialize search functionality
   initializeSearch();
 }
 
 /**
- * Initializes search behavior if the search input exists
+ * Initializes search behavior using global search functionality
  */
 function initializeSearch() {
-  const searchInput = document.querySelector('input[placeholder="Search players..."]');
-  if (!searchInput) return;
+  // This will be handled by the search.js module which we'll update
+  // to work with our global search in the header
   
-  searchInput.addEventListener('focus', (e) => {
-    // This will be handled by the search.js module
-    console.log('Search focus - handled by search.js');
-  });
+  // If this module loads before search.js, set a flag for search.js to recognize
+  window.headerSearchInitialized = true;
 } 

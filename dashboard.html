@@ -17,66 +17,18 @@
         "./my-squad.js": "./my-squad.js",
         "./coach.js": "./coach.js",
         "./header-nav.js": "./header-nav.js",
-        "./search.js": "./search.js"
+        "./search.js": "./search.js",
+        "./theme-manager.js": "./theme-manager.js"
       }
     }
   </script>
-      <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="css/dashboard.css">
 </head>
 <body class="bg-gray-900 text-white font-sans min-h-screen">
-  <!-- Custom Header -->
-  <header class="main-header py-2 px-4 mb-6">
-    <div class="container mx-auto">
-      <div class="flex justify-between items-center">
-        <div class="flex items-center gap-3">
-                    <div class="logo-container">            <div class="logo-glow logo-pulse"></div>            <img src="AeroVista-Logo.png" alt="FantasyForge Logo" class="h-10 w-10">          </div>
-          <div>
-            <h1 class="text-xl font-bold text-white">
-              <span class="text-gradient">Fantasy</span><span class="text-accent">Forge</span>
-            </h1>
-            <p class="text-xs text-gray-400">Packers vs. Chiefs Edition</p>
-          </div>
-        </div>
-        
-        <nav class="hidden md:flex items-center gap-1">
-          <a href="dashboard.html" class="nav-item active">
-            <span class="text-xl">🏠</span>
-            <span>Dashboard</span>
-          </a>
-          <a href="cheat-sheet.html" class="nav-item">
-            <span class="text-xl">📋</span>
-            <span>Cheat Sheet</span>
-          </a>
-          <a href="mock-draft.html" class="nav-item">
-            <span class="text-xl">🎮</span>
-            <span>Mock Draft</span>
-          </a>
-          <a href="flashcards.html" class="nav-item">
-            <span class="text-xl">📇</span>
-            <span>Flashcards</span>
-          </a>
-        </nav>
-        
-        <div class="flex items-center gap-3">
-          <div class="relative hidden md:block">
-            <input type="text" placeholder="Search players..." class="bg-gray-700 border border-gray-600 text-white text-sm rounded-full px-4 py-2 w-44 focus:outline-none focus:ring-2 focus:ring-cyan-400">
-            <span class="absolute right-3 top-2.5 text-gray-400">🔍</span>
-          </div>
-          
-          <div class="md:hidden">
-            <button class="mobile-menu-button p-2 rounded-md text-gray-400 hover:text-white">
-              <span class="text-xl">☰</span>
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </header>
-
-    <!-- Enhanced Theme switcher -->  <div class="theme-switch">    <button id="theme-toggle" class="bg-gray-700 text-white p-2 rounded-full">      <span id="theme-icon">🎨</span>    </button>    <div id="theme-dropdown" class="hidden absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-gray-800 ring-1 ring-black ring-opacity-5 p-2 z-50">      <div class="text-sm font-medium text-gray-300 border-b border-gray-700 pb-1 mb-1">Dark Themes</div>      <button data-theme="dark-base" class="theme-option block w-full text-left px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 rounded">🌑 Dark Base</button>      <button data-theme="dark-cyberpunk" class="theme-option block w-full text-left px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 rounded">🔮 Cyberpunk</button>      <button data-theme="dark-midnight" class="theme-option block w-full text-left px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 rounded">✨ Midnight</button>            <div class="text-sm font-medium text-gray-300 border-b border-gray-700 pb-1 mb-1 mt-2">Light Themes</div>      <button data-theme="light-base" class="theme-option block w-full text-left px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 rounded">☀️ Light Base</button>      <button data-theme="light-mint" class="theme-option block w-full text-left px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 rounded">🌿 Mint Fresh</button>            <div class="text-sm font-medium text-gray-300 border-b border-gray-700 pb-1 mb-1 mt-2">Team Themes</div>      <button data-theme="team-packers" class="theme-option block w-full text-left px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 rounded">🧀 Packers</button>      <button data-theme="team-chiefs" class="theme-option block w-full text-left px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 rounded">🏹 Chiefs</button>    </div>  </div>
+  <!-- Header will be added by header-nav.js -->
 
   <!-- Sections -->
-  <main class="px-4 pb-10 space-y-8">
+  <main class="px-4 pb-10 space-y-8 mt-6">
 
     <!-- Quick Draft Tools -->
     <section>
@@ -84,63 +36,160 @@
         <span class="section-header-icon">🧠</span> Quick Draft Tools
       </h2>
       <div class="grid grid-cols-2 gap-4">
-        <a href="mock-draft.html" class="action-button flex items-center justify-center bg-cyan-600 p-4 rounded-xl hover:bg-cyan-700 text-center">
+        <a href="mock-draft.html" class="action-button flex items-center justify-center bg-team p-4 rounded-xl hover:bg-team-secondary text-center">
           <span class="feature-icon mr-2">🎮</span>
           <span>Mock Draft</span>
         </a>
-        <a href="cheat-sheet.html" class="action-button flex items-center justify-center bg-indigo-600 p-4 rounded-xl hover:bg-indigo-700 text-center">
+        <a href="cheat-sheet.html" class="action-button flex items-center justify-center bg-team p-4 rounded-xl hover:bg-team-secondary text-center">
           <span class="feature-icon mr-2">📋</span>
           <span>Cheat Sheet</span>
         </a>
       </div>
     </section>
 
-        <!-- Featured Players -->    <section>      <h2 class="text-lg font-bold text-cyan-300 mb-4 flex items-center">        <span class="section-header-icon">🔥</span> Featured Players      </h2>      <div id="featured-players-container" class="grid grid-cols-2 gap-4 fadeIn">        <!-- Featured Cards will be populated via JS -->        <div class="bg-gray-800 p-4 rounded-xl flex items-center gap-3 shadow-lg transition-all hover:shadow-xl">          <div class="w-14 h-14 flex items-center justify-center bg-orange-600/20 rounded-full">            <span class="text-3xl">🔥</span>          </div>          <div>            <div class="font-semibold text-cyan-400 mb-1">Sleeper Pick</div>            <div class="text-gray-300 hover:text-white transition-colors">Loading player data...</div>            <div class="text-xs text-gray-400 mt-1">Position - Team</div>          </div>        </div>                <div class="bg-gray-800 p-4 rounded-xl flex items-center gap-3 shadow-lg transition-all hover:shadow-xl">          <div class="w-14 h-14 flex items-center justify-center bg-red-600/20 rounded-full">            <span class="text-3xl">🚑</span>          </div>          <div>            <div class="font-semibold text-cyan-400 mb-1">Injury Risk</div>            <div class="text-gray-300 hover:text-white transition-colors">Loading player data...</div>            <div class="text-xs text-gray-400 mt-1">Position - Team</div>          </div>        </div>                <div class="bg-gray-800 p-4 rounded-xl flex items-center gap-3 shadow-lg transition-all hover:shadow-xl">          <div class="w-14 h-14 flex items-center justify-center bg-green-600/20 rounded-full">            <span class="text-3xl">📈</span>          </div>          <div>            <div class="font-semibold text-cyan-400 mb-1">Trending Up</div>            <div class="text-gray-300 hover:text-white transition-colors">Loading player data...</div>            <div class="text-xs text-gray-400 mt-1">Position - Team</div>          </div>        </div>                <div class="bg-gray-800 p-4 rounded-xl flex items-center gap-3 shadow-lg transition-all hover:shadow-xl">          <div class="w-14 h-14 flex items-center justify-center bg-yellow-600/20 rounded-full">            <span class="text-3xl">💰</span>          </div>          <div>            <div class="font-semibold text-cyan-400 mb-1">Value Pick</div>            <div class="text-gray-300 hover:text-white transition-colors">Loading player data...</div>            <div class="text-xs text-gray-400 mt-1">Position - Team</div>          </div>        </div>      </div>    </section>
+    <!-- Featured Players -->    
+    <section>      
+      <h2 class="text-lg font-bold text-cyan-300 mb-4 flex items-center">        
+        <span class="section-header-icon">🔥</span> Featured Players      
+      </h2>      
+      <div id="featured-players-container" class="grid grid-cols-2 gap-4 fadeIn">        
+        <!-- Featured Cards will be populated via JS -->        
+        <div class="bg-gray-800 p-4 rounded-xl flex items-center gap-3 shadow-lg transition-all hover:shadow-xl">          
+          <div class="w-14 h-14 flex items-center justify-center bg-orange-600/20 rounded-full">            
+            <span class="text-3xl">🔥</span>          
+          </div>          
+          <div>            
+            <div class="font-semibold text-cyan-400 mb-1">Sleeper Pick</div>            
+            <div class="text-gray-300 hover:text-white transition-colors">Loading player data...</div>            
+            <div class="text-xs text-gray-400 mt-1">Position - Team</div>          
+          </div>        
+        </div>                
+        <div class="bg-gray-800 p-4 rounded-xl flex items-center gap-3 shadow-lg transition-all hover:shadow-xl">          
+          <div class="w-14 h-14 flex items-center justify-center bg-red-600/20 rounded-full">            
+            <span class="text-3xl">🚑</span>          
+          </div>          
+          <div>            
+            <div class="font-semibold text-cyan-400 mb-1">Injury Risk</div>            
+            <div class="text-gray-300 hover:text-white transition-colors">Loading player data...</div>            
+            <div class="text-xs text-gray-400 mt-1">Position - Team</div>          
+          </div>        
+        </div>                
+        <div class="bg-gray-800 p-4 rounded-xl flex items-center gap-3 shadow-lg transition-all hover:shadow-xl">          
+          <div class="w-14 h-14 flex items-center justify-center bg-green-600/20 rounded-full">            
+            <span class="text-3xl">📈</span>          
+          </div>          
+          <div>            
+            <div class="font-semibold text-cyan-400 mb-1">Trending Up</div>            
+            <div class="text-gray-300 hover:text-white transition-colors">Loading player data...</div>            
+            <div class="text-xs text-gray-400 mt-1">Position - Team</div>          
+          </div>        
+        </div>                
+        <div class="bg-gray-800 p-4 rounded-xl flex items-center gap-3 shadow-lg transition-all hover:shadow-xl">          
+          <div class="w-14 h-14 flex items-center justify-center bg-yellow-600/20 rounded-full">            
+            <span class="text-3xl">💰</span>          
+          </div>          
+          <div>            
+            <div class="font-semibold text-cyan-400 mb-1">Value Pick</div>            
+            <div class="text-gray-300 hover:text-white transition-colors">Loading player data...</div>            
+            <div class="text-xs text-gray-400 mt-1">Position - Team</div>          
+          </div>        
+        </div>      
+      </div>    
+    </section>
 
-        <!-- My Squad -->    <section>      <h2 class="text-lg font-bold text-cyan-300 mb-4 flex items-center">        <span class="section-header-icon">🎮</span> My Squad      </h2>      <div id="my-squad-container" class="bg-gray-800 p-4 rounded-xl shadow-lg border border-gray-700 fadeIn">        <div class="empty-squad-message text-center py-4 text-gray-400 italic">          You haven't drafted anyone yet.        </div>        <div class="squad-grid hidden grid-cols-2 md:grid-cols-3 gap-3">          <!-- Players will populate here via JS -->        </div>        <div class="squad-summary mt-3 hidden">          <div class="flex justify-between items-center border-t border-gray-700 pt-2 mt-2">            <div class="text-xs text-gray-400">              <span id="squad-position-counts">QB: 0 | RB: 0 | WR: 0 | TE: 0 | K: 0 | DST: 0</span>            </div>            <div class="text-xs text-gray-400">              Team strength: <span id="squad-strength-score" class="text-cyan-400">--</span>            </div>          </div>        </div>      </div>    </section>
+    <!-- My Squad -->    
+    <section>      
+      <h2 class="text-lg font-bold text-cyan-300 mb-4 flex items-center">        
+        <span class="section-header-icon">🎮</span> My Squad      
+      </h2>      
+      <div id="my-squad-container" class="bg-gray-800 p-4 rounded-xl shadow-lg border border-gray-700 fadeIn">        
+        <div class="empty-squad-message text-center py-4 text-gray-400 italic">          
+          You haven't drafted anyone yet.        
+        </div>        
+        <div class="squad-grid hidden grid-cols-2 md:grid-cols-3 gap-3">          
+          <!-- Players will populate here via JS -->        
+        </div>        
+        <div class="squad-summary mt-3 hidden">          
+          <div class="flex justify-between items-center border-t border-gray-700 pt-2 mt-2">            
+            <div class="text-xs text-gray-400">              
+              <span id="squad-position-counts">QB: 0 | RB: 0 | WR: 0 | TE: 0 | K: 0 | DST: 0</span>            
+            </div>            
+            <div class="text-xs text-gray-400">              
+              Team strength: <span id="squad-strength-score" class="text-cyan-400">--</span>            
+            </div>          
+          </div>        
+        </div>      
+      </div>    
+    </section>
 
-        <!-- League Leaders -->    <section>      <h2 class="text-lg font-bold text-cyan-300 mb-4 flex items-center">        <span class="section-header-icon">🏆</span> League Leaders      </h2>      <div id="league-leaders-container" class="grid grid-cols-3 gap-4 fadeIn">        <!-- Position Leaders -->        <div class="bg-gray-800 p-4 rounded-xl shadow-lg text-center relative overflow-hidden">          <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 to-cyan-400"></div>          <div class="text-sm text-cyan-400 font-semibold mb-2">Top QBs</div>          <div class="text-white font-bold text-lg mb-1 player-name">-</div>          <div class="flex justify-center gap-4 text-xs text-gray-300 mt-2">            <div><span class="text-gray-400">YDS:</span> <span class="stat-yards">-</span></div>            <div><span class="text-gray-400">TDs:</span> <span class="stat-tds">-</span></div>            <div><span class="text-gray-400">PPR:</span> <span class="stat-ppr">-</span></div>          </div>        </div>                <div class="bg-gray-800 p-4 rounded-xl shadow-lg text-center relative overflow-hidden">          <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-red-500 to-rose-400"></div>          <div class="text-sm text-cyan-400 font-semibold mb-2">Top RBs</div>          <div class="text-white font-bold text-lg mb-1 player-name">-</div>          <div class="flex justify-center gap-4 text-xs text-gray-300 mt-2">            <div><span class="text-gray-400">YDS:</span> <span class="stat-yards">-</span></div>            <div><span class="text-gray-400">TDs:</span> <span class="stat-tds">-</span></div>            <div><span class="text-gray-400">PPR:</span> <span class="stat-ppr">-</span></div>          </div>        </div>                <div class="bg-gray-800 p-4 rounded-xl shadow-lg text-center relative overflow-hidden">          <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-green-500 to-emerald-400"></div>          <div class="text-sm text-cyan-400 font-semibold mb-2">Top WRs</div>          <div class="text-white font-bold text-lg mb-1 player-name">-</div>          <div class="flex justify-center gap-4 text-xs text-gray-300 mt-2">            <div><span class="text-gray-400">YDS:</span> <span class="stat-yards">-</span></div>            <div><span class="text-gray-400">TDs:</span> <span class="stat-tds">-</span></div>            <div><span class="text-gray-400">PPR:</span> <span class="stat-ppr">-</span></div>          </div>        </div>      </div>    </section>
+    <!-- League Leaders -->    
+    <section>      
+      <h2 class="text-lg font-bold text-cyan-300 mb-4 flex items-center">        
+        <span class="section-header-icon">🏆</span> League Leaders      
+      </h2>      
+      <div id="league-leaders-container" class="grid grid-cols-3 gap-4 fadeIn">        
+        <!-- Position Leaders -->        
+        <div class="bg-gray-800 p-4 rounded-xl shadow-lg text-center relative overflow-hidden">          
+          <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 to-cyan-400"></div>          
+          <div class="text-sm text-cyan-400 font-semibold mb-2">Top QBs</div>          
+          <div class="text-white font-bold text-lg mb-1 player-name">-</div>          
+          <div class="flex justify-center gap-4 text-xs text-gray-300 mt-2">            
+            <div><span class="text-gray-400">YDS:</span> <span class="stat-yards">-</span></div>            
+            <div><span class="text-gray-400">TDs:</span> <span class="stat-tds">-</span></div>            
+            <div><span class="text-gray-400">PPR:</span> <span class="stat-ppr">-</span></div>          
+          </div>        
+        </div>                
+        <div class="bg-gray-800 p-4 rounded-xl shadow-lg text-center relative overflow-hidden">          
+          <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-red-500 to-rose-400"></div>          
+          <div class="text-sm text-cyan-400 font-semibold mb-2">Top RBs</div>          
+          <div class="text-white font-bold text-lg mb-1 player-name">-</div>          
+          <div class="flex justify-center gap-4 text-xs text-gray-300 mt-2">            
+            <div><span class="text-gray-400">YDS:</span> <span class="stat-yards">-</span></div>            
+            <div><span class="text-gray-400">TDs:</span> <span class="stat-tds">-</span></div>            
+            <div><span class="text-gray-400">PPR:</span> <span class="stat-ppr">-</span></div>          
+          </div>        
+        </div>                
+        <div class="bg-gray-800 p-4 rounded-xl shadow-lg text-center relative overflow-hidden">          
+          <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-green-500 to-emerald-400"></div>          
+          <div class="text-sm text-cyan-400 font-semibold mb-2">Top WRs</div>          
+          <div class="text-white font-bold text-lg mb-1 player-name">-</div>          
+          <div class="flex justify-center gap-4 text-xs text-gray-300 mt-2">            
+            <div><span class="text-gray-400">YDS:</span> <span class="stat-yards">-</span></div>            
+            <div><span class="text-gray-400">TDs:</span> <span class="stat-tds">-</span></div>            
+            <div><span class="text-gray-400">PPR:</span> <span class="stat-ppr">-</span></div>          
+          </div>        
+        </div>      
+      </div>    
+    </section>
 
-        <!-- Coach AI Preview -->    <section>      <h2 class="text-lg font-bold text-cyan-300 mb-4 flex items-center">        <span class="section-header-icon">🧠</span> Coach Analysis      </h2>      <div class="bg-gray-800 p-4 rounded-xl shadow-lg overflow-hidden relative fadeIn">        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-purple-500 to-indigo-400"></div>        <div class="flex items-start gap-3">          <div class="w-12 h-12 rounded-full bg-purple-900 flex items-center justify-center flex-shrink-0">            <span class="text-2xl">🧠</span>          </div>          <div>            <div class="font-medium text-purple-300 mb-1">Coach Analysis</div>            <div id="coach-advice" class="text-gray-300 text-sm italic">              "Draft a balanced team with a mix of reliable veterans and high-upside players. Watch for injury history and bye weeks."            </div>          </div>        </div>      </div>    </section>
+    <!-- Coach AI Preview -->    
+    <section>      
+      <h2 class="text-lg font-bold text-cyan-300 mb-4 flex items-center">        
+        <span class="section-header-icon">🧠</span> Coach Analysis      
+      </h2>      
+      <div class="bg-gray-800 p-4 rounded-xl shadow-lg overflow-hidden relative fadeIn">        
+        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-purple-500 to-indigo-400"></div>        
+        <div class="flex items-start gap-3">          
+          <div class="w-12 h-12 rounded-full bg-purple-900 flex items-center justify-center flex-shrink-0">            
+            <span class="text-2xl">🧠</span>          
+          </div>          
+          <div>            
+            <div class="font-medium text-purple-300 mb-1">Coach Analysis</div>            
+            <div id="coach-advice" class="text-gray-300 text-sm italic">              
+              "Draft a balanced team with a mix of reliable veterans and high-upside players. Watch for injury history and bye weeks."            
+            </div>          
+          </div>        
+        </div>      
+      </div>    
+    </section>
 
   </main>
 
-  <!-- Footer -->
-  <footer class="footer">
-    An AeroVista Production - where vision takes flight
-  </footer>
+  <!-- Footer will be added by header-nav.js -->
 
   <script src="my-squad.js" type="module"></script>
   <script src="coach.js" type="module"></script>
   <script src="search.js" type="module"></script>
   <script src="dashboard.js" type="module"></script>
-  
-    <!-- All JS initialization is now handled in dashboard.js -->  
-  
-  <!-- Mobile menu toggle script -->
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const menuButton = document.querySelector('.mobile-menu-button');
-      const nav = document.querySelector('nav');
-      
-      if (menuButton && nav) {
-        menuButton.addEventListener('click', function() {
-          nav.classList.toggle('hidden');
-          nav.classList.toggle('flex');
-          nav.classList.toggle('flex-col');
-          nav.classList.toggle('absolute');
-          nav.classList.toggle('top-16');
-          nav.classList.toggle('right-4');
-          nav.classList.toggle('bg-gray-800');
-          nav.classList.toggle('p-4');
-          nav.classList.toggle('rounded-md');
-          nav.classList.toggle('shadow-lg');
-          nav.classList.toggle('border');
-          nav.classList.toggle('border-gray-700');
-          nav.classList.toggle('z-50');
-        });
-      }
-    });
-  </script>
 </body>
 </html>
